@@ -8,7 +8,7 @@
 
 backend:
   name: github
-  repo: OWNER/REPO          # <-- À REMPLACER par "ton-compte/ton-depot"
+  repo: merciermathieu5/HECTEST          # <-- À REMPLACER par "ton-compte/ton-depot"
   branch: main              # adapte si ta branche de publication diffère
 
 # Permet de tester l'éditeur en local sans authentification GitHub :
