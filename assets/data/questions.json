@@ -1,0 +1,2100 @@
+{
+  "questions": [
+    {
+      "id": "q-causalite-1",
+      "operation": "Établir des liens de causalité",
+      "numero": 1,
+      "niveau": 2,
+      "realite_sociale_id": "renouvellement-vision-homme",
+      "questionBody": {
+        "prompt": "À l'aide des documents 1 à 3, établis des liens entre les éléments suivants :",
+        "bullets": [
+          "Une action reprochée au clergé catholique",
+          "Une action de Martin Luther",
+          "Une conséquence culturelle sur les royaumes d'Europe"
+        ],
+        "instructions": [
+          {
+            "text": "Fais des phrases complètes et utilise des marqueurs de relation de ",
+            "bold": false
+          },
+          {
+            "text": "but",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "cause",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "conséquence",
+            "bold": true
+          },
+          {
+            "text": " ou d'",
+            "bold": false
+          },
+          {
+            "text": "explication",
+            "bold": true
+          },
+          {
+            "text": " afin d'établir les liens entre les éléments.",
+            "bold": false
+          }
+        ],
+        "responseSpace": [
+          {
+            "type": "lines",
+            "count": 8
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "complex",
+          "id": "r-c1",
+          "label": "Réglette (3 points)",
+          "opLabel": "Établir des liens de causalité",
+          "maxPoints": 3,
+          "rows": [
+            {
+              "precise": "L'élève précise les trois éléments",
+              "condition": "et établit correctement deux liens de causalité.",
+              "points": "3 points"
+            },
+            {
+              "precise": "",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise deux éléments",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise un seul élément ou n'en précise pas.",
+              "condition": "",
+              "points": "0 point"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "c1-d1",
+          "title": "Document 1 : Les 95 thèses",
+          "layout": "text-image",
+          "text": "Les 95 thèses de Martin Luther, critiquant notamment la vente d'indulgences par l'Église catholique, sont imprimées à plus de 300 000 exemplaires entre 1517 et 1520 grâce aux nouveaux procédés d'impression de Gutenberg. Les 95 thèses seront la base du protestantisme en Europe, mais également le début d'une vague de contestation de l'Église catholique romaine.",
+          "imageUrl": "assets/img/causalite-1/img000.png",
+          "imageWidthCm": 3.5,
+          "sources": [
+            "Source du texte : Service national du RÉCIT, domaine de l'univers social.",
+            "Source de l'image : Lucas Cranach the Elder, Martin Luther, 1528 (Veste Coburg), Wikimedia Commons, Domaine public."
+          ]
+        },
+        {
+          "id": "c1-d2",
+          "title": "Document 2 : Les indulgences",
+          "layout": "image-only",
+          "imageUrl": "assets/img/causalite-1/img001.png",
+          "imageWidthCm": 7,
+          "sources": [
+            "Source de l'image : Lucas Cranach l'Ancien, L'Antéchrist, Wikimedia Commons. Domaine public."
+          ]
+        },
+        {
+          "id": "c1-d3",
+          "title": "Document 3 : Le protestantisme",
+          "layout": "text-only",
+          "text": "Le protestantisme gagne en importance dans le Saint-Empire romain germanique, en France et en Angleterre, favorisant l'apparition des Églises protestantes (luthérienne, presbytérienne, anglicane et calviniste).",
+          "sources": [
+            "Source : Service national du RÉCIT, domaine de l'univers social."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "texte",
+          "valeur": "L'Église catholique vend des indulgences. Par conséquent, Martin Luther écrit les 95 thèses afin de dénoncer les agissements du clergé catholique, dont la vente des indulgences. Les 95 thèses de Martin Luther entraînent une vague de protestation en Europe, favorisant le développement du protestantisme."
+        }
+      ]
+    },
+    {
+      "id": "q-espace-1",
+      "operation": "Situer dans l'espace",
+      "numero": 1,
+      "niveau": 2,
+      "realite_sociale_id": "renouvellement-vision-homme",
+      "questionBody": {
+        "prompt": "À l'aide du document 1, situe les différents royaumes d'Europe en indiquant la lettre leur correspondant.",
+        "bullets": [],
+        "instructions": [],
+        "responseSpace": [
+          {
+            "type": "labeled-list",
+            "items": [
+              "Le royaume de France",
+              "Le royaume d'Angleterre",
+              "Le Saint-Empire romain germanique",
+              "Le royaume de Naples"
+            ]
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "simple",
+          "id": "r-e1",
+          "label": "Réglette (2 points)",
+          "opLabel": "Situer dans le temps et dans l'espace",
+          "maxPoints": 2,
+          "levels": [
+            {
+              "points": "2 points",
+              "condition": "L'élève situe tous les faits dans l'espace. (4 sur 4)"
+            },
+            {
+              "points": "1 point",
+              "condition": "L'élève situe certains faits dans l'espace. (2 ou 3 sur 4)"
+            },
+            {
+              "points": "0 point",
+              "condition": "L'élève ne situe pas les faits dans l'espace. (0 ou 1 sur 4)"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "e1-d1",
+          "title": "Document 1 : L'Europe vers 1600",
+          "layout": "image-only",
+          "imageUrl": "assets/img/espace-1/img000.png",
+          "imageWidthCm": 12,
+          "sources": [
+            "Source : Alain Houot."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "lettres",
+          "valeurs": [
+            "D",
+            "A",
+            "C",
+            "B"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q-faits-1",
+      "operation": "Établir des faits",
+      "numero": 1,
+      "niveau": 2,
+      "realite_sociale_id": "renouvellement-vision-homme",
+      "questionBody": {
+        "prompt": "Indique deux caractéristiques des œuvres d'art de la Renaissance.",
+        "bullets": [],
+        "instructions": [],
+        "responseSpace": [
+          {
+            "type": "lines",
+            "count": 4
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "simple",
+          "id": "r-f1",
+          "label": "Réglette (2 points)",
+          "opLabel": "Établir des faits",
+          "maxPoints": 2,
+          "levels": [
+            {
+              "points": "2 points",
+              "condition": "L'élève établit correctement les faits. (2 sur 2)"
+            },
+            {
+              "points": "1 point",
+              "condition": "L'élève établit partiellement les faits. (1 sur 2)"
+            },
+            {
+              "points": "0 point",
+              "condition": "L'élève n'établit pas les faits. (0 sur 2)"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "f1-d1",
+          "title": "Document 1 : La naissance de Vénus",
+          "layout": "image-only",
+          "imageUrl": "assets/img/faits-1/img000.png",
+          "imageWidthCm": 11,
+          "sources": [
+            "Source : Sandro Botticelli, La naissance de Vénus (vers 1485), Galerie des Offices, Florence, Wikimedia Commons. Domaine public."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "texte",
+          "valeur": "Les thèmes des œuvres d'art de la Renaissance sont majoritairement la religion, l'être humain ou la nature. Les œuvres d'art sont réalistes grâce au respect des proportions du corps humain. Les artistes utilisent la perspective ou le point de fuite dans les peintures. L'inspiration provient de l'Antiquité."
+        }
+      ]
+    },
+    {
+      "id": "q-causes-1",
+      "operation": "Déterminer des causes et des conséquences",
+      "numero": 1,
+      "niveau": 2,
+      "realite_sociale_id": "renouvellement-vision-homme",
+      "questionBody": {
+        "prompt": "À l'aide des documents 1 et 2, détermine le document qui présente une cause de la réforme protestante et le document qui en présente une conséquence.",
+        "bullets": [],
+        "instructions": [],
+        "responseSpace": [
+          {
+            "type": "labeled-list",
+            "items": [
+              "Cause (Document n°)",
+              "Conséquence (Document n°)"
+            ]
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "simple",
+          "id": "r-ca1",
+          "label": "Réglette (2 points)",
+          "opLabel": "Déterminer des causes et des conséquences",
+          "maxPoints": 2,
+          "levels": [
+            {
+              "points": "2 points",
+              "condition": "L'élève détermine correctement la cause et la conséquence."
+            },
+            {
+              "points": "1 point",
+              "condition": "L'élève détermine la cause ou la conséquence."
+            },
+            {
+              "points": "0 point",
+              "condition": "L'élève ne détermine ni la cause ni la conséquence."
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "ca1-d1",
+          "title": "Document 1 : Les indulgences",
+          "layout": "image-only",
+          "imageUrl": "assets/img/causes-1/img000.png",
+          "imageWidthCm": 7,
+          "sources": [
+            "Source : Lucas Cranach l'Ancien, L'Antéchrist, Wikimedia Commons. Domaine public."
+          ]
+        },
+        {
+          "id": "ca1-d2",
+          "title": "Document 2 : L'ordre des Jésuites",
+          "layout": "text-image",
+          "text": "L'ordre des Jésuites, également connu sous le nom de Compagnie de Jésus, est une société religieuse catholique fondée par Ignace de Loyola au 16e siècle. L'ordre a été créé pour répondre aux défis vécus par l'Église catholique.",
+          "imageUrl": "assets/img/causes-1/img001.png",
+          "imageWidthCm": 4,
+          "sources": [
+            "Source du texte : Service national du RÉCIT.",
+            "Source de l'image : Moranski, Ihs-logo, Wikimedia Commons. Domaine public."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "lettres",
+          "valeurs": [
+            "1",
+            "2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q-differences-1",
+      "operation": "Dégager des différences et des similitudes",
+      "numero": 1,
+      "niveau": 2,
+      "realite_sociale_id": "renouvellement-vision-homme",
+      "questionBody": {
+        "prompt": "À l'aide des documents 1 et 2, dégage une différence dans les modèles astronomiques mis de l'avant par l'Église catholique et Nicolas Copernic.",
+        "bullets": [],
+        "instructions": [],
+        "responseSpace": [
+          {
+            "type": "lines",
+            "count": 4
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "simple",
+          "id": "r-di1",
+          "label": "Réglette (2 points)",
+          "opLabel": "Dégager des différences et des similitudes",
+          "maxPoints": 2,
+          "levels": [
+            {
+              "points": "2 points",
+              "condition": "L'élève dégage correctement la différence."
+            },
+            {
+              "points": "1 point",
+              "condition": "L'élève dégage plus ou moins correctement la différence."
+            },
+            {
+              "points": "0 point",
+              "condition": "L'élève dégage incorrectement la différence."
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "di1-d1",
+          "title": "Document 1 : Modèle astronomique héliocentrique",
+          "layout": "text-image",
+          "text": "Dans ce modèle astronomique, la Terre et les planètes tournent autour du Soleil.",
+          "imageUrl": "assets/img/differences-1/img000.png",
+          "imageWidthCm": 5,
+          "sources": [
+            "Source : Andreas Cellarius, Harmonia Macrocosmica (XVIIe siècle), Wikimedia Commons. Domaine public."
+          ]
+        },
+        {
+          "id": "di1-d2",
+          "title": "Document 2 : Modèle astronomique géocentrique",
+          "layout": "text-image",
+          "text": "Dans ce modèle astronomique, la Terre et les Hommes se trouvent au centre de l'univers.",
+          "imageUrl": "assets/img/differences-1/img001.png",
+          "imageWidthCm": 5,
+          "sources": [
+            "Source : Johannes van Loon, Système géocentrique de Ptolémée (XVIIe siècle), Wikimedia Commons. Domaine public."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "texte",
+          "valeur": "Nicolas Copernic propose la théorie de l'héliocentrisme alors que l'Église catholique propose la théorie du géocentrisme."
+        }
+      ]
+    },
+    {
+      "id": "q-changements-1",
+      "operation": "Déterminer des changements et des continuités",
+      "numero": 1,
+      "niveau": 2,
+      "realite_sociale_id": "renouvellement-vision-homme",
+      "questionBody": {
+        "prompt": "À l'aide du document 1, détermine un changement dans la langue d'écriture de la Bible suite à l'invention de l'imprimerie.",
+        "bullets": [],
+        "instructions": [],
+        "responseSpace": [
+          {
+            "type": "lines",
+            "count": 4
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "simple",
+          "id": "r-ch1",
+          "label": "Réglette (2 points)",
+          "opLabel": "Déterminer des changements et des continuités",
+          "maxPoints": 2,
+          "levels": [
+            {
+              "points": "2 points",
+              "condition": "L'élève détermine correctement le changement."
+            },
+            {
+              "points": "1 point",
+              "condition": "L'élève détermine plus ou moins correctement le changement."
+            },
+            {
+              "points": "0 point",
+              "condition": "L'élève ne détermine pas le changement."
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "ch1-d1",
+          "title": "Document 1 : La Bible",
+          "layout": "text-image",
+          "text": "Grâce à l'imprimerie, l'accès à la Bible est facilité, puisque celle-ci est disponible dans différentes langues et non plus exclusivement en latin. Elle permet donc à plus de gens, bien qu'il s'agisse encore d'une infime minorité, d'avoir accès aux écrits de la Bible sans l'intermédiaire des religieux, ce qui mènera à des interprétations différentes de celle-ci.",
+          "imageUrl": "assets/img/changements-1/img000.png",
+          "imageWidthCm": 5,
+          "sources": [
+            "Source du texte : Service national du RÉCIT.",
+            "Source de l'image : Kreuzschnabel, B42-print (2018), Wikimedia Commons. Free Art License 1.3."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "texte",
+          "valeur": "Suite à l'invention de l'imprimerie, la Bible est traduite dans plusieurs langues européennes (anglais, allemand, français, italien, etc.). Le latin n'est plus la seule langue d'écriture de la Bible."
+        }
+      ]
+    },
+    {
+      "id": "q-temps-1",
+      "operation": "Situer dans le temps",
+      "numero": 1,
+      "niveau": 2,
+      "realite_sociale_id": "renouvellement-vision-homme",
+      "questionBody": {
+        "prompt": "À l'aide du document 1, indique la lettre qui correspond à la Renaissance.",
+        "bullets": [],
+        "instructions": [],
+        "responseSpace": [
+          {
+            "type": "labeled-list",
+            "items": [
+              "La Renaissance"
+            ]
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "simple",
+          "id": "r-t1",
+          "label": "Réglette (1 point)",
+          "opLabel": "Situer dans le temps et dans l'espace",
+          "maxPoints": 1,
+          "levels": [
+            {
+              "points": "1 point",
+              "condition": "L'élève situe le fait dans le temps. (1 sur 1)"
+            },
+            {
+              "points": "0 point",
+              "condition": "L'élève ne situe pas le fait dans le temps. (0 sur 1)"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "t1-d1",
+          "title": "Document 1 : Ligne du temps",
+          "layout": "image-only",
+          "imageUrl": "assets/img/temps-1/img000.png",
+          "imageWidthCm": 12,
+          "sources": [
+            "Source : Mathieu Mercier."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "lettres",
+          "valeurs": [
+            "C"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q-relation-1",
+      "operation": "Mettre en relation des faits",
+      "numero": 1,
+      "niveau": 2,
+      "realite_sociale_id": "renouvellement-vision-homme",
+      "questionBody": {
+        "prompt": "Associe les documents 1 à 3 au type de renaissance lui correspondant.",
+        "bullets": [],
+        "instructions": [],
+        "responseSpace": [
+          {
+            "type": "labeled-list",
+            "items": [
+              "Document 1 →",
+              "Document 2 →",
+              "Document 3 →"
+            ]
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "simple",
+          "id": "r-r1",
+          "label": "Réglette (2 points)",
+          "opLabel": "Mettre en relation des faits",
+          "maxPoints": 2,
+          "levels": [
+            {
+              "points": "2 points",
+              "condition": "L'élève met en relation tous les faits. (3 sur 3)"
+            },
+            {
+              "points": "1 point",
+              "condition": "L'élève met en relation certains faits. (1 ou 2 sur 3)"
+            },
+            {
+              "points": "0 point",
+              "condition": "L'élève ne met pas en relation les faits. (0 sur 3)"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "r1-d1",
+          "title": "Document 1 : La Joconde",
+          "layout": "image-only",
+          "imageUrl": "assets/img/relation-1/img000.png",
+          "imageWidthCm": 6,
+          "sources": [
+            "Source : Léonard de Vinci, La Joconde, Wikimedia Commons. Domaine public."
+          ]
+        },
+        {
+          "id": "r1-d2",
+          "title": "Document 2 : Le fronton",
+          "layout": "text-image",
+          "text": "Le fronton est un élément [...] qui prend la forme d'un triangle isocèle et est généralement placé au-dessus de l'entrée d'un bâtiment ou d'une porte. Il est utilisé comme décoration ou pour soutenir la façade du bâtiment. Les frontons triangulaires sont étroitement associés à l'Antiquité grecque et romaine.",
+          "imageUrl": "assets/img/relation-1/img001.png",
+          "imageWidthCm": 5,
+          "sources": [
+            "Source du texte : Service national du RÉCIT, domaine de l'univers social.",
+            "Source de l'image : Shahee, Église de la Madeleine, Wikimedia Commons. CC BY-SA 2.5."
+          ]
+        },
+        {
+          "id": "r1-d3",
+          "title": "Document 3 : La dissection",
+          "layout": "text-only",
+          "text": "Malgré l'opposition des autorités religieuses et les superstitions répandues, certains progrès sont réalisés. « La médecine fait quelques progrès, particulièrement grâce à André Vésale (1514-1564), le plus grand anatomiste de son temps, qui n'hésite pas à disséquer des cadavres devant ses étudiants à l'université de Bologne et publie en 1543 une œuvre monumentale en sept volumes [...] »",
+          "sources": [
+            "Source : G. Langlois et G. Villemure, Histoire de la civilisation occidentale, 5e éd., Beauchemin, 2012, p. 124."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "lettres",
+          "valeurs": [
+            "Renaissance artistique",
+            "Renaissance architecturale",
+            "Renaissance scientifique"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q-temps-2",
+      "operation": "Situer dans le temps",
+      "numero": 2,
+      "niveau": 2,
+      "realite_sociale_id": "renouvellement-vision-homme",
+      "questionBody": {
+        "prompt": "Les documents 2 et 3 présentent des faits se déroulant lors de la Renaissance. Indique si les faits présentés surviennent avant ou après l'apparition du protestantisme.",
+        "bullets": [],
+        "instructions": [],
+        "responseSpace": [
+          {
+            "type": "before-after-axis",
+            "beforeLabel": "Antériorité (Avant)",
+            "afterLabel": "Postériorité (Après)",
+            "pivot": "Apparition du protestantisme"
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "simple",
+          "id": "r-t2",
+          "label": "Réglette (1 point)",
+          "opLabel": "Situer dans le temps et dans l'espace",
+          "maxPoints": 1,
+          "levels": [
+            {
+              "points": "1 point",
+              "condition": "L'élève situe tous les faits dans le temps. (2 sur 2)"
+            },
+            {
+              "points": "0 point",
+              "condition": "L'élève ne situe pas les faits dans l'espace. (0 sur 2)"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "t1-d1",
+          "title": "Document 1 : Ligne du temps",
+          "layout": "image-only",
+          "imageUrl": "assets/img/temps-1/img000.png",
+          "imageWidthCm": 12,
+          "sources": [
+            "Source : Mathieu Mercier."
+          ]
+        },
+        {
+          "id": "t1-d2",
+          "title": "Document 2 : La contre-réforme",
+          "layout": "text-only",
+          "text": "Le Concile a souligné l'importance de l'éducation et de la formation du clergé, en exigeant la création de séminaires pour former les futurs prêtres et améliorer leur pratique. Afin de contrôler la diffusion des idées hérétiques, l'Église a établi l'Index librorum prohibitorum, une liste de livres interdits aux catholiques.",
+          "sources": [
+            "Source : Service national du RÉCIT, domaine de l'univers social."
+          ]
+        },
+        {
+          "id": "t1-d3",
+          "title": "Document 3 : Les indulgences",
+          "layout": "image-only",
+          "imageUrl": "assets/img/temps-1/img002.png",
+          "imageWidthCm": 7,
+          "sources": [
+            "Source : Lucas Cranach l'Ancien, L'Antéchrist, Wikimedia Commons. Domaine public."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "avant_apres",
+          "avant": [
+            "Document 3"
+          ],
+          "apres": [
+            "Document 2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q-relation-2",
+      "operation": "Mettre en relation des faits",
+      "numero": 2,
+      "niveau": 2,
+      "realite_sociale_id": "renouvellement-vision-homme",
+      "questionBody": {
+        "prompt": "Lors de la Renaissance, plusieurs œuvres sont inspirées de la nature, de l'être humain, du christianisme et même de l'Antiquité gréco-romaine. Indique, en cochant dans la case appropriée, si le document 1 représente une œuvre profane ou une œuvre religieuse.",
+        "bullets": [],
+        "instructions": [],
+        "responseSpace": [
+          {
+            "type": "checkbox-table",
+            "columns": [
+              "Œuvre profane",
+              "Œuvre religieuse"
+            ],
+            "rows": [
+              "Document 1"
+            ]
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "simple",
+          "id": "r-r2",
+          "label": "Réglette (1 point)",
+          "opLabel": "Mettre en relation des faits",
+          "maxPoints": 1,
+          "levels": [
+            {
+              "points": "1 point",
+              "condition": "L'élève met en relation le fait. (1 sur 1)"
+            },
+            {
+              "points": "0 point",
+              "condition": "L'élève ne met pas en relation le fait. (0 sur 1)"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "r1-d1",
+          "title": "Document 1 : La Joconde",
+          "layout": "image-only",
+          "imageUrl": "assets/img/relation-1/img000.png",
+          "imageWidthCm": 6,
+          "sources": [
+            "Source : Léonard de Vinci, La Joconde, Wikimedia Commons. Domaine public."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "cases",
+          "lignes": [
+            {
+              "cochees": [
+                {
+                  "coche": true
+                },
+                {
+                  "coche": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q-temps-3",
+      "operation": "Situer dans le temps",
+      "numero": 3,
+      "niveau": 2,
+      "realite_sociale_id": "renouvellement-vision-homme",
+      "questionBody": {
+        "prompt": "Place en ordre chronologique les documents 1 à 3.",
+        "bullets": [],
+        "instructions": [],
+        "responseSpace": [
+          {
+            "type": "chrono-ordering",
+            "items": [
+              "1er (le plus ancien)",
+              "2e",
+              "3e (le plus récent)"
+            ]
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "simple",
+          "id": "r-t3",
+          "label": "Réglette (2 points)",
+          "opLabel": "Situer dans le temps et dans l'espace",
+          "maxPoints": 2,
+          "levels": [
+            {
+              "points": "2 points",
+              "condition": "L'élève situe tous les faits dans le temps. (3 sur 3)"
+            },
+            {
+              "points": "1 point",
+              "condition": "L'élève situe certains faits dans le temps. (1 ou 2 sur 3)"
+            },
+            {
+              "points": "0 point",
+              "condition": "L'élève ne situe pas les faits dans le temps. (0 sur 3)"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "t2-d1",
+          "title": "Document 1 : Les 95 thèses",
+          "layout": "text-only",
+          "text": "Les 95 thèses de Martin Luther, critiquant notamment la vente d'indulgences par l'Église catholique, sont imprimées à plus de 300 000 exemplaires entre 1517 et 1520 grâce aux nouveaux procédés d'impression de Gutenberg.",
+          "sources": [
+            "Source : Service national du RÉCIT, domaine de l'univers social."
+          ]
+        },
+        {
+          "id": "t2-d2",
+          "title": "Document 2 : Le protestantisme",
+          "layout": "text-only",
+          "text": "Le protestantisme gagne en importance dans le Saint-Empire romain germanique, en France et en Angleterre, favorisant l'apparition des Églises protestantes (luthérienne, presbytérienne, anglicane et calviniste).",
+          "sources": [
+            "Source : Service national du RÉCIT, domaine de l'univers social."
+          ]
+        },
+        {
+          "id": "t2-d3",
+          "title": "Document 3 : Un atelier d'impression",
+          "layout": "image-only",
+          "imageUrl": "assets/img/temps-2/img000.png",
+          "imageWidthCm": 9,
+          "sources": [
+            "Source : Jan van der Straet, Atelier d'impression XVIe siècle, Musée Plantin-Moretus, Wikimedia Commons."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "lettres",
+          "valeurs": [
+            "Document 3",
+            "Document 1",
+            "Document 2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q-exp-causalite-1",
+      "operation": "Établir des liens de causalité",
+      "numero": 1,
+      "niveau": 2,
+      "realite_sociale_id": "expansion-europeenne",
+      "questionBody": {
+        "prompt": "À l'aide des documents 1 à 3, établis des liens entre les éléments suivants :",
+        "bullets": [
+          "La rencontre de deux mondes",
+          "Un impact sur la santé des Autochtones",
+          "Une conséquence sur la population de l'Amérique"
+        ],
+        "instructions": [
+          {
+            "text": "Fais des phrases complètes et utilise des marqueurs de relation de ",
+            "bold": false
+          },
+          {
+            "text": "but",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "cause",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "conséquence",
+            "bold": true
+          },
+          {
+            "text": " ou d'",
+            "bold": false
+          },
+          {
+            "text": "explication",
+            "bold": true
+          },
+          {
+            "text": " afin d'établir les liens entre les éléments.",
+            "bold": false
+          }
+        ],
+        "responseSpace": [
+          {
+            "type": "lines",
+            "count": 8
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "complex",
+          "id": "r-exp-c1",
+          "label": "Réglette (3 points)",
+          "opLabel": "Établir des liens de causalité",
+          "maxPoints": 3,
+          "rows": [
+            {
+              "precise": "L'élève précise les trois éléments",
+              "condition": "et établit correctement deux liens de causalité.",
+              "points": "3 points"
+            },
+            {
+              "precise": "",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise deux éléments",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise un seul élément ou n'en précise pas.",
+              "condition": "",
+              "points": "0 point"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "exp-c1-d1",
+          "title": "Document 1 : Des morts par millions",
+          "layout": "text-only",
+          "text": "Des épidémies de petite vérole, de peste ou de rougeole tuent des millions d'Autochtones. Par exemple, en 1528, la variole tue 200 000 Incas en quelques mois. C'est ainsi qu'au Mexique, en 1600, il ne reste plus qu'un million d'Autochtones. À l'arrivée des Européens, 100 ans auparavant, la population était évaluée à 20 millions de personnes.",
+          "sources": [
+            "Source du texte : Service national du RÉCIT, domaine de l'univers social."
+          ]
+        },
+        {
+          "id": "exp-c1-d2",
+          "title": "Document 2 : Débarquement de Christophe Colomb en 1492",
+          "layout": "image-only",
+          "imageUrl": "assets/img/exp-causalite-1/img001.png",
+          "imageWidthCm": 10,
+          "sources": [
+            "Source de l'image : Dióscoro Teófilo de la Puebla Tolín, Desembarco de Colón de Dióscoro Puebla, Wikimedia Commons. Licence : Image du domaine public."
+          ]
+        },
+        {
+          "id": "exp-c1-d3",
+          "title": "Document 3 : La variole",
+          "layout": "text-image",
+          "text": "Involontairement, les Espagnols portent en eux plusieurs virus et bactéries contre lesquels les Autochtones n'ont aucune défense immunitaire.",
+          "imageUrl": "assets/img/exp-causalite-1/img002.png",
+          "imageWidthCm": 6,
+          "sources": [
+            "Source de l'image : Codex Florentin (1540-1585), livre XII folio 54, Wikimedia Commons. Licence : Image du domaine public.",
+            "Source du texte : Service national du RÉCIT, domaine de l'univers social."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "texte",
+          "valeur": "En 1492, Christophe Colomb traverse l'Atlantique et découvre l'Amérique (les Antilles) et les populations qui y vivent. Suite à ce contact, les peuples autochtones de l'Amérique attrapent certaines maladies (variole) apportées par les Européens. Par conséquent, des millions d'Autochtones meurent : 95 % de la population du Mexique disparaît, passant de 20 millions d'individus à seulement 1 million."
+        }
+      ]
+    },
+    {
+      "id": "q-rev-causalite-1",
+      "operation": "Établir des liens de causalité",
+      "numero": 1,
+      "niveau": 2,
+      "realite_sociale_id": "revolution-americaine",
+      "questionBody": {
+        "prompt": "À l'aide des documents 1 à 3, établis des liens entre les éléments suivants :",
+        "bullets": [
+          "La situation économique de la Grande-Bretagne",
+          "Une mesure imposée aux 13 colonies américaines",
+          "La réaction des colons américains"
+        ],
+        "instructions": [
+          {
+            "text": "Fais des phrases complètes et utilise des marqueurs de relation de ",
+            "bold": false
+          },
+          {
+            "text": "but",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "cause",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "conséquence",
+            "bold": true
+          },
+          {
+            "text": " ou d'",
+            "bold": false
+          },
+          {
+            "text": "explication",
+            "bold": true
+          },
+          {
+            "text": " afin d'établir les liens entre les éléments.",
+            "bold": false
+          }
+        ],
+        "responseSpace": [
+          {
+            "type": "lines",
+            "count": 8
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "complex",
+          "id": "r-rev-c1",
+          "label": "Réglette (3 points)",
+          "opLabel": "Établir des liens de causalité",
+          "maxPoints": 3,
+          "rows": [
+            {
+              "precise": "L'élève précise les trois éléments",
+              "condition": "et établit correctement deux liens de causalité.",
+              "points": "3 points"
+            },
+            {
+              "precise": "",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise deux éléments",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise un seul élément ou n'en précise pas.",
+              "condition": "",
+              "points": "0 point"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "rc1-d1",
+          "title": "Document 1 : Des mesures impopulaires",
+          "layout": "text-only",
+          "text": "À la suite de la guerre de Sept Ans, l'Angleterre adopte une série de taxes et de mesures afin de renflouer les coffres de l'État. Elle entend bien faire participer ses colonies aux dépenses entraînées par le conflit. Pour s'assurer de la perception des nouvelles taxes, elle envoie d'ailleurs ses propres douaniers dans les ports coloniaux.",
+          "sources": [
+            "Source du texte : Service national du RÉCIT, domaine de l'univers social."
+          ]
+        },
+        {
+          "id": "rc1-d2",
+          "title": "Document 2 : Le Boston Tea Party",
+          "layout": "image-only",
+          "imageUrl": "assets/img/rev-causalite-1/img001.png",
+          "imageWidthCm": 14,
+          "sources": [
+            "Source de l'image : Nathaniel Currier, Boston Tea Party de 1773 (1846), Wikimedia Commons. Domaine public."
+          ]
+        },
+        {
+          "id": "rc1-d3",
+          "title": "Document 3 : La guerre de Sept Ans",
+          "layout": "text-image",
+          "text": "La guerre de Sept Ans (de 1756 à 1763) est la première guerre d'envergure mondiale. Elle est menée en Europe, en Inde et en Amérique, ainsi qu'en mer. En Amérique du Nord, la Grande-Bretagne et la France, empires rivaux, luttent pour la suprématie [...]. Malgré ses victoires militaires et marines, la Grande-Bretagne croule sous une dette nationale colossale en 1760.",
+          "imageUrl": "assets/img/rev-causalite-1/img000.png",
+          "imageWidthCm": 6.5,
+          "sources": [
+            "Source du texte : William John Eccles, « Le Canada et la guerre de Sept Ans », Encyclopédie canadienne, consulté le 16 juillet 2023.",
+            "Source de l'image : Carl Röchling, Frédéric le Grand à la bataille de Zorndorf, Wikimedia Commons. Domaine public."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "texte",
+          "valeur": "Suite à la Guerre de Sept Ans, la Grande-Bretagne est très endettée. Afin de renflouer ses coffres, elle impose des taxes sur le sucre, le thé et le timbre aux 13 colonies américaines. Pour dénoncer ces taxes, les patriotes américains organisent le Boston Tea Party et jettent des cargaisons de thé à la mer dans le port de Boston."
+        }
+      ]
+    },
+    {
+      "id": "q-sed-causalite-1",
+      "operation": "Établir des liens de causalité",
+      "numero": 1,
+      "niveau": 1,
+      "realite_sociale_id": "sedentarisation",
+      "questionBody": {
+        "prompt": "À l'aide des documents 1 à 3, établis des liens entre les éléments suivants :",
+        "bullets": [
+          "Un élément naturel favorisant l'agriculture",
+          "Une nouvelle technique agricole",
+          "Une conséquence sur la production agricole"
+        ],
+        "instructions": [
+          {
+            "text": "Fais des phrases complètes et utilise des marqueurs de relation de ",
+            "bold": false
+          },
+          {
+            "text": "but",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "cause",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "conséquence",
+            "bold": true
+          },
+          {
+            "text": " ou d'",
+            "bold": false
+          },
+          {
+            "text": "explication",
+            "bold": true
+          },
+          {
+            "text": " afin d'établir les liens entre les éléments.",
+            "bold": false
+          }
+        ],
+        "responseSpace": [
+          {
+            "type": "lines",
+            "count": 8
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "complex",
+          "id": "r-sed-c1",
+          "label": "Réglette (3 points)",
+          "opLabel": "Établir des liens de causalité",
+          "maxPoints": 3,
+          "rows": [
+            {
+              "precise": "L'élève précise les trois éléments",
+              "condition": "et établit correctement deux liens de causalité.",
+              "points": "3 points"
+            },
+            {
+              "precise": "",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise deux éléments",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise un seul élément ou n'en précise pas.",
+              "condition": "",
+              "points": "0 point"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "sed-c1-d1",
+          "title": "Document 1 : Le Croissant fertile",
+          "layout": "image-only",
+          "imageUrl": "assets/img/sed-causalite-1/img000.png",
+          "imageWidthCm": 11,
+          "sources": [
+            "Source de l'image : Croissant fertile, Wikimedia Commons. Licence : Creative Commons (BY-SA)."
+          ]
+        },
+        {
+          "id": "sed-c1-d2",
+          "title": "Document 2 : Améliorer les récoltes",
+          "layout": "text-only",
+          "text": "Les paysans se rendent également compte que pour obtenir de meilleures récoltes, il leur faut fournir davantage d'eau à leurs cultures. C'est ainsi qu'ils vont développer d'ingénieux systèmes d'irrigation, grâce auxquels l'eau parvient régulièrement aux plantes. Le rendement des récoltes sera ainsi augmenté, ce qui permettra d'accumuler des surplus.",
+          "sources": [
+            "Source : Service national du RÉCIT, domaine de l'univers social."
+          ]
+        },
+        {
+          "id": "sed-c1-d3",
+          "title": "Document 3 : Tous paysans ?",
+          "layout": "text-only",
+          "text": "La plupart des habitants sont des paysans. Ils cultivent l'orge et le blé dans les champs environnants, en plus de faire l'élevage de chèvres et de moutons. Avec le temps, l'amélioration des techniques agricoles permet de produire des surplus et de bien nourrir tous les habitants des villes et des villages.",
+          "sources": [
+            "Source : Service national du RÉCIT, domaine de l'univers social."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "texte",
+          "valeur": "Dans la région du Croissant fertile, il y a de nombreux cours d'eau comme le Tigre, l'Euphrate et le Nil. La présence de ces cours d'eau favorise la mise en place de systèmes d'irrigation. Grâce aux systèmes d'irrigation mis en place, les êtres humains sont capables d'augmenter leur production agricole et d'en dégager des surplus."
+        }
+      ]
+    },
+    {
+      "id": "q-civ-causalite-1",
+      "operation": "Établir des liens de causalité",
+      "numero": 1,
+      "niveau": 1,
+      "realite_sociale_id": "emergence-civilisation",
+      "questionBody": {
+        "prompt": "À l'aide des documents 1 à 3, établis des liens entre les éléments suivants :",
+        "bullets": [
+          "La production agricole en Mésopotamie",
+          "Le développement des échanges commerciaux",
+          "Une invention facilitant la consignation des transactions"
+        ],
+        "instructions": [
+          {
+            "text": "Fais des phrases complètes et utilise des marqueurs de relation de ",
+            "bold": false
+          },
+          {
+            "text": "but",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "cause",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "conséquence",
+            "bold": true
+          },
+          {
+            "text": " ou d'",
+            "bold": false
+          },
+          {
+            "text": "explication",
+            "bold": true
+          },
+          {
+            "text": " afin d'établir les liens entre les éléments.",
+            "bold": false
+          }
+        ],
+        "responseSpace": [
+          {
+            "type": "lines",
+            "count": 8
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "complex",
+          "id": "r-civ-c1",
+          "label": "Réglette (3 points)",
+          "opLabel": "Établir des liens de causalité",
+          "maxPoints": 3,
+          "rows": [
+            {
+              "precise": "L'élève précise les trois éléments",
+              "condition": "et établit correctement deux liens de causalité.",
+              "points": "3 points"
+            },
+            {
+              "precise": "",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise deux éléments",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise un seul élément ou n'en précise pas.",
+              "condition": "",
+              "points": "0 point"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "civ-c1-d1",
+          "title": "Document 1 : Agriculture",
+          "layout": "text-image",
+          "text": "L'agriculture était variée et abondante en Mésopotamie, grâce à la fertilité de la région et à l'irrigation assurée par le Tigre et l'Euphrate. Par exemple, les Mésopotamiens cultivaient du blé, de l'orge, des lentilles, des pois chiches, des figues et des dattes. Grâce à cette production agricole, ils sont en mesure de combler leurs besoins alimentaires en plus de dégager des surplus alimentaires.",
+          "imageUrl": "assets/img/civ-causalite-1/img000.png",
+          "imageWidthCm": 5,
+          "sources": [
+            "Source du texte : Service national du RÉCIT, domaine de l'univers social.",
+            "Source de l'image : Stan Shebs, Régime de dattes, Wikimedia Commons. Licence : Image du domaine public."
+          ]
+        },
+        {
+          "id": "civ-c1-d2",
+          "title": "Document 2 : Le calculi",
+          "layout": "text-image",
+          "text": "Les marchands ont été parmi les premiers à utiliser des formes d'écriture pour identifier les produits. Cette première forme d'écriture, qu'on appelle le calculi, consiste en une boule d'argile dans laquelle on insère des jetons. La forme, le nombre et le matériau des jetons correspondent au type et à la quantité de marchandises. C'est donc avant tout pour des raisons commerciales que prend forme la première écriture.",
+          "imageUrl": "assets/img/civ-causalite-1/img001.png",
+          "imageWidthCm": 9,
+          "sources": [
+            "Source du texte : Service national du RÉCIT, domaine de l'univers social.",
+            "Source de l'image : Franck Raux, Bulle enveloppe et calculi, Musée du Louvre. Licence : Creative Commons BY-NC 3.0."
+          ]
+        },
+        {
+          "id": "civ-c1-d3",
+          "title": "Document 3 : Échanges commerciaux",
+          "layout": "text-only",
+          "text": "Les marchands mésopotamiens échangent fréquemment les produits de l'agriculture locale et de l'artisanat (principalement du textile) contre des matériaux des régions voisines. Un vaste réseau commercial se développe donc et les échanges ont principalement lieu dans des ports et des marchés qu'on appelle kârum.",
+          "sources": [
+            "Source : Service national du RÉCIT, domaine de l'univers social."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "texte",
+          "valeur": "L'agriculture est variée et abondante en Mésopotamie, ce qui permet de dégager des surplus alimentaires. Grâce à ces surplus, les Mésopotamiens développent des échanges commerciaux avec les régions voisines. Pour faciliter la consignation des transactions, les marchands inventent le calculi, une première forme d'écriture composée d'une boule d'argile contenant des jetons."
+        }
+      ]
+    },
+    {
+      "id": "q-dem-causalite-1",
+      "operation": "Établir des liens de causalité",
+      "numero": 1,
+      "niveau": 1,
+      "realite_sociale_id": "premiere-experience-democratie",
+      "questionBody": {
+        "prompt": "À l'aide des documents 1 à 3, établis des liens entre les éléments suivants :",
+        "bullets": [
+          "Une caractéristique territoriale de la Grèce",
+          "Un impact sur l'emplacement des Cités-État",
+          "Une conséquence sur le développement des régimes politiques"
+        ],
+        "instructions": [
+          {
+            "text": "Fais des phrases complètes et utilise des marqueurs de relation de ",
+            "bold": false
+          },
+          {
+            "text": "but",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "cause",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "conséquence",
+            "bold": true
+          },
+          {
+            "text": " ou d'",
+            "bold": false
+          },
+          {
+            "text": "explication",
+            "bold": true
+          },
+          {
+            "text": " afin d'établir les liens entre les éléments.",
+            "bold": false
+          }
+        ],
+        "responseSpace": [
+          {
+            "type": "lines",
+            "count": 8
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "complex",
+          "id": "r-dem-c1",
+          "label": "Réglette (3 points)",
+          "opLabel": "Établir des liens de causalité",
+          "maxPoints": 3,
+          "rows": [
+            {
+              "precise": "L'élève précise les trois éléments",
+              "condition": "et établit correctement deux liens de causalité.",
+              "points": "3 points"
+            },
+            {
+              "precise": "",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise deux éléments",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise un seul élément ou n'en précise pas.",
+              "condition": "",
+              "points": "0 point"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "dem-c1-d1",
+          "title": "Document 1 : Les cités-État grecques",
+          "layout": "image-only",
+          "imageUrl": "assets/img/dem-causalite-1/img000.png",
+          "imageWidthCm": 11,
+          "sources": [
+            "Source de l'image : O H 237, Carte Grèce antique 02 (2017), Wikimedia Commons. Licence : Creative Commons (BY-SA 4.0)."
+          ]
+        },
+        {
+          "id": "dem-c1-d2",
+          "title": "Document 2 : La Grèce",
+          "layout": "text-only",
+          "text": "La Grèce est une région montagneuse, avec un relief accidenté. La présence des mers Egée, Ionienne et Méditerranée favorise néanmoins la navigation à travers les nombreuses îles et les déplacements entre les cités-États de la Grèce antique.",
+          "sources": [
+            "Source : Service national du RÉCIT, domaine de l'univers social."
+          ]
+        },
+        {
+          "id": "dem-c1-d3",
+          "title": "Document 3 : Sparte et Athènes",
+          "layout": "text-only",
+          "text": "Les cités-État sont éloignées les unes des autres et se développent de manière autonome. Par exemple, Athènes a choisi la démocratie en tant que régime politique alors que Sparte a adopté l'oligarchie, où un nombre restreint de personnes dirige la destinée de la cité-État.",
+          "sources": [
+            "Source : Service national du RÉCIT, domaine de l'univers social."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "texte",
+          "valeur": "Le territoire de la Grèce est montagneux et très accidenté. De plus, la Grèce est composée de nombreuses îles. C'est pourquoi les cités-État sont éloignées les unes des autres. Puisqu'elles sont éloignées, chacune des cités-État développe son propre régime politique."
+        }
+      ]
+    },
+    {
+      "id": "q-rom-causalite-1",
+      "operation": "Établir des liens de causalité",
+      "numero": 1,
+      "niveau": 1,
+      "realite_sociale_id": "romanisation",
+      "questionBody": {
+        "prompt": "À l'aide des documents 1 à 3, explique comment l'annexion de nouveaux territoires par Rome transforme la culture des populations conquises.",
+        "bullets": [
+          "Un motif de l'annexion de nouveaux territoires",
+          "Une nouvelle province romaine au 1er siècle avant notre ère",
+          "Un impact sur la culture des populations annexées"
+        ],
+        "instructions": [
+          {
+            "text": "Fais des phrases complètes et utilise des marqueurs de relation de ",
+            "bold": false
+          },
+          {
+            "text": "but",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "cause",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "conséquence",
+            "bold": true
+          },
+          {
+            "text": " ou d'",
+            "bold": false
+          },
+          {
+            "text": "explication",
+            "bold": true
+          },
+          {
+            "text": " afin d'établir les liens entre les éléments.",
+            "bold": false
+          }
+        ],
+        "responseSpace": [
+          {
+            "type": "lines",
+            "count": 8
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "complex",
+          "id": "r-rom-c1",
+          "label": "Réglette (3 points)",
+          "opLabel": "Établir des liens de causalité",
+          "maxPoints": 3,
+          "rows": [
+            {
+              "precise": "L'élève précise les trois éléments",
+              "condition": "et établit correctement deux liens de causalité.",
+              "points": "3 points"
+            },
+            {
+              "precise": "",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise deux éléments",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise un seul élément ou n'en précise pas.",
+              "condition": "",
+              "points": "0 point"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "rom-c1-d1",
+          "title": "Document 1 : Jules César et la conquête de la Gaule",
+          "layout": "text-only",
+          "text": "Entre 58 et 51 avant notre ère, Jules César, alors consul, entreprit la conquête du nord de la Gaule avec ses 11 légions (6000 hommes par légion) : ce fut la célèbre « guerre des Gaules ». César réorganisa ensuite l'ensemble de la Gaule transalpine qu'il divisa en quatre provinces : la Narbonnaise (ex-Provincia), l'Aquitaine (Gallia Aquitania), la Lyonnaise (Gallia Lugdunensis) et la Belgique (Gallia Belgica), la Gaule entière étant conquise en 51 avant notre ère. Rome nommait des gouverneurs qui ignoraient tout de la langue gauloise pour chacune des provinces ; ils étaient chargés, entre autres, de lever les impôts que devaient payer les Gaulois et, en même temps, ils veillaient à l'entretien des voies romaines.",
+          "sources": [
+            "Source du texte : Auteur inconnu, L'expansionnisme linguistique du monde romain, en ligne, consulté le 15 décembre 2023."
+          ]
+        },
+        {
+          "id": "rom-c1-d2",
+          "title": "Document 2 : Toujours plus de conquêtes",
+          "layout": "text-only",
+          "text": "Rome a pour objectif d'intégrer les territoires conquis dans son système politique et administratif afin d'étendre son influence et son contrôle sur un territoire plus vaste. L'annexion des territoires conquis répond à plusieurs besoins de la république : pacifier les relations entre Rome et les populations des territoires conquis ; romaniser les territoires en intégrant les institutions, les lois et la culture de Rome ; accéder aux ressources naturelles (blé, métaux, etc.) ; développer le système des voies romaines et les routes commerciales.",
+          "sources": [
+            "Source : Service national du RÉCIT, domaine de l'univers social."
+          ]
+        },
+        {
+          "id": "rom-c1-d3",
+          "title": "Document 3 : Diffusion de la culture",
+          "layout": "text-only",
+          "text": "La langue est l'un des principaux véhicules d'une culture. Les Romains imposent leur langue, le latin, comme moyen de communication officiel dans tout l'Empire. Ils diffusent aussi leur vision du monde grâce à leur langue et leurs institutions. Ils le font aussi à l'aide de la religion. En intégrant les dieux des provinces conquises à leur propre religion, ils permettent ainsi aux différentes cultures de s'intégrer à l'Empire. Par exemple, le dieu grec Arès est intégré au panthéon romain sous le nom de Mars. Partout sur le territoire, les Romains construisent des temples dédiés à chacune des divinités. Ce n'est que plus tard que Rome imposera le christianisme.",
+          "sources": [
+            "Source : Service national du RÉCIT, domaine de l'univers social."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "texte",
+          "valeur": "Rome souhaite augmenter son influence dans le bassin méditerranéen et pacifier ses relations avec les habitants des régions conquises. C'est pourquoi Rome annexe progressivement des provinces comme les Gaules. En raison de l'annexion des Gaules au territoire romain, les populations se romanisent par l'adoption forcée du latin et par la fréquentation et l'utilisation des infrastructures romaines."
+        }
+      ]
+    },
+    {
+      "id": "q-chr-causalite-1",
+      "operation": "Établir des liens de causalité",
+      "numero": 1,
+      "niveau": 1,
+      "realite_sociale_id": "christianisation-occident",
+      "questionBody": {
+        "prompt": "À l'aide des documents 1 à 3, explique comment le christianisme fut progressivement toléré dans l'Empire romain au 4e siècle de notre ère.",
+        "bullets": [
+          "Une décision prise par Constantin lors de la bataille du pont Milvius",
+          "Une conséquence sur ses croyances religieuses",
+          "Un impact culturel sur les habitants de l'empire romain"
+        ],
+        "instructions": [
+          {
+            "text": "Fais des phrases complètes et utilise des marqueurs de relation de ",
+            "bold": false
+          },
+          {
+            "text": "but",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "cause",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "conséquence",
+            "bold": true
+          },
+          {
+            "text": " ou d'",
+            "bold": false
+          },
+          {
+            "text": "explication",
+            "bold": true
+          },
+          {
+            "text": " afin d'établir les liens entre les éléments.",
+            "bold": false
+          }
+        ],
+        "responseSpace": [
+          {
+            "type": "lines",
+            "count": 8
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "complex",
+          "id": "r-chr-c1",
+          "label": "Réglette (3 points)",
+          "opLabel": "Établir des liens de causalité",
+          "maxPoints": 3,
+          "rows": [
+            {
+              "precise": "L'élève précise les trois éléments",
+              "condition": "et établit correctement deux liens de causalité.",
+              "points": "3 points"
+            },
+            {
+              "precise": "",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise deux éléments",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise un seul élément ou n'en précise pas.",
+              "condition": "",
+              "points": "0 point"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "chr-c1-d1",
+          "title": "Document 1 : L'Édit de Milan",
+          "layout": "text-only",
+          "text": "« Le 13 juin 313, l'empereur Constantin, fort de sa victoire du pont Milvius sur son rival Maxence, promulgue l'édit de tolérance de Milan par lequel il légalise le christianisme. C'est un retournement inattendu après la « Grande Persécution » inaugurée dix ans plus tôt par les tétrarques Dioclétien et Galère. [...] L'édit de Milan reconnaît à chaque individu la faculté de suivre la religion de son choix. »",
+          "sources": [
+            "Source du texte : Fabienne Manière, 13 juin 313. Constantin promulgue l'édit de Milan, Herodote.net, consulté le 3 janvier 2024."
+          ]
+        },
+        {
+          "id": "chr-c1-d2",
+          "title": "Document 2 : Bataille du pont Milvius",
+          "layout": "text-only",
+          "text": "Une chronique postérieure [...] assure que Constantin aurait vu avant la bataille du pont Milvius une Croix dans le ciel, avec les mots ci-après : « In hoc signo vinces », soit en français, « Par ce signe tu vaincras ». Le futur empereur aurait alors fait peindre ces mots sur les boucliers de ses soldats et sur son étendard, le labarum, en les surmontant du chrisme, un symbole désignant Jésus-Christ et constitué des deux premières lettres de son nom, le X et le Rho grec.",
+          "sources": [
+            "Source du texte : Auteur inconnu, Constantin bat Maxence au pont Milvius, Herodote.net, consulté le 9 avril 2025."
+          ]
+        },
+        {
+          "id": "chr-c1-d3",
+          "title": "Document 3 : Conversion de Constantin",
+          "layout": "image-only",
+          "imageUrl": "assets/img/christianisation-causalite-1/img000.png",
+          "imageWidthCm": 6,
+          "sources": [
+            "Source de l'image : Auteur inconnu, Tête de l'empereur Constantin, Wikimedia Commons. Licence : image du domaine public."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "texte",
+          "valeur": "Lors de la bataille du pont Milvius, Constantin aurait vu une croix dans le ciel accompagnée des mots « In hoc signo vinces » (« Par ce signe tu vaincras »). Par conséquent, Constantin se convertit au christianisme et fait peindre le chrisme sur les boucliers de ses soldats. Quelques mois plus tard, il promulgue l'édit de Milan (313) qui légalise le christianisme et accorde à chaque individu la liberté de pratiquer la religion de son choix."
+        }
+      ]
+    },
+    {
+      "id": "q-ind-causalite-1",
+      "operation": "Établir des liens de causalité",
+      "numero": 1,
+      "niveau": 2,
+      "realite_sociale_id": "industrialisation",
+      "questionBody": {
+        "prompt": "À l'aide des documents 1 à 3, établis des liens entre les éléments suivants :",
+        "bullets": [
+          "Les conditions de vie et de travail des ouvriers",
+          "Une action réalisée par les ouvriers",
+          "Des mesures mises en place par le gouvernement britannique"
+        ],
+        "instructions": [
+          {
+            "text": "Fais des phrases complètes et utilise des marqueurs de relation de ",
+            "bold": false
+          },
+          {
+            "text": "but",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "cause",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "conséquence",
+            "bold": true
+          },
+          {
+            "text": " ou d'",
+            "bold": false
+          },
+          {
+            "text": "explication",
+            "bold": true
+          },
+          {
+            "text": " afin d'établir les liens entre les éléments.",
+            "bold": false
+          }
+        ],
+        "responseSpace": [
+          {
+            "type": "lines",
+            "count": 8
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "complex",
+          "id": "r-ind-c1",
+          "label": "Réglette (3 points)",
+          "opLabel": "Établir des liens de causalité",
+          "maxPoints": 3,
+          "rows": [
+            {
+              "precise": "L'élève précise les trois éléments",
+              "condition": "et établit correctement deux liens de causalité.",
+              "points": "3 points"
+            },
+            {
+              "precise": "",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise deux éléments",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise un seul élément ou n'en précise pas.",
+              "condition": "",
+              "points": "0 point"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "ind-c1-d1",
+          "title": "Document 1 : Législations ouvrières",
+          "layout": "image-only",
+          "imageUrl": "assets/img/industrialisation-causalite-1/img000.png",
+          "imageWidthCm": 13,
+          "sources": [
+            "Source du texte : Service national du RÉCIT, domaine de l'univers social."
+          ]
+        },
+        {
+          "id": "ind-c1-d2",
+          "title": "Document 2 : La classe ouvrière",
+          "layout": "text-only",
+          "text": "Le surplus de main-d'œuvre profite à la bourgeoisie. L'ouvrier est considéré comme une simple force de travail qui peut être remplacée au besoin. Les salaires sont très faibles pour les hommes et ceux des femmes et des enfants le sont encore plus. Les journées de travail comptent 12 à 14 heures, et ce, 7 jours sur 7, dès l'âge de 10 ans. On emploie même des enfants de 5 ans dans les mines et les filatures de coton.",
+          "sources": [
+            "Source du texte : Service national du RÉCIT, domaine de l'univers social."
+          ]
+        },
+        {
+          "id": "ind-c1-d3",
+          "title": "Document 3 : Grève au port de Londres en 1889",
+          "layout": "image-only",
+          "imageUrl": "assets/img/industrialisation-causalite-1/img001.png",
+          "imageWidthCm": 9,
+          "sources": [
+            "Source de l'image : Sandivas, London Dock Strike of 1889 (2008), Wikimedia Commons. Licence : image du domaine public."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "texte",
+          "valeur": "Les ouvriers travaillent de longues heures de travail, en plus de n'avoir qu'un très faible salaire en échange de leur dur labeur. Par conséquent, les ouvriers se syndicalisent et organisent des grèves afin de protester contre leurs conditions de travail. Grâce au mouvement syndical et aux nombreuses grèves, les ouvriers forcent l'intervention de l'État, qui met en place des lois améliorant les conditions de travail des ouvriers."
+        }
+      ]
+    },
+    {
+      "id": "q-emi-c1",
+      "operation": "Établir des liens de causalité",
+      "numero": 1,
+      "niveau": 2,
+      "realite_sociale_id": "expansion-monde-industriel",
+      "questionBody": {
+        "prompt": "À l'aide des documents 1 à 3, établis des liens entre les éléments suivants :",
+        "bullets": [
+          "Une industrie européenne",
+          "Une ressource naturelle nécessaire à cette industrie",
+          "Le traitement réservé à la population locale"
+        ],
+        "instructions": [
+          {
+            "text": "Fais des phrases complètes et utilise des marqueurs de relation de ",
+            "bold": false
+          },
+          {
+            "text": "but",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "cause",
+            "bold": true
+          },
+          {
+            "text": ", de ",
+            "bold": false
+          },
+          {
+            "text": "conséquence",
+            "bold": true
+          },
+          {
+            "text": " ou d'",
+            "bold": false
+          },
+          {
+            "text": "explication",
+            "bold": true
+          },
+          {
+            "text": " afin d'établir les liens entre les éléments.",
+            "bold": false
+          }
+        ],
+        "responseSpace": [
+          {
+            "type": "lines",
+            "count": 8
+          }
+        ]
+      },
+      "reglettes": [
+        {
+          "type": "complex",
+          "id": "r-emi-c1",
+          "label": "Réglette (3 points)",
+          "opLabel": "Établir des liens de causalité",
+          "maxPoints": 3,
+          "rows": [
+            {
+              "precise": "L'élève précise les trois éléments",
+              "condition": "et établit correctement deux liens de causalité.",
+              "points": "3 points"
+            },
+            {
+              "precise": "",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise deux éléments",
+              "condition": "et établit correctement un lien de causalité.",
+              "points": "2 points"
+            },
+            {
+              "precise": "",
+              "condition": "mais n'établit correctement aucun lien de causalité.",
+              "points": "1 point"
+            },
+            {
+              "precise": "L'élève précise un seul élément ou n'en précise pas.",
+              "condition": "",
+              "points": "0 point"
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "emi-c1-d1",
+          "title": "Document 1 : La récolte du caoutchouc",
+          "layout": "text-only",
+          "text": "Les Européens, armés, forcent les Africains du Congo à travailler à la récolte du caoutchouc. Ces gens subissent des mauvais traitements et de la violence ; leur situation ressemble à de l'esclavage. Les agents du roi Léopold II réprimandent avec une grande violence ceux qui tentent de se rebeller.",
+          "sources": [
+            "Source du texte : Service national du RÉCIT, domaine de l'univers social."
+          ]
+        },
+        {
+          "id": "emi-c1-d2",
+          "title": "Document 2 : Hévéa",
+          "layout": "text-only",
+          "text": "[...] Ce caoutchouc se trouve à l'état sauvage [sève d'hévéa] dans l'épaisse forêt équatoriale du Congo, qui est la propriété du roi des Belges, Léopold II, depuis la fameuse Conférence de Berlin en 1885 où les puissances européennes ont procédé au « partage de l'Afrique ».",
+          "sources": [
+            "Source du texte : France Culture, Épisode 1 : Produire du caoutchouc à tout prix, consulté le 28 octobre 2021."
+          ]
+        },
+        {
+          "id": "emi-c1-d3",
+          "title": "Document 3 : Usine de fabrication de pneus",
+          "layout": "image-only",
+          "imageUrl": "assets/img/emi-causalite-1/img000.png",
+          "imageWidthCm": 9,
+          "sources": [
+            "Source de l'image : Louis Figuier, Alambic pour distiller le goudron par la vapeur dans les usines de produits chimiques (1873). Wikimedia Commons. Licence : Creative Commons BY-SA 2.0."
+          ]
+        }
+      ],
+      "corrige": [
+        {
+          "kind": "texte",
+          "valeur": "En Europe, la bicyclette et des voitures favorisent le développement de l'industrie du pneu. Cette industrie nécessite la récolte de la sève d'hévéa, ressource naturelle très présente dans la colonie du Congo belge. Les Congolais, qui sont alors forcés de recueillir cette ressource naturelle, subissent des violences physiques ainsi que des mutilations de la part des autorités coloniales."
+        }
+      ]
+    }
+  ]
+}
