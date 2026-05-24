@@ -2511,6 +2511,7 @@
   // héritées de data.js — l'app fonctionne exactement comme avant.
   async function loadCMSQuestions() {
     if (typeof window.QuizCMS === 'undefined') return;       // adaptateur non chargé
+    if (typeof DATA === 'undefined' || !DATA || !Array.isArray(DATA.questions)) return; // data.js absent / vide
     try {
       const res = await fetch('assets/data/questions.json', { cache: 'no-store' });
       if (!res.ok) return;
