@@ -1,133 +1,96 @@
-# HEC · Premier cycle — Composition de cahier (v2.14)
+# Histoire du Québec et du Canada — Catalogue d'opérations intellectuelles (3e + 4e secondaire)
 
-Outil web pour composer un cahier d'élève à la pièce — sortie en `.docx` éditable.
+Catalogue de questions atomiques pour le programme **Histoire du Québec et du Canada** (PFEQ, Ministère de l'Éducation du Québec), couvrant **les deux années du 2e cycle du secondaire** (3e et 4e). L'application permet à un enseignant de composer un cahier d'évaluation à la pièce et de l'exporter en format Word — **cahier de l'élève** + **guide de l'enseignant** (corrigé avec réglettes de correction).
 
-## ✨ Quoi de neuf (v2.14)
+## Structure pédagogique
 
-- 🏛️ **Nouvelle réalité sociale (Secondaire 1)** : *La romanisation* avec 37 questions atomiques couvrant les 8 opérations intellectuelles. **Quatrième dossier de niveau 1 dans l'ordre curriculaire (Sec 1)**, inséré entre *Une première expérience de démocratie* (3e dossier) et *La christianisation de l'Occident* (5e dossier, ex-4e). Couvre la civilisation romaine de la République à la chute de Rome : conquêtes de Jules César et provinces (Bretagne, Gaule, Afrique, Égypte), invasions germaniques et sac de 455 par Genséric, classes sociales (patriciens, plébéiens, esclaves, pérégrins) et citoyenneté romaine (Édit de Caracalla 212), institutions impériales (Sénat, empereur, gouverneurs), infrastructures et romanité (aqueducs, théâtres, thermes, cirques, voies romaines, arc de triomphe), Pax Romana et limes (mur d'Hadrien), éducation des garçons et des filles, Édit de Milan (313), partage de l'Empire sous Théodose (395), Odoacre et la fin de Rome (476), héritage juridique (Édit perpétuel, Code Justinien, présomption d'innocence).
-- 📚 **Catalogue total** : 354 questions réparties sur 10 réalités sociales (renouvellement de la vision de l'Homme + expansion européenne + Révolution américaine + sédentarisation + émergence d'une civilisation + Une première expérience de démocratie + **La romanisation** + christianisation de l'Occident + industrialisation + expansion du monde industriel).
-- 🟢 Couleur **bronze antique** (vert-de-gris, `#5e7868`) dédiée pour la 10ᵉ réalité — teinte évocatrice de la patine des bronzes romains (statuaire impériale, monnaies). Nouveau slot CSS 7 ; les valeurs des slots couleur 7-9 ont été permutées vers 8-10 pour conserver l'identité visuelle de chr (ocre), ind (bleu ardoise) et emi (bordeaux).
-- 🖼️ **25 images iconographiques** intégrées : portrait de l'empereur Auguste, *Le sac de Rome par Genséric* de Briullov, dénier des Ides de Mars, *Course de chars* d'Albert Kuhn, Curie Julienne (forum romain), aqueducs (Ségovie, schéma technique), théâtre d'Aspendos, arène de Lutèce (Paris), Odoacre déposant Romulus Augustule, illustration de la toge romaine, et 11 cartes (République de César, Empire d'Antonin, Empire à l'apogée, 4 provinces locator, villes romaines, Italie avec mers, partage Occident/Orient, mur d'Hadrien, réseau de communication, ligne du temps des régimes politiques). Une **ligne du temps reconstruite** pour la question chrono « 5e siècle de notre ère » a vu son repère D, à l'origine marqué en rouge dans le corrigé, redessiné en gris pour égaler les repères A/B/C de la version élève.
+**8 périodes historiques** réparties en 2 années, chacune liée à une réalité sociale unique.
 
-## ✨ Quoi de neuf (v2.13)
+**3e secondaire — des origines à 1840 :**
 
-- 🏛️ **Nouvelle réalité sociale (Secondaire 1)** : *Une première expérience de démocratie* avec 36 questions atomiques couvrant les 8 opérations intellectuelles. **Troisième dossier de niveau 1 dans l'ordre curriculaire (Sec 1)**, inséré entre *L'émergence d'une civilisation* (2e dossier) et *La christianisation de l'Occident* (5e dossier, ex-4e). Couvre la Grèce antique du 5e siècle av. J.-C. : cités-État (Athènes, Sparte, Attique, Péloponnèse), démocratie athénienne, institutions politiques (Ecclésia, Boulè, Héliée, 10 Stratèges), citoyens / métèques / femmes / esclaves, philosophie (Socrate, Platon, méthode socratique), ostracisme, Acropole et Parthénon, port du Pirée et Longs Murs, guerres médiques (bataille de Marathon, Phidippidès), Ligue de Délos, guerre du Péloponnèse.
-- 📚 **Catalogue total** : 317 questions réparties sur 9 réalités sociales (renouvellement de la vision de l'Homme + expansion européenne + Révolution américaine + sédentarisation + émergence d'une civilisation + **Une première expérience de démocratie** + christianisation de l'Occident + industrialisation + expansion du monde industriel).
-- 🟥 Couleur **rouge attique** (`#9a3a30`) dédiée pour la 9ᵉ réalité — teinte évocatrice de la céramique attique à figures rouges, signature visuelle de l'Athènes classique. Nouveau slot CSS 6 ; les valeurs des slots couleur 6-8 ont été permutées vers 7-9 pour conserver l'identité visuelle de chr (ocre), ind (bleu ardoise) et emi (bordeaux).
+1. **Des origines à 1608** — L'expérience des Autochtones et le projet de colonie
+2. **1608-1760** — L'évolution de la société coloniale sous l'autorité de la métropole française
+3. **1760-1791** — La Conquête et le changement d'empire
+4. **1791-1840** — Les revendications et les luttes nationales
 
-## ✨ Quoi de neuf (v2.12)
+**4e secondaire — de 1840 à nos jours :**
 
-- 🏛️ **Nouvelle réalité sociale (Secondaire 1)** : *L'émergence d'une civilisation* avec 35 questions atomiques couvrant les 8 opérations intellectuelles. **Troisième dossier de niveau 1** dans l'app, inséré entre *La sédentarisation* (1er dossier de 1re sec.) et *La christianisation de l'Occident* (5e dossier). Couvre la civilisation mésopotamienne : Croissant fertile, Tigre et Euphrate, écriture cunéiforme, calculi, Code d'Hammourabi, cités-État (Ur, Babylone, Lagash), ziggourats, Étendard d'Ur, Épopée de Gilgamesh, scribes, sceaux-cylindres, hiérarchie sociale antique.
-- 📚 **Catalogue total** : 281 questions réparties sur 8 réalités sociales (renouvellement de la vision de l'Homme + expansion européenne + Révolution américaine + sédentarisation + **émergence d'une civilisation** + christianisation de l'Occident + industrialisation + expansion du monde industriel).
-- 🟦 Couleur **bleu lapis-lazuli profond** (`#2c5a7a`) dédiée pour la 8ᵉ réalité — teinte évocatrice du pigment antique le plus emblématique de la Mésopotamie (Étendard d'Ur, Porte d'Ishtar, sceaux-cylindres). Nouveau slot CSS 5 ; les valeurs des slots couleur 5-7 ont été permutées vers 6-8 pour conserver l'identité visuelle de chr (ocre), ind (bleu ardoise) et emi (bordeaux).
+5. **1840-1896** — La formation du régime fédéral canadien
+6. **1896-1945** — Les nationalismes et l'autonomie du Canada
+7. **1945-1980** — La modernisation du Québec et la Révolution tranquille
+8. **1980 à nos jours** — Les choix de société dans le Québec contemporain
 
-## ✨ Quoi de neuf (v2.11)
+**7 opérations intellectuelles** (OI) du 2e cycle :
 
-- 🔢 **Ordre curriculaire du Secondaire 1** : *La sédentarisation* (1er dossier de 1re sec.) apparaît maintenant **avant** *La christianisation de l'Occident* (5e dossier) dans le filtre et dans le catalogue. Chaque réalité conserve son identité couleur (sed = sienne brûlée, chr = ocre doré, ind = bleu ardoise, emi = bordeaux) ; les valeurs des slots couleur 4-7 ont été permutées en interne pour suivre les nouveaux indices sans altérer l'apparence visuelle des cartes.
+- Établir des faits
+- Situer dans le temps et dans l'espace
+- Mettre en relation des faits
+- Établir des liens de causalité
+- Déterminer des causes et des conséquences
+- Dégager des différences et des similitudes
+- Déterminer des changements et des continuités
 
-## ✨ Quoi de neuf (v2.10)
+## État actuel — v1.29.0 (mai 2026)
 
-- 📏 **Largeur auto-adaptative des libellés en *labeled-list*** : la colonne de gauche des questions « tableau libellé / ligne de réponse » se dimensionne maintenant selon le libellé le plus long (formule `~140 DXA/caractère + 400`, plancher 3800, plafond préservant ≥3500 DXA pour la ligne de réponse). Corrige le retour à la ligne sur les libellés sédentarisation comme « *Conséquence de la sédentarisation (Document n°)* » et « *Conséquence territoriale (Document n°)* ». Bénéfice secondaire : 26 questions plus anciennes (christianisation, expansion, révolution, industrialisation) qui étaient marginales obtiennent aussi des libellés plus aérés.
+**202 questions** dans le catalogue, **440 points** au total, réparties sur les **8 périodes**.
+**7 périodes sur 8 sont à 7/7 OI.** Seule **P5** reste à 6/7 (voir « Points d'attention »).
 
-## ✨ Quoi de neuf (v2.9)
+| Période | Année | Questions | OI couvertes | Points |
+|---|---|---|---|---|
+| **P1** — Des origines à 1608 | 3e | 23 | 7 / 7 ✓ | 50 |
+| **P2** — 1608-1760 | 3e | 26 | 7 / 7 ✓ | 58 |
+| **P3** — 1760-1791 | 3e | 18 | 7 / 7 ✓ | 36 |
+| **P4** — 1791-1840 | 3e | 13 | 7 / 7 ✓ | 25 |
+| **P5** — 1840-1896 | 4e | 28 | **6 / 7** ⚠ | 57 |
+| **P6** — 1896-1945 | 4e | 30 | 7 / 7 ✓ | 68 |
+| **P7** — 1945-1980 | 4e | 39 | 7 / 7 ✓ | 91 |
+| **P8** — 1980 à nos jours | 4e | 25 | 7 / 7 ✓ | 55 |
+| **TOTAL** | | **202** | **7 périodes / 8 à 7 / 7** | **440** |
 
-- ☑️ **Bouton « Tout cocher / décocher »** sur l'en-tête de chaque réalité sociale : un clic ajoute (ou retire) d'un coup toutes les questions de la réalité au cahier. L'étiquette du bouton bascule automatiquement selon l'état (tout coché → décocher, sinon → cocher). Le clic sur le bouton ne replie pas le groupe.
+Sous-total 3e secondaire : **80 questions, 169 points** · sous-total 4e secondaire : **122 questions, 271 points**.
 
-## ✨ Quoi de neuf (v2.8)
+### Quoi de neuf (v1.29.0)
 
-- 🌾 **Nouvelle réalité sociale (Secondaire 1)** : *La sédentarisation* avec 35 questions atomiques couvrant les 8 opérations intellectuelles. **Deuxième ajout de niveau 1** dans l'app, aux côtés de la christianisation de l'Occident. Couvre la révolution néolithique : Croissant fertile, irrigation, premiers villages, agriculture et élevage, poterie, sépultures, Çatal Höyük.
-- 📚 **Catalogue total** : 246 questions réparties sur 7 réalités sociales (Le renouvellement de la vision de l'Homme + L'expansion européenne dans le monde + La Révolution américaine + La christianisation de l'Occident + L'industrialisation + L'expansion du monde industriel + La sédentarisation).
-- 🟠 Couleur **sienne brûlée** dédiée pour la 7ᵉ réalité — teinte argile/terre cuite évocatrice du Néolithique, en cohérence avec la palette de design (vert / terre cuite / pourpre / ocre / bleu ardoise / bordeaux / sienne).
+**Achèvement de la P8 (1980 à nos jours) par les guides pédagogiques RÉCIT (Lot B)** et **passe de cohérence sur les 8 périodes.**
 
-## ✨ Quoi de neuf (v2.7)
+- **+8 questions P8** (préfixe `cs`, réalité `choix-societe-quebec-contemporain`) tirées des 4 guides RÉCIT de la période. **P8 passe de 6/7 à 7/7 OI** ; cahier P8 de 38 à 55 points.
+  - **Priorité atteinte** : l'OI « Établir des faits » (absente des sommatives) est couverte par `q-cs-faits-1` — deux facteurs limitant le branchement à Internet, avec un **graphique recréé** (population branchée selon le revenu, 2012-2016).
+  - Autres OI complétées : situer (chrono des 4 accords de libre-échange depuis 1980), causalité (services numériques → taxe), causes/conséquences (Commission de vérité et réconciliation), différences/similitudes (Lévesque vs Trudeau ; missions de paix vs armées ; neutralité religieuse à Saguenay), changements/continuités (Loi constitutionnelle 1867 vs 1982).
+  - 1 réglette créée (`R_FAITS_2PT_2SUR2`) ; 7 réglettes existantes réutilisées. 7 questions candidates écartées (doublons avec les sommatives ou formats hors-portée).
+- **Passe de cohérence (8 périodes)** :
+  - **Correctif de barème** — `R_CAUSES_2PT_CAUSE_BINAIRE` (Q2 P1 familiarisation) était implémentée via `rubric2()`, qui plafonne à 1 point, en contradiction avec son nom, son label « Réglette (2 points) » et sa source documentée. Restaurée en barème binaire **2 pts / 0 pt**. P1 passe de 49 à 50 points.
+  - **Correctif de documentation** — l'en-tête de `data.js` annonçait P5 à 7/7 OI ; P5 est en réalité à **6/7** (l'OI « Établir des faits » n'y a jamais été couverte). En-tête corrigé pour refléter la réalité.
+  - **Vérifié sans anomalie** : contiguïté et unicité des compteurs `numero` (par réalité × OI), concordance label ↔ `maxPoints` de toutes les réglettes, présence d'une source sur chaque document.
 
-- 🌍 **Nouvelle réalité sociale (Secondaire 2)** : *L'expansion du monde industriel* avec 35 questions atomiques couvrant les 8 opérations intellectuelles. Pendant impérial et colonial de l'industrialisation : Conférence de Berlin, partage de l'Afrique, canal de Suez, génocide des Herero, exploitation du caoutchouc au Congo belge.
-- 📚 **Catalogue total** : 211 questions réparties sur 6 réalités sociales (Le renouvellement de la vision de l'Homme + L'expansion européenne dans le monde + La Révolution américaine + La christianisation de l'Occident + L'industrialisation + L'expansion du monde industriel).
-- 🟥 Couleur bordeaux profond dédiée pour la 6ᵉ réalité, en cohérence avec la palette de design (vert / terre cuite / pourpre / ocre / bleu ardoise / bordeaux).
+## Architecture technique
 
-## ✨ Quoi de neuf (v2.6)
+- HTML / CSS / JS *vanilla*, aucune étape de *build*.
+- Déploiement GitHub Pages (`.nojekyll`).
+- Dépendances CDN : SortableJS, `docx` (v8.5.0), JSZip, docx-preview.
+- **Toutes les données** (questions, documents, réglettes) vivent dans `assets/js/data.js`.
+- **Logique applicative** et génération .docx côté client dans `assets/js/app.js`.
 
-- 🏭 **Nouvelle réalité sociale (Secondaire 2)** : *L'industrialisation* avec 35 questions atomiques couvrant les 8 opérations intellectuelles. C'est la 4ᵉ réalité du programme Secondaire 2 — pendant économique et social aux trois précédentes.
-- 📚 **Catalogue total** : 176 questions réparties sur 5 réalités sociales (Le renouvellement de la vision de l'Homme + L'expansion européenne dans le monde + La Révolution américaine + La christianisation de l'Occident + L'industrialisation).
-- 🔵 Couleur bleu ardoise dédiée pour la 5ᵉ réalité, en cohérence avec la palette de design (vert / terre cuite / pourpre / ocre / bleu ardoise).
+### Méthode d'intégration des questions
 
-## ✨ Quoi de neuf (v2.5)
+Deux sources alimentent le catalogue, selon une méthode uniforme d'une période à l'autre :
 
-- ⛪ **Nouvelle réalité sociale (Secondaire 1)** : *La christianisation de l'Occident* avec 36 questions atomiques couvrant les 8 opérations intellectuelles. **Premier ajout de niveau 1** dans l'app.
-- 📚 **Catalogue total** : 141 questions réparties sur 4 réalités sociales (Le renouvellement de la vision de l'Homme + L'expansion européenne dans le monde + La Révolution américaine + La christianisation de l'Occident).
-- 🟫 Couleur ocre doré dédiée pour la 4e réalité, en cohérence avec la palette de design (vert / terre cuite / pourpre / ocre).
+1. **Évaluations sommatives officielles** (Section A « Avec documents ») — fournissent l'ossature de chaque période et leurs barèmes officiels.
+2. **Guides pédagogiques RÉCIT** — comblent les OI manquantes (souvent « Établir des faits ») et ajoutent de la variété. Les guides RÉCIT **ne fournissent pas de barème** : on calque alors une réglette fonctionnellement équivalente parmi les constantes existantes (ou on en crée une, en le documentant en commentaire).
 
-## ✨ Quoi de neuf (v2.4)
+**Conventions appliquées partout** : tutoiement ; guillemets français `« »` ; « un acteur = un document » (les documents multi-acteurs sont éclatés) ; renumérotation des documents à partir de « Document 1 » par question ; aucune source ne doit révéler la réponse (ex. années retirées des questions chronologiques, photos sous droits remplacées par du texte factuel).
 
-- 🇺🇸 **Nouvelle réalité sociale** : *La Révolution américaine* (Secondaire 2) avec 35 questions atomiques couvrant les 8 opérations intellectuelles.
-- 📚 **Catalogue total** : 105 questions réparties sur 3 réalités sociales (Le renouvellement de la vision de l'Homme + L'expansion européenne dans le monde + La Révolution américaine).
-- 🟣 Couleur pourpre dédiée pour la 3e réalité, en cohérence avec la palette de design (vert / terre cuite / pourpre).
+## Points d'attention connus
 
-## ✨ Quoi de neuf (v2.3)
+- **P5 (1840-1896) — 6/7 OI** : l'OI **« Établir des faits »** n'est pas encore couverte. C'est le seul écart de couverture restant du catalogue. Il se comblerait par une question issue d'un guide RÉCIT de P5 (même méthode que P8 en v1.29.0), guide non encore traité.
+- **`na-continuite-5/doc2` (P6) — source « à confirmer »** : le PDF du guide RÉCIT cite pour ce document la même source que le document précédent (Orphelinat de Notre-Dame de Montfort, 1896), alors que l'image réellement intégrée est différente (une religieuse enseignante avec deux écolières, vraisemblablement 1930-1950). C'est un bug de copier-coller du fichier source. L'image illustre fidèlement la continuité du rôle de l'Église dans l'éducation — l'objet même de la question — mais sa provenance exacte ne peut être établie de façon fiable sans recherche par image inverse. Le libellé « à confirmer » est maintenu volontairement (aucune attribution n'est inventée) ; à trancher par l'enseignant.
 
-- 🌍 **Nouvelle réalité sociale** : *L'expansion européenne dans le monde* (Secondaire 2) avec 35 questions atomiques couvrant les 8 opérations intellectuelles.
-- 📚 **Catalogue v2.3** : 70 questions réparties sur 2 réalités sociales (Le renouvellement de la vision de l'Homme + L'expansion européenne dans le monde).
+## Historique des versions (résumé)
 
-## ✨ Quoi de neuf (v2.2)
+- **v1.29.0** — P8 complétée par les guides RÉCIT (Lot B) ; passe de cohérence (8 périodes). 202 questions.
+- **v1.28.0** — Démarrage de P8 : 17 questions des évaluations sommatives Section A (Lot A).
+- **v1.27.0** — Fin de l'intégration des guides RÉCIT de P7 (modernisation du Québec).
+- **v1.18.x / v1.17.0 / v1.16** — Complétion de P3 et P4 à 7/7 (PDF « Questions courtes » et RÉCIT thématiques), correctifs d'images.
 
-- 🎯 **Carte du catalogue refondue** : niveau (Secondaire X), opération intellectuelle, numéro, réalité sociale et points par question affichés en étiquettes. La question elle-même est mise en avant comme texte principal.
-- 🖱 **Sélection en un clic** : un seul clic sur la carte ajoute toute la question au cahier (plus de sous-cases à cocher).
-- 🧮 **Compteur de points** dans le panneau « Cahier en construction » qui s'actualise en temps réel selon les questions ajoutées.
-- 👁 **Prévisualisation authentique** : remplace mammoth.js par [docx-preview](https://github.com/VolodymyrBaydalka/docxjs) qui rend le .docx avec ses bordures, couleurs et mises en page exactes (le « vrai » rendu du fichier téléchargeable).
-- 📚 **Deuxième question câblée** (Établir des liens de causalité #2 sur le Concile de Trente et la contre-réforme) — permet de tester le rendu multi-questions.
-- 🎓 **Niveaux Secondaire 1 à 4** dans le filtre (extensible aux deuxièmes cycle pour plus tard).
+## Crédit
 
-## 📐 Format du cahier généré
-
-- Pas d'en-tête sur les pages
-- Titre par question : « Établir des liens de causalité  #1 » avec trait d'accent burgundy
-- Espace de réponse textuelle : 8 lignes continues gris fin
-- Réglette : tableau d'évaluation
-- Documents : encadrés alignés à gauche, ajustés à leur contenu, ne se coupent jamais entre deux pages
-
-## 📁 Structure du projet
-
-```
-v2/
-├── index.html
-├── assets/
-│   ├── css/style.css
-│   ├── js/
-│   │   ├── data.js          # Pièces atomiques composables
-│   │   └── app.js           # Logique + générateur .docx + prévisualisation
-│   └── img/
-│       ├── q1/              # Images de la question 1
-│       └── q2/              # Images de la question 2
-├── .nojekyll
-└── README.md
-```
-
-## 🚀 Test local
-
-```bash
-cd v2
-python3 -m http.server 8000
-# Ouvrir http://localhost:8000
-```
-
-## 🌐 Déploiement sur GitHub Pages
-
-1. Supprime tout le contenu actuel de ton dépôt
-2. Dézippe l'archive et **entre dans le dossier `v2/`**
-3. Sélectionne TOUT son contenu (pas le dossier `v2/` lui-même)
-4. Sur GitHub : « Add file → Upload files » → glisse ta sélection → Commit
-5. Settings → Pages → branche `main` / `(root)` → Save
-
-## 🛠️ Technologies
-
-- HTML/CSS/JS pur (aucun framework)
-- [SortableJS](https://github.com/SortableJS/Sortable) — glisser-déposer
-- [docx-js](https://docx.js.org/) — génération .docx côté client
-- [docx-preview](https://github.com/VolodymyrBaydalka/docxjs) + [JSZip](https://stuk.github.io/jszip/) — rendu fidèle du .docx pour la prévisualisation
-- Hébergement statique sur GitHub Pages
-
-## ⏳ Statut
-
-Questions #1 et #2 entièrement câblées. Les 17 autres seront ajoutées au fichier `data.js` une fois ce comportement final approuvé.
-
-
+Mathieu Mercier — Centre de services scolaire de Kamouraska-Rivière-du-Loup.
