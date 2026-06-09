@@ -1,4 +1,18 @@
 /* ============================================================
+   v1.51.1 — CORRECTIFS DE L'APERÇU C1 (app.js seulement)
+     • L'aperçu ne rend plus les pieds/en-têtes du .docx (docx-preview affichait le champ PAGE
+       brut, non évalué, sur chaque page + des marges de pied erronées). Le .docx réel garde ses
+       pieds numérotés ; l'aperçu conserve ses étiquettes « — Page N — ».
+     • Variante + C1 : la simulation de coupures ne s'applique plus aux pages PAYSAGE (elle y
+       insérait de fausses coupures en plein schéma avec le ratio portrait).
+     • Ratios de simulation ajustés pour l'espace réellement réservé au pied de page
+       (cahier 14170/10800, guide 13990/10080).
+     • Mise à l'échelle des pages paysage : recalculée au redimensionnement de la fenêtre ;
+       repli transform:scale pour les navigateurs sans `zoom` (anciens Firefox).
+     • simulatePageBreaks ignore les éléments <header>/<footer> dans ses mesures (robustesse).
+   Console admin : INTACTE et autonome (styles et scripts propres ; ne charge que data.js).
+  ============================================================ */
+/* ============================================================
    v1.51.0 — REFONTE AUDACIEUSE (index.html / style.css / app.js ; aucun changement de données)
    INTERFACE — l'information est présentée autrement :
      • FRISE CHRONOLOGIQUE pleine largeur sous l'en-tête (P1→P8 avec années, couleurs des réalités) :
