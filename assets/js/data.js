@@ -1,4 +1,33 @@
 /* ============================================================
+   v1.51.0 — REFONTE AUDACIEUSE (index.html / style.css / app.js ; aucun changement de données)
+   INTERFACE — l'information est présentée autrement :
+     • FRISE CHRONOLOGIQUE pleine largeur sous l'en-tête (P1→P8 avec années, couleurs des réalités) :
+       c'est la navigation principale du catalogue ; clic = filtrer la période, re-clic = retirer ;
+       les périodes non actives s'estompent. Remplace les menus déroulants Période/Réalité.
+     • Filtres en PILULES (Toutes / Opérations / C1 / C2 — nouveau filtre « Opérations seulement »).
+     • Rangées de questions EXPANSIBLES : clic = fiche détaillée (réglette + points, liste des
+       documents en 2 colonnes) ; bouton explicite « + Ajouter » → « ✓ Au cahier » (vert).
+     • En-têtes de groupe : badge P#, années, « k au cahier ».
+     • « Mon cahier » : tableau de bord encré (gros chiffres : questions, points, ventilation
+       OI/C1/C2 = aperçu de la pondération de la couverture) ; épine NUMÉROTÉE 1..N reflétant
+       l'ordre réel du cahier (pastille, type, extrait d'énoncé, points) ; état vide pédagogique
+       en 3 étapes.
+     • GÉNÉRATEUR UNIFIÉ : 2 contrôles segmentés (Document : cahier/guide ; Documents : avec
+       chaque question / regroupés à la fin) + Aperçu/Télécharger — remplace les 8 boutons.
+   CAHIER DE L'ÉLÈVE (.docx) :
+     • COUVERTURE : frise chronologique IMPRIMÉE (8 périodes avec années ; celles couvertes par
+       l'évaluation colorées dans leur couleur de réalité) — l'élève situe l'évaluation dans la
+       chronologie du cours ; surtitre petites capitales, titre Georgia, double filet burgundy/or.
+     • EN-TÊTES DE QUESTION à badge : pastille numérotée burgundy + « QUESTION » petites capitales
+       + pondération « / X points » à droite (l'élève voit le poids de chaque question).
+     • Titres de documents : bandeau parchemin (remplace le bleu).
+   GUIDE DE L'ENSEIGNANT (.docx) :
+     • Table « APERÇU DE L'ÉVALUATION » en tête (No / Type de question / Points + Total) : la
+       structure de l'évaluation d'un coup d'œil avant les corrigés.
+   Validation : 27 vérifications DOM (jsdom) + génération de bout en bout des 3 documents
+   (XML : frise, badge, aperçu, titlePg, pieds numérotés ; rendus PDF vérifiés visuellement).
+  ============================================================ */
+/* ============================================================
    v1.50.0 — REFONTE VISUELLE ET ROBUSTESSE (app.js / style.css / index.html ; aucun changement de données)
    INTERFACE :
      • Nouvel en-tête encré (typographie d'archives Fraunces) + FRISE DES PÉRIODES P1→P8 sous l'en-tête :

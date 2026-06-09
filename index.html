@@ -13,154 +13,113 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <h1 class="site-title">Histoire du Québec et du Canada <span class="title-sep">—</span> <span class="title-sub">Catalogue d'opérations intellectuelles, 3e + 4e secondaire</span></h1>
+      <h1 class="site-title">HQC <span class="title-sub">· Atelier d'évaluations — Histoire du Québec et du Canada, 3e et 4e secondaire</span></h1>
       <a href="admin/index.html" class="admin-link" target="_blank" rel="noopener" title="Console d'administration — réservée à l'enseignant">⚙ Console admin</a>
     </div>
-    <nav id="periodes-strip" class="periodes-strip" aria-label="Frise des périodes — cliquer pour filtrer par réalité sociale"></nav>
   </header>
+
+  <!-- FRISE CHRONOLOGIQUE : navigation principale du catalogue (peuplée par app.js) -->
+  <nav id="periodes-rail" class="periodes-rail" aria-label="Frise chronologique — cliquer une période pour filtrer le catalogue"></nav>
 
   <main class="layout">
 
     <!-- ========================================== -->
     <!-- COLONNE GAUCHE : CATALOGUE                  -->
     <!-- ========================================== -->
-    <section class="panel panel-catalog" aria-label="Catalogue des pièces">
+    <section class="panel panel-catalog" aria-label="Catalogue des questions">
       <header class="panel-header">
         <h2>Catalogue</h2>
-        <span id="catalog-count" class="muted">0 question(s)</span>
+        <span id="catalog-count" class="muted">0 question</span>
       </header>
 
       <!-- RECHERCHE -->
       <div class="catalog-search">
         <span class="search-icon" aria-hidden="true">🔍</span>
         <input type="search" id="search-input" class="search-input"
-               placeholder="Rechercher un mot dans les énoncés et les documents…"
+               placeholder="Rechercher dans les énoncés et les documents…"
                autocomplete="off" aria-label="Rechercher dans les énoncés et les documents">
         <button type="button" id="search-clear" class="search-clear" aria-label="Effacer la recherche" hidden>×</button>
       </div>
 
-      <!-- FILTRES -->
+      <!-- FILTRES : type en pilules, opération en liste, réinitialisation -->
       <div class="filters">
-        <div class="filter">
-          <label for="filter-niveau">Période</label>
-          <select id="filter-niveau">
-            <option value="">Toutes</option>
-            <optgroup label="3e secondaire">
-              <option value="3-1">P1 · Des origines à 1608</option>
-              <option value="3-2">P2 · 1608-1760</option>
-              <option value="3-3">P3 · 1760-1791</option>
-              <option value="3-4">P4 · 1791-1840</option>
-            </optgroup>
-            <optgroup label="4e secondaire">
-              <option value="4-1">P5 · 1840-1896</option>
-              <option value="4-2">P6 · 1896-1945</option>
-              <option value="4-3">P7 · 1945-1980</option>
-              <option value="4-4">P8 · 1980 à nos jours</option>
-            </optgroup>
-          </select>
+        <div class="filter filter-type" role="group" aria-label="Filtrer par type de question">
+          <button type="button" class="pill pill-comp active" data-comp="">Toutes</button>
+          <button type="button" class="pill pill-comp" data-comp="oi">Opérations</button>
+          <button type="button" class="pill pill-comp" data-comp="1">Compétence 1</button>
+          <button type="button" class="pill pill-comp" data-comp="2">Compétence 2</button>
         </div>
-        <div class="filter">
-          <label for="filter-realite">Réalité sociale</label>
-          <select id="filter-realite"><option value="">Toutes</option></select>
-        </div>
-        <div class="filter">
-          <label for="filter-operation">Opération intellectuelle</label>
-          <select id="filter-operation"><option value="">Toutes</option></select>
-        </div>
-        <div class="filter">
-          <label for="filter-competence">Compétence</label>
-          <select id="filter-competence">
-            <option value="">Toutes</option>
-            <option value="1">Compétence 1</option>
-            <option value="2">Compétence 2</option>
-          </select>
+        <div class="filter filter-op">
+          <select id="filter-operation" aria-label="Filtrer par opération intellectuelle"><option value="">Toutes les opérations</option></select>
         </div>
         <button id="reset-filters" type="button" class="btn-link">↺ Réinitialiser</button>
       </div>
+
+      <!-- Sélecteurs d'état conservés pour la logique de filtrage (pilotés par la frise et les pilules) -->
+      <select id="filter-niveau" hidden aria-hidden="true" tabindex="-1">
+        <option value="">Toutes</option>
+        <optgroup label="3e secondaire">
+          <option value="3-1">P1 · Des origines à 1608</option>
+          <option value="3-2">P2 · 1608-1760</option>
+          <option value="3-3">P3 · 1760-1791</option>
+          <option value="3-4">P4 · 1791-1840</option>
+        </optgroup>
+        <optgroup label="4e secondaire">
+          <option value="4-1">P5 · 1840-1896</option>
+          <option value="4-2">P6 · 1896-1945</option>
+          <option value="4-3">P7 · 1945-1980</option>
+          <option value="4-4">P8 · 1980 à nos jours</option>
+        </optgroup>
+      </select>
+      <select id="filter-realite" hidden aria-hidden="true" tabindex="-1"><option value=""></option></select>
+      <select id="filter-competence" hidden aria-hidden="true" tabindex="-1">
+        <option value=""></option><option value="oi"></option><option value="1"></option><option value="2"></option>
+      </select>
 
       <!-- LISTE DES QUESTIONS -->
       <div id="catalog-list" class="catalog-list"></div>
     </section>
 
     <!-- ========================================== -->
-    <!-- COLONNE DROITE : CAHIER EN CONSTRUCTION     -->
+    <!-- COLONNE DROITE : MON CAHIER                 -->
     <!-- ========================================== -->
     <section class="panel panel-cahier" aria-label="Cahier en construction">
       <header class="panel-header">
-        <h2>Cahier en construction</h2>
-        <span id="cahier-count" class="cahier-stats">0 question</span>
+        <h2>Mon cahier</h2>
       </header>
 
-      <p class="hint">
-        Coche des éléments dans le catalogue pour les ajouter ici.<br>
-        Glisse-dépose pour réordonner, ou utilise « Mélanger l'ordre » pour les disposer au hasard.
-      </p>
+      <!-- Tableau de bord du cahier (rempli par app.js) -->
+      <div id="cahier-count" class="cahier-dash" aria-live="polite"></div>
 
       <div id="cahier-list" class="cahier-list"></div>
 
       <div class="cahier-actions">
 
-        <div class="action-group">
-          <span class="action-group-label">Cahier de l'élève</span>
-          <div class="action-group-row">
-            <button id="btn-preview" type="button" class="btn btn-secondary" disabled>
-              👁 Aperçu
-            </button>
-            <button id="btn-generate" type="button" class="btn btn-primary" disabled>
-              ⬇ Télécharger
-            </button>
-          </div>
-        </div>
-
-        <div class="action-group">
-          <span class="action-group-label">Guide de l'enseignant</span>
-          <div class="action-group-row">
-            <button id="btn-preview-corrige" type="button" class="btn btn-secondary" disabled>
-              👁 Aperçu
-            </button>
-            <button id="btn-generate-corrige" type="button" class="btn btn-primary" disabled>
-              ⬇ Télécharger
-            </button>
-          </div>
-        </div>
-
-        <!-- VARIANTE (test) : documents regroupés à la fin, numérotés globalement -->
-        <div class="action-group action-group--variante">
-          <span class="action-group-variante-head">
-            Variante
-            <span class="action-group-tag">documents à la fin</span>
-          </span>
-          <div class="action-subgroup">
-            <span class="action-subgroup-label">Cahier de l'élève</span>
-            <div class="action-group-row">
-              <button id="btn-preview-variante" type="button" class="btn btn-secondary" disabled>
-                👁 Aperçu
-              </button>
-              <button id="btn-generate-variante" type="button" class="btn btn-primary" disabled>
-                ⬇ Télécharger
-              </button>
+        <!-- GÉNÉRATEUR UNIFIÉ : Document × Disposition → Aperçu / Télécharger -->
+        <div class="generator">
+          <div class="gen-row">
+            <span class="gen-label">Document</span>
+            <div class="seg" role="group" aria-label="Choix du document à produire">
+              <button type="button" class="seg-btn active" data-doc="cahier" aria-pressed="true">Cahier de l'élève</button>
+              <button type="button" class="seg-btn" data-doc="guide" aria-pressed="false">Guide de l'enseignant</button>
             </div>
           </div>
-          <div class="action-subgroup">
-            <span class="action-subgroup-label">Guide de l'enseignant</span>
-            <div class="action-group-row">
-              <button id="btn-preview-corrige-variante" type="button" class="btn btn-secondary" disabled>
-                👁 Aperçu
-              </button>
-              <button id="btn-generate-corrige-variante" type="button" class="btn btn-primary" disabled>
-                ⬇ Télécharger
-              </button>
+          <div class="gen-row">
+            <span class="gen-label">Documents</span>
+            <div class="seg" role="group" aria-label="Disposition des documents dans le cahier">
+              <button type="button" class="seg-btn active" data-layout="std" aria-pressed="true">Avec chaque question</button>
+              <button type="button" class="seg-btn" data-layout="fin" aria-pressed="false">Regroupés à la fin</button>
             </div>
+          </div>
+          <div class="gen-go">
+            <button id="btn-preview-go" type="button" class="btn btn-secondary" disabled>👁 Aperçu</button>
+            <button id="btn-download-go" type="button" class="btn btn-primary" disabled>⬇ Télécharger le cahier</button>
           </div>
         </div>
 
         <div class="action-group-utility">
-          <button id="btn-shuffle-cahier" type="button" class="btn btn-secondary" disabled>
-            🔀 Mélanger l'ordre
-          </button>
-          <button id="btn-clear-cahier" type="button" class="btn btn-secondary btn-clear" disabled>
-            ↺ Vider le cahier
-          </button>
+          <button id="btn-shuffle-cahier" type="button" class="btn btn-ghost" disabled>🔀 Mélanger l'ordre</button>
+          <button id="btn-clear-cahier" type="button" class="btn btn-ghost btn-clear" disabled>↺ Vider le cahier</button>
         </div>
 
       </div>

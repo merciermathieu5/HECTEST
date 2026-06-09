@@ -18,6 +18,11 @@
     previewMode: 'cahier',
     // Terme de recherche courant (normalisé : minuscules, sans accents)
     searchTerm: '',
+    // Générateur unifié : document à produire et disposition des documents
+    docMode: 'cahier',      // 'cahier' | 'guide'
+    layoutMode: 'std',      // 'std' (documents avec chaque question) | 'fin' (regroupés à la fin)
+    // Périodes P1-P8 : { pg, value:'annee-niveau', years } — dérivées du select au démarrage
+    periodes: [],
   };
 
   // ====== DOM ======
@@ -34,14 +39,8 @@
     resetFilters:     $('reset-filters'),
     searchInput:      $('search-input'),
     searchClear:      $('search-clear'),
-    btnGenerate:        $('btn-generate'),
-    btnGenerateCorrige: $('btn-generate-corrige'),
-    btnPreview:         $('btn-preview'),
-    btnPreviewCorrige:  $('btn-preview-corrige'),
-    btnGenerateVariante: $('btn-generate-variante'),
-    btnPreviewVariante:  $('btn-preview-variante'),
-    btnGenerateCorrigeVariante: $('btn-generate-corrige-variante'),
-    btnPreviewCorrigeVariante:  $('btn-preview-corrige-variante'),
+    btnPreviewGo:     $('btn-preview-go'),
+    btnDownloadGo:    $('btn-download-go'),
     btnClear:           $('btn-clear-cahier'),
     btnShuffle:         $('btn-shuffle-cahier'),
     loading:            $('loading-overlay'),
@@ -57,48 +56,80 @@
   function init() {
     // Par défaut, toutes les réalités sociales sont repliées dans le catalogue
     DATA.realites_sociales.forEach(r => collapsedRealites.add(r.id));
+    // Périodes P1-P8 dérivées des options du sélecteur (libellés d'années inclus)
+    state.periodes = Array.from(el.filterNiveau.querySelectorAll('option'))
+      .filter(o => o.value)
+      .map(o => {
+        const [annee, niveau] = o.value.split('-').map(Number);
+        const pg = (annee - 3) * 4 + niveau;
+        const years = (o.textContent.split('·')[1] || '').trim();
+        return { pg, value: o.value, annee, niveau, years };
+      });
     populateFilters();
-    buildPeriodesStrip();
+    buildPeriodesRail();
     attachEventListeners();
     applyFilters();
     initSortable();
     renderCahier();
   }
 
-  // ====== FRISE DES PÉRIODES (header) ======
-  // Bande P1→P8 : légende des couleurs du catalogue ET filtre rapide par réalité sociale.
-  // Cliquer un segment filtre cette réalité (re-cliquer le segment actif retire le filtre).
-  function buildPeriodesStrip() {
-    const strip = document.getElementById('periodes-strip');
-    if (!strip) return;
-    const sorted = DATA.realites_sociales.slice().sort((a, b) => (a.annee - b.annee) || (a.niveau - b.niveau));
-    sorted.forEach(r => {
-      const idx = DATA.realites_sociales.indexOf(r);   // index couleur (ordre de DATA)
-      const pg = ((r.annee || 3) - 3) * 4 + r.niveau;  // période globale P1-P8
+  // Couleurs des réalités (index dans DATA.realites_sociales → palette boréale, voir style.css)
+  const REALITE_HEX = ['2F4F3A', '2C5F7C', '5C5450', '9C3D2A', '8B7355', '6B8E4E', '4A5C6B', '7A4E7E', 'B08840', '7A3A4A'];
+  function realiteIdxForPeriode(p) {
+    return DATA.realites_sociales.findIndex(r => (r.annee || 3) === p.annee && r.niveau === p.niveau);
+  }
+
+  // ====== FRISE CHRONOLOGIQUE (navigation principale) ======
+  // Bande P1→P8 avec années : légende des couleurs du catalogue ET filtre par période.
+  // Cliquer une période filtre le catalogue (re-cliquer la période active retire le filtre).
+  function buildPeriodesRail() {
+    const rail = document.getElementById('periodes-rail');
+    if (!rail) return;
+    state.periodes.forEach(p => {
+      const idx = realiteIdxForPeriode(p);
+      const r = DATA.realites_sociales[idx];
       const seg = document.createElement('button');
       seg.type = 'button';
-      seg.className = 'periode-seg';
-      seg.dataset.realiteId = r.id;
+      seg.className = 'rail-seg';
+      seg.dataset.periode = p.value;
       seg.style.setProperty('--seg-color', `var(--realite-color-${idx + 1})`);
-      seg.textContent = `P${pg}`;
-      seg.title = `P${pg} · ${r.titre}`;
-      seg.setAttribute('aria-label', `Filtrer le catalogue : P${pg} — ${r.titre}`);
+      seg.innerHTML = `<span class="rail-p">P${p.pg}</span><span class="rail-years">${escapeHtml(p.years)}</span>`;
+      if (r) seg.title = `P${p.pg} · ${p.years} — ${r.titre}`;
+      seg.setAttribute('aria-label', `Filtrer le catalogue : P${p.pg}, ${p.years}${r ? ' — ' + r.titre : ''}`);
       seg.addEventListener('click', () => {
-        el.filterRealite.value = (el.filterRealite.value === r.id) ? '' : r.id;
+        el.filterNiveau.value = (el.filterNiveau.value === p.value) ? '' : p.value;
         applyFilters();
       });
-      strip.appendChild(seg);
+      rail.appendChild(seg);
     });
   }
-  function syncPeriodesStrip() {
-    const strip = document.getElementById('periodes-strip');
-    if (!strip) return;
-    const current = el.filterRealite.value;
-    strip.querySelectorAll('.periode-seg').forEach(seg => {
-      const active = !!current && seg.dataset.realiteId === current;
+  function syncPeriodesRail() {
+    const rail = document.getElementById('periodes-rail');
+    if (!rail) return;
+    const current = el.filterNiveau.value;
+    rail.querySelectorAll('.rail-seg').forEach(seg => {
+      const active = !!current && seg.dataset.periode === current;
       seg.classList.toggle('active', active);
       seg.setAttribute('aria-pressed', String(active));
     });
+    rail.classList.toggle('has-active', !!current);
+  }
+
+  // ====== GÉNÉRATEUR UNIFIÉ (Document × Disposition) ======
+  function syncGenerator() {
+    document.querySelectorAll('.seg-btn[data-doc]').forEach(b => {
+      const on = b.dataset.doc === state.docMode;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+    document.querySelectorAll('.seg-btn[data-layout]').forEach(b => {
+      const on = b.dataset.layout === state.layoutMode;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+    if (el.btnDownloadGo) {
+      el.btnDownloadGo.textContent = state.docMode === 'guide' ? '⬇ Télécharger le guide' : '⬇ Télécharger le cahier';
+    }
   }
 
   function populateFilters() {
@@ -120,6 +151,23 @@
     [el.filterNiveau, el.filterRealite, el.filterOp, el.filterCompetence].forEach(s =>
       s.addEventListener('change', applyFilters)
     );
+    // Pilules de type (Toutes / Opérations / C1 / C2) → pilotent le select caché
+    document.querySelectorAll('.pill-comp').forEach(p => {
+      p.addEventListener('click', () => {
+        el.filterCompetence.value = p.dataset.comp;
+        applyFilters();
+      });
+    });
+    // Générateur unifié
+    document.querySelectorAll('.seg-btn[data-doc]').forEach(b =>
+      b.addEventListener('click', () => { state.docMode = b.dataset.doc; syncGenerator(); }));
+    document.querySelectorAll('.seg-btn[data-layout]').forEach(b =>
+      b.addEventListener('click', () => { state.layoutMode = b.dataset.layout; syncGenerator(); }));
+    el.btnPreviewGo.addEventListener('click', () =>
+      previewCahier(state.docMode === 'guide', state.layoutMode === 'fin'));
+    el.btnDownloadGo.addEventListener('click', () =>
+      generateDocx(true, state.docMode === 'guide', state.layoutMode === 'fin'));
+    syncGenerator();
     // Recherche : anti-rebond léger (le rendu complet du catalogue à chaque frappe
     // devient perceptible avec 400+ questions).
     let _searchTimer = null;
@@ -150,14 +198,6 @@
       renderCahier();
     });
     el.btnShuffle.addEventListener('click', shuffleCahier);
-    el.btnGenerate.addEventListener('click', () => generateDocx(true));
-    el.btnGenerateCorrige.addEventListener('click', () => generateDocx(true, /*corrige*/ true));
-    el.btnPreview.addEventListener('click', () => previewCahier(false));
-    el.btnPreviewCorrige.addEventListener('click', () => previewCahier(true));
-    el.btnGenerateVariante.addEventListener('click', () => generateDocx(true, false, /*variant*/ true));
-    el.btnPreviewVariante.addEventListener('click', () => previewCahier(false, /*variant*/ true));
-    el.btnGenerateCorrigeVariante.addEventListener('click', () => generateDocx(true, /*corrige*/ true, /*variant*/ true));
-    el.btnPreviewCorrigeVariante.addEventListener('click', () => previewCahier(/*corrige*/ true, /*variant*/ true));
     el.modalClose.addEventListener('click', closePreview);
     el.modalDownload.addEventListener('click', () => {
       const mode = state.previewMode;
@@ -251,7 +291,10 @@
       }
       if (rea && q.realite_sociale_id !== rea) return false;
       if (op  && q.operation !== op) return false;
-      if (comp && categoryOf(q) !== ('c' + comp)) return false;
+      if (comp) {
+        const cat = categoryOf(q);
+        if (comp === 'oi' ? cat !== 'oi' : cat !== ('c' + comp)) return false;
+      }
       if (term && !questionSearchText(q).includes(term)) return false;
       return true;
     });
@@ -262,15 +305,19 @@
 
     const n = state.filteredQuestions.length;
     el.catalogCount.textContent = `${n} question${n > 1 ? 's' : ''}`;
-    syncPeriodesStrip();
+    syncPeriodesRail();
+    document.querySelectorAll('.pill-comp').forEach(p =>
+      p.classList.toggle('active', p.dataset.comp === el.filterCompetence.value));
     renderCatalog();
   }
 
-  // État global des groupes repliés (par realite_sociale_id)
+  // État global des groupes repliés (par realite_sociale_id) et des fiches dépliées (par question id)
   const collapsedRealites = new Set();
+  const expandedQuestions = new Set();
 
   // ====== RENDU DU CATALOGUE ======
-  // (Pas de sous-pièces cochables : chaque question est une unité atomique)
+  // Rangées compactes par réalité sociale ; clic sur la rangée = fiche détaillée
+  // (documents, réglette, période) ; bouton « + Ajouter » = sélection explicite.
   function renderCatalog() {
     el.catalogList.innerHTML = '';
 
@@ -285,10 +332,9 @@
       realiteTitleById[r.id] = r.titre;
       realiteIdxById[r.id] = i;
     });
+    const periodeForRealite = (r) => state.periodes.find(p => p.annee === (r.annee || 3) && p.niveau === r.niveau);
 
     // Grouper les questions filtrées par réalité sociale, triées par niveau
-    // (Sec 1 d'abord, puis Sec 2). L'ordre d'insertion dans Map est conservé
-    // à l'itération, donc on pré-initialise dans l'ordre voulu.
     const groupsMap = new Map();
     DATA.realites_sociales
       .slice()
@@ -300,20 +346,23 @@
     });
 
     // Construire les groupes pour chaque réalité présente
-    const reaFilter = el.filterRealite.value;
+    const periodeFilter = el.filterNiveau.value;
     groupsMap.forEach((questions, realiteId) => {
       if (questions.length === 0) return;
       const realiteIdx = realiteIdxById[realiteId] ?? 0;
+      const realiteObj = DATA.realites_sociales.find(r => r.id === realiteId);
       const realiteTitle = realiteTitleById[realiteId] || 'Sans réalité';
+      const periode = realiteObj ? periodeForRealite(realiteObj) : null;
+      const periodeMatchesFilter = !!(periode && periode.value === periodeFilter);
 
       const groupEl = document.createElement('div');
       groupEl.className = 'realite-group';
-      // État affiché : une recherche active déplie tout, le filtre de réalité déplie
-      // la réalité ciblée ; sinon on respecte l'état replié choisi par l'utilisateur.
-      const isCollapsed = !state.searchTerm && realiteId !== reaFilter && collapsedRealites.has(realiteId);
+      // État affiché : recherche active → tout déplié ; période filtrée → son groupe déplié ;
+      // sinon on respecte l'état replié choisi par l'utilisateur.
+      const isCollapsed = !state.searchTerm && !periodeMatchesFilter && collapsedRealites.has(realiteId);
       if (isCollapsed) groupEl.classList.add('collapsed');
 
-      // En-tête de groupe (cliquable, accessible au clavier)
+      const nAdded = questions.filter(q => isQuestionUsed(q.id)).length;
       const headerEl = document.createElement('div');
       headerEl.className = 'realite-group-header';
       headerEl.setAttribute('data-realite-idx', String(realiteIdx));
@@ -321,11 +370,12 @@
       headerEl.setAttribute('tabindex', '0');
       headerEl.setAttribute('aria-expanded', String(!isCollapsed));
       const allUsed = questions.every(q => isQuestionUsed(q.id));
-      const toggleAllLabel = allUsed ? 'Tout décocher' : 'Tout cocher';
+      const toggleAllLabel = allUsed ? 'Tout retirer' : 'Tout ajouter';
       headerEl.innerHTML = `
         <span class="realite-toggle" aria-hidden="true">▼</span>
-        <span class="realite-group-title">${escapeHtml(realiteTitle)}</span>
-        <span class="realite-group-count">${questions.length} question${questions.length > 1 ? 's' : ''}</span>
+        ${periode ? `<span class="rg-periode">P${periode.pg}</span>` : ''}
+        <span class="realite-group-title">${escapeHtml(realiteTitle)}${periode ? ` <span class="rg-years">· ${escapeHtml(periode.years)}</span>` : ''}</span>
+        <span class="realite-group-count">${questions.length} question${questions.length > 1 ? 's' : ''}${nAdded ? ` <b class="rg-added">· ${nAdded} au cahier</b>` : ''}</span>
         <button type="button" class="realite-group-toggle-all" aria-label="${toggleAllLabel} pour cette réalité">${toggleAllLabel}</button>
       `;
       const toggleGroup = () => {
@@ -342,7 +392,7 @@
         if (e.target.closest('.realite-group-toggle-all')) return;
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleGroup(); }
       });
-      // Bouton « Tout cocher / décocher » : ne déclenche pas le repli du groupe
+      // Bouton « Tout ajouter / retirer » : ne déclenche pas le repli du groupe
       const toggleAllBtn = headerEl.querySelector('.realite-group-toggle-all');
       toggleAllBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -360,57 +410,87 @@
       cardsContainer.className = 'realite-group-cards';
 
       questions.forEach(q => {
+        const used = isQuestionUsed(q.id);
+        const expanded = expandedQuestions.has(q.id);
+        const pointsTotal = computeQuestionPoints(q);
+        const nDocs = (q.documents || []).filter(Boolean).length;
+
         const card = document.createElement('div');
         card.className = 'question-card';
         card.setAttribute('data-realite-idx', String(realiteIdx));
-        if (isQuestionUsed(q.id)) card.classList.add('has-selection');
+        if (used) card.classList.add('has-selection');
+        if (expanded) card.classList.add('open');
 
-        const checked = isQuestionUsed(q.id) ? 'checked' : '';
-        const pointsTotal = computeQuestionPoints(q);
-        const realite = realiteTitleById[q.realite_sociale_id] || '';
-        const periodeGlobale = ((q.annee || 3) - 3) * 4 + q.niveau;
-
-        const tagsHtml = `
-          <div class="q-meta">
-            <span class="tag tag-niveau">Période ${periodeGlobale}</span>
-            <span class="tag tag-operation">${escapeHtml(questionTag(q))}</span>
-            <span class="tag tag-numero">#${q.numero}</span>
-            ${realite ? `<span class="tag tag-realite" data-realite-idx="${realiteIdx}">${escapeHtml(realite)}</span>` : ''}
-            ${pointsTotal > 0 ? `<span class="tag tag-points">${pointsTotal} pts</span>` : ''}
-          </div>
-        `;
+        const promptHtml = state.searchTerm
+          ? highlightMatches(q.questionBody.prompt, state.searchTerm)
+          : escapeHtml(q.questionBody.prompt);
 
         card.innerHTML = `
-          <div class="question-header">
-            <input type="checkbox" class="q-checkbox" data-q-id="${q.id}" ${checked} aria-label="Sélectionner cette question">
+          <div class="question-header" role="button" tabindex="0" aria-expanded="${expanded}">
+            <span class="q-chevron" aria-hidden="true">›</span>
             <div class="q-content">
-              ${tagsHtml}
-              <p class="q-prompt">${state.searchTerm ? highlightMatches(q.questionBody.prompt, state.searchTerm) : escapeHtml(q.questionBody.prompt)}</p>
-              ${state.searchTerm && !termInPrompt(q, state.searchTerm) ? '<span class="q-doc-hit">🔍 trouvé dans un document</span>' : ''}
+              <p class="q-prompt">${promptHtml}</p>
+              <div class="q-meta">
+                <span class="chip chip-type">${escapeHtml(questionTag(q))}</span>
+                <span class="chip">#${q.numero}</span>
+                ${nDocs ? `<span class="chip">${nDocs} doc${nDocs > 1 ? 's' : ''}</span>` : ''}
+                ${pointsTotal > 0 ? `<span class="chip chip-pts">${pointsTotal} pts</span>` : ''}
+                ${state.searchTerm && !termInPrompt(q, state.searchTerm) ? '<span class="q-doc-hit">🔍 trouvé dans un document</span>' : ''}
+              </div>
             </div>
+            <button type="button" class="q-add ${used ? 'added' : ''}" aria-label="${used ? 'Retirer la question du cahier' : 'Ajouter la question au cahier'}">${used ? '✓ Au cahier' : '+ Ajouter'}</button>
           </div>
+          <div class="q-detail" ${expanded ? '' : 'hidden'}></div>
         `;
 
-        const header = card.querySelector('.question-header');
-        const checkbox = card.querySelector('.q-checkbox');
+        // Fiche détaillée (remplie au premier dépliage, contenu statique)
+        const detailEl = card.querySelector('.q-detail');
+        const fillDetail = () => {
+          if (detailEl.dataset.filled) return;
+          detailEl.dataset.filled = '1';
+          const docsList = (q.documents || []).filter(Boolean)
+            .map(d => `<li>${escapeHtml(d.title)}</li>`).join('');
+          const reglettes = (q.reglettes || []).filter(Boolean)
+            .map(r => `${escapeHtml(r.label || 'Réglette')}${r.maxPoints ? ` — ${r.maxPoints} points` : ''}`).join(' · ');
+          detailEl.innerHTML = `
+            <div class="qd-grid">
+              <div class="qd-block">
+                <span class="qd-label">Évaluation</span>
+                <span>${reglettes || '—'}</span>
+              </div>
+              ${docsList ? `
+              <div class="qd-block">
+                <span class="qd-label">Dossier documentaire</span>
+                <ul class="qd-docs">${docsList}</ul>
+              </div>` : ''}
+            </div>
+          `;
+        };
+        if (expanded) fillDetail();
 
-        function toggleSelection() {
-          if (isQuestionUsed(q.id)) {
-            removeAllPiecesForQuestion(q.id);
-          } else {
-            addAllPiecesForQuestion(q);
-          }
+        const header = card.querySelector('.question-header');
+        const addBtn = card.querySelector('.q-add');
+
+        const toggleExpand = () => {
+          const isOpen = card.classList.toggle('open');
+          if (isOpen) { expandedQuestions.add(q.id); fillDetail(); detailEl.hidden = false; }
+          else { expandedQuestions.delete(q.id); detailEl.hidden = true; }
+          header.setAttribute('aria-expanded', String(isOpen));
+        };
+        header.addEventListener('click', (e) => {
+          if (e.target.closest('.q-add')) return;
+          toggleExpand();
+        });
+        header.addEventListener('keydown', (e) => {
+          if (e.target.closest('.q-add')) return;
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleExpand(); }
+        });
+        addBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (isQuestionUsed(q.id)) removeAllPiecesForQuestion(q.id);
+          else addAllPiecesForQuestion(q);
           renderCatalog();
           renderCahier();
-        }
-
-        header.addEventListener('click', (e) => {
-          if (e.target === checkbox) return;
-          toggleSelection();
-        });
-        checkbox.addEventListener('change', (e) => {
-          e.stopPropagation();
-          toggleSelection();
         });
 
         cardsContainer.appendChild(card);
@@ -585,12 +665,23 @@
       current.pieces.push(p);
     });
 
-    const realiteTitleById = {};
-    DATA.realites_sociales.forEach(r => realiteTitleById[r.id] = r.titre);
+    if (groups.length === 0) {
+      el.cahierList.innerHTML = `
+        <div class="cahier-empty">
+          <span class="ce-icon" aria-hidden="true">📚</span>
+          <p class="ce-title">Le cahier est vide</p>
+          <ol class="ce-steps">
+            <li>Choisis une période dans la frise (ou cherche un mot-clé)</li>
+            <li>Ajoute des questions avec le bouton <b>+ Ajouter</b></li>
+            <li>Réordonne-les ici, puis génère le cahier et son guide</li>
+          </ol>
+        </div>`;
+    }
 
-    groups.forEach(g => {
+    groups.forEach((g, idx) => {
       const q = DATA.questions.find(x => x.id === g.questionId);
       if (!q) return;
+      const pts = computeQuestionPoints(q);
 
       const card = document.createElement('div');
       card.className = 'cahier-group';
@@ -599,11 +690,13 @@
       const header = document.createElement('header');
       header.className = 'cahier-group-header';
       header.innerHTML = `
-        <span class="cahier-handle" aria-hidden="true">⋮⋮</span>
+        <span class="cahier-handle" aria-hidden="true" title="Glisser pour réordonner">⋮⋮</span>
+        <span class="cahier-num" aria-label="Question ${idx + 1} du cahier">${idx + 1}</span>
         <div class="cahier-group-meta">
-          <span class="cahier-type t-question">#${q.numero}</span>
-          <span class="cahier-group-title" title="${escapeHtml(questionTag(q))}">${escapeHtml(questionTag(q))}</span>
+          <span class="cahier-group-title">${escapeHtml(questionTag(q))}</span>
+          <span class="cahier-prompt" title="${escapeHtml(q.questionBody.prompt)}">${escapeHtml(q.questionBody.prompt)}</span>
         </div>
+        <span class="cahier-pts">${pts} pts</span>
         <button class="cahier-group-remove" type="button" aria-label="Retirer la question">×</button>
       `;
       header.querySelector('.cahier-group-remove').addEventListener('click', (e) => {
@@ -617,21 +710,26 @@
       el.cahierList.appendChild(card);
     });
 
+    // Tableau de bord : total + ventilation par partie (telle qu'elle apparaîtra sur la couverture)
+    const ponder = computeCahierPointsByCategory();
+    const chips = [];
+    if (ponder.oi > 0) chips.push(`<span class="dash-chip">Opérations <b>${ponder.oi}</b></span>`);
+    if (ponder.c1 > 0) chips.push(`<span class="dash-chip">Compétence 1 <b>${ponder.c1}</b></span>`);
+    if (ponder.c2 > 0) chips.push(`<span class="dash-chip">Compétence 2 <b>${ponder.c2}</b></span>`);
     el.cahierCount.innerHTML = `
-      <span>${groups.length} question${groups.length > 1 ? 's' : ''}</span>
-      <span style="margin: 0 0.4rem;">·</span>
-      <span class="points-total">${computeCahierPoints()} pts</span>
+      <div class="dash-main">
+        <span class="dash-q"><b>${groups.length}</b> question${groups.length > 1 ? 's' : ''}</span>
+        <span class="dash-sep" aria-hidden="true"></span>
+        <span class="dash-pts"><b>${ponder.total}</b> points</span>
+      </div>
+      ${chips.length ? `<div class="dash-chips">${chips.join('')}</div>` : ''}
     `;
-    el.btnGenerate.disabled = state.cahier.length === 0;
-    el.btnGenerateCorrige.disabled = state.cahier.length === 0;
-    el.btnClear.disabled    = state.cahier.length === 0;
-    el.btnShuffle.disabled  = groups.length < 2;
-    el.btnPreview.disabled  = state.cahier.length === 0;
-    el.btnPreviewCorrige.disabled = state.cahier.length === 0;
-    el.btnGenerateVariante.disabled = state.cahier.length === 0;
-    el.btnPreviewVariante.disabled  = state.cahier.length === 0;
-    el.btnGenerateCorrigeVariante.disabled = state.cahier.length === 0;
-    el.btnPreviewCorrigeVariante.disabled  = state.cahier.length === 0;
+
+    const empty = state.cahier.length === 0;
+    el.btnPreviewGo.disabled = empty;
+    el.btnDownloadGo.disabled = empty;
+    el.btnClear.disabled = empty;
+    el.btnShuffle.disabled = groups.length < 2;
   }
 
   // ====== DRAG-AND-DROP (au niveau des groupes-questions) ======
@@ -1172,6 +1270,86 @@
       border: { bottom: { style: BorderStyle.SINGLE, size: 12, color: "8B3A2E", space: 4 } },
       children: [new TextRun({ text: "" })]
     }));
+
+    // ---- APERÇU DE L'ÉVALUATION ----
+    // Vue de correction synthèse : pour chaque question, son type et sa pondération, puis le total.
+    // L'enseignant voit la structure de l'évaluation avant les corrigés détaillés.
+    {
+      const ov = groups
+        .map(g => DATA.questions.find(x => x.id === g.questionId))
+        .filter(Boolean);
+      if (ov.length > 1) {
+        const OV_B = { style: BorderStyle.SINGLE, size: 4, color: "B8B1A2" };
+        const OV_BORDERS = { top: OV_B, bottom: OV_B, left: OV_B, right: OV_B };
+        const wNum = 900, wType = 5400, wPts = 1400;
+        const cell = (txt, opts) => new TableCell({
+          width: { size: opts.w, type: WidthType.DXA },
+          borders: OV_BORDERS,
+          shading: opts.fill ? { fill: opts.fill, type: ShadingType.CLEAR, color: "auto" } : undefined,
+          verticalAlign: VerticalAlign.CENTER,
+          margins: { top: 50, bottom: 50, left: 110, right: 110 },
+          children: [new Paragraph({
+            alignment: opts.center ? AlignmentType.CENTER : AlignmentType.LEFT,
+            children: [new TextRun({ text: txt, bold: !!opts.bold, size: opts.size || 18, color: opts.color || "2A2620" })]
+          })]
+        });
+        const rows = [new TableRow({
+          tableHeader: true,
+          children: [
+            cell("No", { w: wNum, bold: true, center: true, fill: "F0EAD9" }),
+            cell("Type de question", { w: wType, bold: true, fill: "F0EAD9" }),
+            cell("Points", { w: wPts, bold: true, center: true, fill: "F0EAD9" })
+          ]
+        })];
+        let totalPts = 0;
+        ov.forEach((q, i) => {
+          const pts = computeQuestionPoints(q);
+          totalPts += pts;
+          rows.push(new TableRow({
+            children: [
+              cell(String(i + 1), { w: wNum, center: true }),
+              cell(questionTag(q), { w: wType }),
+              cell(pts > 0 ? `/ ${pts}` : "—", { w: wPts, center: true })
+            ]
+          }));
+        });
+        rows.push(new TableRow({
+          children: [
+            cell("Total", { w: wNum + wType, bold: true, color: "8B3A2E" }),
+            cell(`/ ${totalPts}`, { w: wPts, center: true, bold: true, color: "8B3A2E", size: 20 })
+          ]
+        }));
+        // La cellule Total fusionne visuellement No+Type via columnSpan
+        rows[rows.length - 1] = new TableRow({
+          children: [
+            new TableCell({
+              width: { size: wNum + wType, type: WidthType.DXA },
+              columnSpan: 2, borders: OV_BORDERS, verticalAlign: VerticalAlign.CENTER,
+              shading: { fill: "F7F3EA", type: ShadingType.CLEAR, color: "auto" },
+              margins: { top: 50, bottom: 50, left: 110, right: 110 },
+              children: [new Paragraph({ children: [new TextRun({ text: "Total", bold: true, size: 19, color: "8B3A2E" })] })]
+            }),
+            new TableCell({
+              width: { size: wPts, type: WidthType.DXA },
+              borders: OV_BORDERS, verticalAlign: VerticalAlign.CENTER,
+              shading: { fill: "F7F3EA", type: ShadingType.CLEAR, color: "auto" },
+              margins: { top: 50, bottom: 50, left: 110, right: 110 },
+              children: [new Paragraph({ alignment: AlignmentType.CENTER, children: [new TextRun({ text: `/ ${totalPts}`, bold: true, size: 20, color: "8B3A2E" })] })]
+            })
+          ]
+        });
+        bodyChildren.push(new Paragraph({
+          spacing: { before: 0, after: 80 },
+          children: [new TextRun({ text: "Aperçu de l'évaluation", allCaps: true, bold: true, size: 19, color: "6E685C", characterSpacing: 22 })]
+        }));
+        bodyChildren.push(new Table({
+          width: { size: wNum + wType + wPts, type: WidthType.DXA },
+          columnWidths: [wNum, wType, wPts],
+          rows
+        }));
+        bodyChildren.push(new Paragraph({ children: [new TextRun({ text: "" })], spacing: { after: 160 } }));
+      }
+    }
 
     let _prevComp = null;
     groups.forEach((g, idx) => {
@@ -1851,7 +2029,7 @@
     // Espacement vertical pour pousser le contenu vers le centre/haut
     out.push(new Paragraph({
       children: [new TextRun({ text: "" })],
-      spacing: { before: 2000 }
+      spacing: { before: 1300 }
     }));
 
     // Surtitre (discipline) : petites capitales espacées, discret
@@ -1887,23 +2065,52 @@
       children: [new TextRun({ text: "" })]
     }));
 
-    // Niveau (période globale P1-P8 si toutes les questions sont de la même période)
-    if (uniformPeriodeGlobale) {
-      out.push(new Paragraph({
+    // ---- FRISE CHRONOLOGIQUE ----
+    // Les 8 périodes du programme avec leurs années ; celles couvertes par cette évaluation
+    // sont colorées (couleur de leur réalité sociale), les autres restent en gris pâle.
+    // L'élève situe d'un coup d'œil l'évaluation dans la chronologie du cours.
+    if (state.periodes.length) {
+      const friseW = 9600;
+      const cellW = Math.floor(friseW / state.periodes.length);
+      const cells = state.periodes.map(p => {
+        const covered = periodesGlobales.has(p.pg);
+        const idx = realiteIdxForPeriode(p);
+        const fill = covered ? (REALITE_HEX[idx] || '8B3A2E') : 'EFEBE1';
+        const fg = covered ? 'FFFFFF' : 'B8B1A2';
+        return new TableCell({
+          width: { size: cellW, type: WidthType.DXA },
+          shading: { fill, type: d.ShadingType.CLEAR, color: 'auto' },
+          borders: { top: NO_BORDER, bottom: NO_BORDER,
+                     left: { style: BorderStyle.SINGLE, size: 6, color: 'FFFFFF' },
+                     right: { style: BorderStyle.SINGLE, size: 6, color: 'FFFFFF' } },
+          verticalAlign: VerticalAlign.CENTER,
+          margins: { top: 70, bottom: 70, left: 40, right: 40 },
+          children: [
+            new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 10 },
+              children: [new TextRun({ text: `P${p.pg}`, bold: true, size: 17, color: fg })] }),
+            new Paragraph({ alignment: AlignmentType.CENTER,
+              children: [new TextRun({ text: p.years, size: 11, color: fg })] })
+          ]
+        });
+      });
+      out.push(new Table({
+        width: { size: friseW, type: WidthType.DXA },
+        columnWidths: state.periodes.map(() => cellW),
         alignment: AlignmentType.CENTER,
-        spacing: { before: 0, after: 120 },
-        children: [new TextRun({ text: `Période ${uniformPeriodeGlobale}`, bold: true, size: 32 })]
+        rows: [new TableRow({ height: { value: 560, rule: 'atLeast' }, children: cells })]
       }));
+      out.push(new Paragraph({ children: [new TextRun({ text: "" })], spacing: { after: 420 } }));
     }
-    // Réalité sociale
+
+    // Réalité sociale (la frise ci-dessus situe déjà la période ; on nomme la réalité)
     if (uniformRealite) {
       out.push(new Paragraph({
         alignment: AlignmentType.CENTER,
-        spacing: { before: 0, after: 900 },
+        spacing: { before: 0, after: 700 },
         children: [new TextRun({ text: uniformRealite, italics: true, size: 28 })]
       }));
     } else {
-      out.push(new Paragraph({ children: [new TextRun({ text: "" })], spacing: { after: 900 } }));
+      out.push(new Paragraph({ children: [new TextRun({ text: "" })], spacing: { after: 700 } }));
     }
 
     // Champs : Nom, Groupe, Date — tableau 2 colonnes
@@ -2336,17 +2543,50 @@
       const elements = [];
       const num = seqNumero !== undefined ? seqNumero : q.numero;
 
-      // Titre épuré : « QUESTION N » en petites capitales espacées, numéro en burgundy,
-      // filet d'accent en dessous (le nom de l'opération n'apparaît pas dans le cahier de l'élève)
-      elements.push(new Paragraph({
-        children: [
-          new TextRun({ text: "Question ", allCaps: true, bold: true, size: 26, characterSpacing: 24 }),
-          new TextRun({ text: `${num}`, bold: true, size: 28, color: "8B3A2E" })
-        ],
-        spacing: { before: 0, after: 60 },
-        border: {
-          bottom: { style: BorderStyle.SINGLE, size: 8, color: "8B3A2E", space: 4 }
-        }
+      // En-tête à badge : pastille numérotée burgundy + « QUESTION » en petites capitales
+      // + pondération de la question à droite (l'élève voit le poids de chaque question).
+      const qPts = computeQuestionPoints(q);
+      const HDR_NO_B = { style: BorderStyle.NONE, size: 0, color: "FFFFFF" };
+      const HDR_RULE = { style: BorderStyle.SINGLE, size: 10, color: "8B3A2E" };
+      elements.push(new Table({
+        width: { size: 10500, type: WidthType.DXA },
+        columnWidths: [820, 8080, 1600],
+        rows: [new TableRow({
+          cantSplit: true,
+          height: { value: 420, rule: "atLeast" },
+          children: [
+            new TableCell({
+              width: { size: 820, type: WidthType.DXA },
+              shading: { fill: "8B3A2E", type: ShadingType.CLEAR, color: "auto" },
+              borders: { top: HDR_NO_B, bottom: HDR_NO_B, left: HDR_NO_B, right: HDR_NO_B },
+              verticalAlign: VerticalAlign.CENTER,
+              margins: { top: 40, bottom: 40, left: 60, right: 60 },
+              children: [new Paragraph({
+                alignment: AlignmentType.CENTER,
+                children: [new TextRun({ text: `${num}`, bold: true, size: 30, color: "FFFFFF" })]
+              })]
+            }),
+            new TableCell({
+              width: { size: 8080, type: WidthType.DXA },
+              borders: { top: HDR_NO_B, bottom: HDR_RULE, left: HDR_NO_B, right: HDR_NO_B },
+              verticalAlign: VerticalAlign.CENTER,
+              margins: { top: 40, bottom: 40, left: 160, right: 60 },
+              children: [new Paragraph({
+                children: [new TextRun({ text: "Question", allCaps: true, bold: true, size: 24, characterSpacing: 28, color: "2A2620" })]
+              })]
+            }),
+            new TableCell({
+              width: { size: 1600, type: WidthType.DXA },
+              borders: { top: HDR_NO_B, bottom: HDR_RULE, left: HDR_NO_B, right: HDR_NO_B },
+              verticalAlign: VerticalAlign.CENTER,
+              margins: { top: 40, bottom: 40, left: 60, right: 40 },
+              children: [new Paragraph({
+                alignment: AlignmentType.RIGHT,
+                children: [new TextRun({ text: qPts > 0 ? `/ ${qPts} points` : "", bold: true, size: 19, color: "6E685C" })]
+              })]
+            })
+          ]
+        })]
       }));
       elements.push(new Paragraph({ children: [new TextRun({ text: "" })], spacing: { after: 200 } }));
 
@@ -3055,8 +3295,9 @@
       const elements = [];
 
       const titleP = new Paragraph({
-        children: [new TextRun({ text: d_doc.title, bold: true, color: "1F77B4", size: 22 })],
-        spacing: { after: 80 }
+        children: [new TextRun({ text: d_doc.title, bold: true, color: "5C4A1E", size: 21 })],
+        shading: { fill: "F0EAD9", type: ShadingType.CLEAR, color: "auto" },
+        spacing: { after: 100 }
       });
       const sourcesPs = d_doc.sources.map(s =>
         new Paragraph({ children: [new TextRun({ text: s, italics: true, size: sourceFontSize })], spacing: { after: 20, line: 180, lineRule: 'exact' } })
