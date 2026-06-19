@@ -1,0 +1,99 @@
+/* =========================================================================
+   LEGATUS — Gouverner la Gaule romaine
+   Esthétique : pierre & pourpre impérial, tableau de bord de jauges.
+   Robuste hors-ligne (polices système + Cinzel en amélioration progressive).
+   ========================================================================= */
+:root{
+  --pierre:#F2ECE0; --parchemin:#FBF7EF; --pierre-bord:#D8CBB2;
+  --encre:#2B2620; --encre-doux:#6B6256;
+  --pourpre:#732640; --pourpre-fonce:#511A2D;
+  --pompei:#9E3B2E; --bronze:#A9803C; --olive:#4F6F52; --ambre:#C8862B;
+  --olive-clair:#E4EBDD; --rouge-clair:#F6E2DD; --bronze-clair:#F2E7CF;
+  --display:"Cinzel","Trajan Pro","Optima",Georgia,"Times New Roman",serif;
+  --corps:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --rayon:4px; --ombre:0 1px 0 var(--pierre-bord),0 2px 12px rgba(43,38,32,.06);
+}
+*{box-sizing:border-box} html,body{margin:0;padding:0}
+body{background:var(--pierre);color:var(--encre);font-family:var(--corps);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(circle at 12% 14%,rgba(169,128,60,.05),transparent 38%),radial-gradient(circle at 88% 86%,rgba(115,38,64,.05),transparent 40%);
+  background-attachment:fixed;}
+
+header.tete{text-align:center;padding:34px 20px 18px;border-bottom:1px solid var(--pierre-bord)}
+header.tete h1{font-family:var(--display);font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:clamp(26px,4.5vw,40px);margin:0}
+header.tete .sous{font-family:var(--display);letter-spacing:.3em;text-transform:uppercase;font-size:13px;color:var(--pourpre);margin-top:10px}
+
+.wrap{max-width:860px;margin:0 auto;padding:0 18px 60px}
+
+/* ===== tableau de bord des jauges (sticky) ===== */
+#jauges{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+  padding:14px 18px;margin:0 0 22px;background:rgba(251,247,239,.96);border-bottom:1px solid var(--pierre-bord);
+  backdrop-filter:saturate(1.1) blur(2px)}
+.jauge{display:flex;gap:10px;align-items:center;max-width:860px}
+.pastille{flex:none;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-weight:700;color:#fff;letter-spacing:.02em;font-size:16px}
+.pastille.pourpre{background:var(--pourpre)} .pastille.bronze{background:var(--bronze)} .pastille.seuil{background:var(--encre-doux)}
+.jauge-corps{flex:1;min-width:0}
+.jauge-haut{display:flex;justify-content:space-between;align-items:baseline;gap:6px}
+.jauge-nom{font-size:12px;letter-spacing:.04em;color:var(--encre-doux);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.jauge-val{font-size:12.5px;font-weight:600;white-space:nowrap}
+.delta{margin-left:6px;font-weight:700;font-size:12px}
+.delta.plus,.d-plus{color:var(--olive)} .delta.moins,.d-moins{color:var(--pompei)}
+.rail{height:7px;background:var(--pierre-bord);border-radius:4px;overflow:hidden;margin-top:4px}
+.fill{height:100%;width:0;transition:width .6s ease}
+.fill.pourpre{background:var(--pourpre)} .fill.bronze{background:var(--bronze)}
+.fill.ok{background:var(--olive)} .fill.moyen{background:var(--ambre)} .fill.bas{background:var(--pompei)}
+
+/* ===== scène ===== */
+.carte-scene{background:var(--parchemin);border:1px solid var(--pierre-bord);border-radius:var(--rayon);
+  box-shadow:var(--ombre);padding:0 0 24px;overflow:hidden}
+.illu{display:block;width:100%;max-height:300px;object-fit:cover;border-bottom:1px solid var(--pierre-bord)}
+.kicker{font-family:var(--display);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--bronze);padding:20px 26px 0}
+.scene-titre{font-family:var(--display);font-weight:700;letter-spacing:.04em;font-size:25px;margin:6px 0 0;padding:0 26px}
+.scene-texte{font-size:17.5px;line-height:1.6;padding:0 26px;margin:14px 0 0}
+.scene-texte .alerte{color:var(--pompei);font-style:italic}
+em{color:var(--pourpre);font-style:italic}
+
+/* ===== options de décision ===== */
+.options{display:grid;gap:12px;padding:22px 26px 0}
+.option{text-align:left;background:#fff;border:1px solid var(--pierre-bord);border-left:4px solid var(--bronze);
+  border-radius:var(--rayon);padding:15px 18px;cursor:pointer;transition:transform .14s,box-shadow .14s,border-color .14s;font-family:inherit}
+.option:hover{transform:translateY(-2px);box-shadow:0 5px 18px rgba(43,38,32,.12);border-left-color:var(--pourpre)}
+.option:focus-visible{outline:3px solid var(--pourpre);outline-offset:2px}
+.option-titre{font-size:17px;font-weight:600;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.option .cout{font-family:var(--display);font-size:12.5px;color:var(--bronze);white-space:nowrap;letter-spacing:.03em}
+.option-sous{font-size:13px;color:var(--pompei);margin-top:4px}
+.option.indispo{opacity:.5;cursor:not-allowed;border-left-color:var(--pierre-bord)}
+.option.indispo:hover{transform:none;box-shadow:none}
+
+/* ===== conséquences ===== */
+.retro{margin:18px 26px 0;padding:12px 16px;border-radius:var(--rayon);font-size:15px;font-weight:600}
+.retro.montre{display:block}
+.retro.juste{background:var(--olive-clair);border:1px solid var(--olive)}
+.retro.faux{background:var(--rouge-clair);border:1px solid var(--pompei)}
+.retro .corr{margin-top:6px;font-size:13.5px;font-weight:400;color:var(--encre-doux)}
+.retro strong{font-family:var(--display);letter-spacing:.03em}
+.pourquoi{margin:16px 26px 0;padding:14px 18px;background:var(--bronze-clair);border-left:4px solid var(--bronze);
+  border-radius:0 var(--rayon) var(--rayon) 0;font-size:15px;line-height:1.55;color:#5c441b}
+.pq-tete{font-family:var(--display);font-weight:700;letter-spacing:.04em;color:var(--bronze)}
+
+/* ===== actions ===== */
+.actions{display:flex;gap:12px;align-items:center;padding:22px 26px 0}
+.btn{font-family:var(--display);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:14px;
+  padding:12px 26px;border-radius:var(--rayon);cursor:pointer;border:1px solid transparent;transition:all .14s;font-family:var(--display)}
+.btn-primaire{background:var(--pourpre);color:#fff}
+.btn-primaire:hover{background:var(--pourpre-fonce)}
+.btn:focus-visible{outline:3px solid var(--bronze);outline-offset:2px}
+
+/* ===== fin de mandat ===== */
+.fin .scene-titre{font-size:28px}
+.fin.echec .scene-titre{color:var(--pompei)}
+.bilan-jauges{margin:20px 26px 0;display:grid;gap:8px}
+.bilan-ligne{display:flex;justify-content:space-between;padding:10px 14px;background:#fff;border:1px solid var(--pierre-bord);border-radius:var(--rayon)}
+.bilan-v{font-family:var(--display);font-weight:700;color:var(--pourpre)}
+
+@media (max-width:640px){
+  #jauges{grid-template-columns:repeat(2,1fr);gap:10px}
+  .illu{max-height:200px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}

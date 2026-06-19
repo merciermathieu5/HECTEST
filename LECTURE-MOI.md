@@ -1,149 +1,124 @@
-# Atelier de l'historien — Romanisation (prototype)
+# Legatus — Gouverner la Gaule romaine (prototype de jeu sérieux)
 
-Jeu sérieux pour le **Premier cycle du secondaire** (Histoire et éducation à la citoyenneté).
-L'élève devient un apprenti historien : chaque **instrument** entraîne une **opération
-intellectuelle** du programme, sur la réalité sociale de la **romanisation**.
-
-Ce prototype démontre **un seul moteur réutilisable**, destiné à être réhabillé pour les
-dix autres réalités sociales du premier cycle.
+Tu es nommé *legatus* (gouverneur) d'une province récemment conquise. Ta mission :
+**romaniser durablement la Gaule** par tes décisions, sans qu'elle se révolte ni que
+l'empereur te destitue. Ce n'est pas un questionnaire : c'est une **simulation** où le
+savoir disciplinaire est encodé dans les règles du jeu.
 
 ---
 
-## 1. Ouvrir le jeu
+## 1. Jouer
 
-Double-clique `index.html` — aucun serveur requis. Les données et les images sont
-embarquées, donc le jeu fonctionne hors-ligne (utile en classe). Sur GitHub Pages,
-dépose le dossier tel quel et ouvre son `index.html`.
-
-La progression et les points sont sauvegardés dans le `localStorage` du navigateur
-(clé `atelier.romanisation.v1`), comme dans ton `exercicesOI`.
+Double-clique `index.html` — aucun serveur requis, fonctionne hors-ligne. Une partie
+(un mandat) dure quatre étapes et se termine par un bilan. Plusieurs trajectoires, donc
+plusieurs fins.
 
 ---
 
-## 2. Ce qui est RÉEL vs GABARIT vs À ENCODER
+## 2. La différence avec une interface de questions
 
-| Instrument | Opération intellectuelle | Mécanique | Statut |
-|---|---|---|---|
-| La carte | Situer dans l'espace | association (lettre/n° doc) | **réel — 4 questions** |
-| La frise | Situer dans le temps | association + avant/après | **réel — 4 questions** |
-| La grille | Mettre en relation des faits | tableau à cocher + association | **réel — 4 questions** |
-| Causes & effets | Causes et conséquences | QCM (association) | **réel — 1 question** |
-| Le relevé de faits | Établir des faits | QCM | **à encoder** (rien d'auto) |
-| Le comparateur | Différences et similitudes | glisser-déposer (3 zones) | **gabarit à valider** |
-| Le trieur | Changements et continuités | glisser-déposer (2 zones) | **gabarit à valider** |
-| La chaîne causale | Liens de causalité | ordonnancement | **gabarit à valider** |
+| Interface de questions | Jeu sérieux (celui-ci) |
+|---|---|
+| Question → réponse → correction | Décision → conséquence → l'état change |
+| Une bonne réponse | Des arbitrages, pas de réponse parfaite |
+| Le savoir est *testé* | Le savoir est *le système qu'on manipule* |
+| L'élève répond | L'élève gouverne |
 
-**13 questions sont corrigées automatiquement à partir de ton vrai `questions.json`.**
-Les trois mécaniques de glisser-déposer affichent un **gabarit** (badge « Gabarit ») : la
-mécanique est réelle, mais les étiquettes à classer sont une proposition de ma part,
-ancrée sur tes vraies questions. Tu les remplaces par ton contenu validé (voir §4).
+On comprend la romanisation **en la faisant** : en arbitrant entre contrainte et
+adhésion, en bâtissant des infrastructures, en intégrant ou en réprimant les élites
+locales — et en vivant les conséquences.
 
 ---
 
-## 3. ⚠️ Incohérences de données détectées (à corriger dans ta banque)
+## 3. Le système
 
-Trois questions de romanisation portent `corrige.kind: "lettres"` alors que leurs valeurs
-sont en réalité des **réponses rédigées** (phrases complètes). Elles ne sont donc pas
-auto-corrigeables, et le moteur les écarte volontairement :
+Quatre jauges en tension permanente (aucune décision ne les fait toutes monter) :
 
-- `q-rom-faits-7`
-- `q-rom-causes-4`
-- `q-rom-differences-2`
+- **Romanisation** — adoption de la langue, du droit, du mode de vie romains (l'objectif).
+- **Stabilité** — paix sociale ; à zéro, la province se révolte (fin d'échec).
+- **Faveur de Rome** — confiance de l'empereur ; à zéro, tu es destitué (fin d'échec).
+- **Trésor** — deniers, qui financent les chantiers.
 
-Le `kind` devrait être `texte` (ou les valeurs devraient devenir de vraies étiquettes).
-Bon candidat pour une règle de ton `lint-questions.js` : *si `kind === "lettres"`, chaque
-valeur doit être une étiquette courte (`^[A-Za-z]$`, `^\d{1,2}$` ou `^Document \d+$`).*
+La boucle : un **événement** se présente → tu **décides** → les **jauges bougent** → l'état
+de la province change, et certains choix se répercutent plus tard.
 
-C'est aussi la raison pour laquelle « Le relevé de faits » n'a aucune question auto :
-sa seule question `lettres` est en fait du texte. Une fois encodée correctement (ou
-remplacée par un vrai QCM / un bloc `drag`), l'instrument deviendra jouable tout seul.
+Exemples de mécaniques systémiques déjà en place dans le prototype :
 
----
+- **Arbitrages réels.** Imposer le latin de force fait monter la romanisation mais chuter
+  la stabilité ; le latin progressif romanise plus lentement mais durablement.
+- **Effet conditionnel.** Si tu as bâti une *curie*, négocier la citoyenneté lors de la
+  révolte est nettement plus efficace (intégration facilitée des notables).
+- **Conséquence différée.** Réprimer la révolte par la force laisse un ressentiment qui
+  refait surface — et coûte de la stabilité — lors de la visite de l'empereur.
+- **Effet persistant.** Une voie romaine rapporte des recettes commerciales à chaque
+  rentrée d'impôts.
+- **Fins multiples** selon les jauges finales (province romaine et paisible / romanisation
+  fragile / à peine romanisée), plus deux fins d'échec.
 
-## 4. Le schéma `drag` (ré-encodage en items glissables)
-
-Les gabarits vivent dans `assets/js/atelier-data.js`, sous `window.ATELIER.drag`.
-Remplace simplement le contenu par tes éléments validés — le moteur fait le reste.
-
-**Trieur (2 zones) et comparateur (n zones)** — `type: "tri"` :
-```js
-chang: {
-  type: "tri",
-  ancre: "q-rom-...",            // id de la vraie question source (référence)
-  prompt: "Consigne affichée à l'élève.",
-  zones: [ {id:"chgt", label:"Changement"}, {id:"cont", label:"Continuité"} ],
-  items: [
-    { id:"i1", texte:"…", zone:"chgt" },   // zone = id de la bonne zone
-    { id:"i2", texte:"…", zone:"cont" }
-  ]
-  // retire la clé "_gabarit": true quand le contenu est validé → le badge disparaît
-}
-```
-
-**Chaîne causale** — `type: "chaine"` :
-```js
-causalite: {
-  type: "chaine",
-  ancre: "q-rom-...",
-  prompt: "Ordonne les maillons, de la cause initiale à l'impact.",
-  items: [ {id:"c1", texte:"…"}, {id:"c2", texte:"…"}, {id:"c3", texte:"…"} ],
-  ordre: ["c1","c2","c3"]        // l'ordre attendu
-}
-```
-
-Le badge « Gabarit » s'affiche tant que `_gabarit: true` est présent. Supprime cette clé
-une fois ton contenu validé.
+Après chaque décision, un encart **« Pourquoi ? »** explicite le lien historique. C'est de
+la rétroaction formative, pas une note.
 
 ---
 
-## 5. Brancher sur le vrai `questions.json` (intégration au dépôt)
+## 4. Le savoir encodé — à valider par toi
 
-Le prototype embarque une copie des données pour fonctionner en autonomie. Pour
-l'intégrer à ta plateforme HEC et puiser dans la source unique de vérité, remplace le
-chargement de `atelier-data.js` par un `fetch` filtré. Esquisse :
-
-```js
-const REALITE = "romanisation";
-const data = await (await fetch("../assets/data/questions.json")).json();
-const questions = data.questions.filter(q => q.realite_sociale_id === REALITE);
-// applique la pondération + le bloc drag, puis : window.ATELIER = { … questions … };
-```
-
-Place alors le dossier du jeu à la racine du dépôt (à côté de `assets/`) pour que les
-`imageUrl` (`assets/img/…`) se résolvent sans modification. La pondération des points et
-les blocs `drag` peuvent rester dans un petit fichier de configuration par réalité sociale.
+Les effets des décisions sur les jauges traduisent des **logiques historiques** de la
+romanisation (la langue comme vecteur, l'intégration des élites par la citoyenneté, le rôle
+des infrastructures, l'équilibre conquête/adhésion). Je les ai calibrés à partir du
+programme, **mais l'équilibrage et les formulations sont à valider et à ajuster par toi** —
+c'est ton expertise de contenu, pas la mienne. Tout est centralisé et lisible dans
+`assets/js/legatus-data.js` : chaque option a ses `effets`, son texte de `consequence` et
+son champ `pourquoi`. Tu modifies les chiffres et les textes sans toucher au moteur.
 
 ---
 
-## 6. Pondération des points (par complexité de l'opération)
+## 5. Ta banque comme source (pas comme squelette)
 
-Affichée en chiffres romains, comme repère pour les élèves (et clin d'œil à la période) :
-
-- **I** : Situer dans le temps · Situer dans l'espace · Établir des faits
-- **II** : Différences et similitudes · Mettre en relation · Changements et continuités
-- **III** : Causes et conséquences · Liens de causalité
-
-Modifiable dans `window.ATELIER.ponderation`.
+Trois illustrations du jeu proviennent directement de tes documents de romanisation :
+la **carte de l'Empire** (écran d'ouverture), le **cirque** (la visite impériale) et la
+**curie** (le chantier d'administration). C'est le nouveau rôle de ta banque dans un jeu
+sérieux : une **réserve de documents, de faits et de situations** qui nourrit les
+événements. Tes questions auto-corrigeables (le prototype précédent) peuvent aussi
+devenir des **épreuves ponctuelles** intégrées à la fiction — par exemple, réussir une
+lecture de carte pour débloquer la meilleure option de décision.
 
 ---
 
-## 7. Réhabiller pour une autre réalité sociale
+## 6. Architecture (réutilisable)
 
-Le moteur (`assets/js/atelier.js`) et le style (`assets/css/atelier.css`) sont **agnostiques
-de la réalité sociale**. Pour produire une autre variante :
+- `assets/js/legatus.js` — le **moteur de simulation** : jauges, application des effets,
+  effets conditionnels/différés/persistants, fins. **Agnostique du contenu.**
+- `assets/js/legatus-data.js` — le **contenu du mandat** : état initial, jauges, étapes
+  (événements et chantiers), seuils des fins. C'est ici qu'on conçoit le jeu.
+- `assets/css/legatus.css` — l'habillage (palette romaine, tableau de bord des jauges).
 
-1. Régénère un `atelier-data.js` filtré sur le nouveau `realite_sociale_id`.
-2. Adapte la palette (variables CSS en tête de `atelier.css`) et le titre dans `index.html`.
-3. Encode les blocs `drag` propres à la réalité sociale.
+Pour **ajouter une étape** : pousse un objet dans `etapes` (`type:"evenement"` ou
+`"construction"`) avec ses `options` et leurs `effets`. Le moteur la prend en charge.
 
-Rappel : « Reconnaissance des libertés et des droits civils » ne contient que 8 questions
-dans ta banque — à étoffer (≈ 35, couvrant les 8 opérations) avant d'en faire une variante.
+---
+
+## 7. « Un moteur, onze peaux » — version simulation
+
+Le moteur de jauges/événements/décisions est réutilisable pour les autres réalités
+sociales : il suffit de concevoir un nouveau `…-data.js` avec des jauges et des événements
+propres à la période. Quelques pistes :
+
+- **Sédentarisation** — jauges Nourriture / Population / Savoir-faire ; décisions sur la
+  domestication, le stockage, le passage à la vie sédentaire.
+- **Première démocratie (Athènes)** — jauges Participation / Cohésion / Puissance ;
+  décisions sur l'inclusion ou l'exclusion (femmes, métèques, esclaves), les réformes,
+  la guerre.
+- **Industrialisation** — jauges Production / Conditions ouvrières / Capital ; gérer une
+  usine et une ville industrielle.
+
+C'est plus de conception par réalité sociale qu'un simple réhabillage — chaque période a
+son propre système — mais c'est ce qui sépare un jeu sérieux d'un exerciseur.
 
 ---
 
 ## 8. Validation
 
-Logique validée avec jsdom (`test-atelier.js`, hors livrable) : chargement sans erreur,
-les 8 instruments rendus, les 13 questions réelles corrigées juste, les 3 gabarits drag
-placés et corrigés, l'instrument « à encoder » détecté, correction discriminante (une
-mauvaise réponse est bien refusée), et progression persistée.
+Logique validée avec jsdom (`test-legatus.js`, hors livrable) : chargement sans erreur,
+quatre parties complètes jouées de bout en bout, vérification de l'effet conditionnel de
+la curie, de la conséquence différée de la répression, des seuils de bilan, et du
+déclenchement d'une fin d'échec.

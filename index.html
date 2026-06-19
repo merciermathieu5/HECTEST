@@ -3,31 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Atelier de l'historien — Romanisation</title>
-<meta name="description" content="Jeu sérieux d'histoire et éducation à la citoyenneté : entraîne les opérations intellectuelles à travers la réalité sociale de la romanisation.">
+<title>Legatus — Gouverner la Gaule romaine</title>
+<meta name="description" content="Jeu sérieux d'histoire : gouverne une province romaine et romanise-la durablement par tes décisions.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/atelier.css">
+<link rel="stylesheet" href="assets/css/legatus.css">
 </head>
 <body>
-  <header class="atelier-tete">
-    <div class="fil"><a id="lien-accueil">Atelier de l'historien</a> · Premier cycle</div>
-    <h1>Atelier de l'historien</h1>
-    <div class="sous">Réalité sociale&nbsp;: la romanisation</div>
-    <div class="rule"></div>
+  <header class="tete">
+    <h1>Legatus</h1>
+    <div class="sous">Gouverner la Gaule romaine</div>
   </header>
-
+  <div id="jauges"></div>
   <main class="wrap">
-    <section id="vue-accueil"></section>
-    <section id="vue-instrument" class="hidden"></section>
-    <section id="vue-synthese" class="hidden"></section>
+    <div id="scene"></div>
   </main>
-
-  <script src="assets/js/atelier-data.js"></script>
-  <script src="assets/js/atelier.js"></script>
-  <script>
-    document.getElementById('lien-accueil').addEventListener('click', function(){ location.reload(); });
-  </script>
+  <script src="assets/js/legatus-data.js"></script>
+  <script src="assets/js/legatus.js"></script>
 </body>
 </html>
