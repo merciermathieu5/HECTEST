@@ -1,0 +1,49 @@
+<svg width="880" height="520" viewBox="0 0 880 520" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ciel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#A9C3CE"/><stop offset="55%" stop-color="#D8D2BE"/><stop offset="100%" stop-color="#EFE6CF"/>
+    </linearGradient>
+    <linearGradient id="sol" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#CBB68C"/><stop offset="100%" stop-color="#B89B6B"/>
+    </linearGradient>
+  </defs>
+  <rect width="880" height="520" fill="url(#ciel)"/>
+  <circle cx="700" cy="120" r="46" fill="#F6EAC8" opacity="0.8"/>
+  <!-- temple au fond -->
+  <g opacity="0.55">
+    <polygon points="300,150 580,150 440,84" fill="#EDE3CC" stroke="#C4B188" stroke-width="3"/>
+    <rect x="300" y="150" width="280" height="14" fill="#E4D8BC" stroke="#C4B188" stroke-width="2"/>
+    <g fill="#E9DFC4" stroke="#C9B991" stroke-width="2">
+      <rect x="312" y="164" width="20" height="120"/><rect x="352" y="164" width="20" height="120"/>
+      <rect x="392" y="164" width="20" height="120"/><rect x="432" y="164" width="20" height="120"/>
+      <rect x="472" y="164" width="20" height="120"/><rect x="512" y="164" width="20" height="120"/>
+      <rect x="548" y="164" width="20" height="120"/>
+    </g>
+  </g>
+  <!-- cyprès -->
+  <g>
+    <ellipse cx="170" cy="250" rx="22" ry="80" fill="#4F6F52"/>
+    <ellipse cx="720" cy="270" rx="20" ry="70" fill="#4F6F52"/>
+  </g>
+  <!-- sol dallé -->
+  <rect x="0" y="360" width="880" height="160" fill="url(#sol)"/>
+  <g stroke="#A98F60" stroke-width="2" opacity="0.7">
+    <line x1="0" y1="360" x2="880" y2="360"/>
+    <line x1="0" y1="404" x2="880" y2="404"/><line x1="0" y1="456" x2="880" y2="456"/>
+    <line x1="120" y1="360" x2="60" y2="520"/><line x1="320" y1="360" x2="300" y2="520"/>
+    <line x1="520" y1="360" x2="540" y2="520"/><line x1="720" y1="360" x2="780" y2="520"/>
+  </g>
+  <!-- colonnes premier plan (cadre) -->
+  <g fill="#F2ECDC" stroke="#C4B188" stroke-width="3">
+    <rect x="34" y="40" width="60" height="40" rx="4"/>
+    <rect x="40" y="80" width="48" height="300"/>
+    <rect x="30" y="376" width="68" height="22" rx="4"/>
+    <rect x="786" y="40" width="60" height="40" rx="4"/>
+    <rect x="792" y="80" width="48" height="300"/>
+    <rect x="782" y="376" width="68" height="22" rx="4"/>
+  </g>
+  <g stroke="#D8CBA8" stroke-width="3" opacity="0.8">
+    <line x1="52" y1="84" x2="52" y2="376"/><line x1="64" y1="84" x2="64" y2="376"/><line x1="76" y1="84" x2="76" y2="376"/>
+    <line x1="804" y1="84" x2="804" y2="376"/><line x1="816" y1="84" x2="816" y2="376"/><line x1="828" y1="84" x2="828" y2="376"/>
+  </g>
+</svg>
