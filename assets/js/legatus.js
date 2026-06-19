@@ -102,7 +102,8 @@
     if(e.contexteGrave && etat.stabilite<(e.seuilGrave||0)) contexte=e.contexteGrave;
 
     var bas=creer("div");
-    bas.appendChild(creer("div","kicker",(e.type==="construction"?"Chantier":"Événement")+" · Mandat "+roman(i+1)));
+    bas.appendChild(barreProgression(i));
+    bas.appendChild(creer("div","kicker",(e.type==="construction"?"Chantier":"Événement")+" · An "+e.an));
     bas.appendChild(creer("div","titre-acte",esc(e.titre)));
     var liste=creer("div","options");
     e.options.forEach(function(opt){
@@ -142,6 +143,7 @@
     var expr=positif?"content":"inquiet";
 
     var bas=creer("div");
+    bas.appendChild(barreProgression(idx));
     bas.appendChild(creer("div","kicker","Conséquences"));
     var d=creer("div","deltas "+(positif?"juste":"faux"));
     d.innerHTML=listeDeltas(deltas)+(revenuTxt?'<div class="corr">'+esc(revenuTxt)+'</div>':"");
@@ -207,6 +209,16 @@
   }
 
   function roman(n){ if(!n||n<=0)return "—"; var m=[[10,"X"],[9,"IX"],[5,"V"],[4,"IV"],[1,"I"]],r=""; for(var k=0;k<m.length;k++){while(n>=m[k][0]){r+=m[k][1];n-=m[k][0];}} return r; }
+
+  function barreProgression(i){
+    var e=G.etapes[i]||{};
+    var box=creer("div","progression");
+    box.appendChild(creer("div","prog-acte",esc(e.acte||"")));
+    var seg=creer("div","prog-seg");
+    for(var k=0;k<G.etapes.length;k++) seg.appendChild(creer("span","dot"+(k<i?" passe":"")+(k===i?" actuel":"")));
+    box.appendChild(seg);
+    return box;
+  }
 
   document.addEventListener("DOMContentLoaded",intro);
   window.__LEGATUS_TEST={ get etat(){return etat;}, get flags(){return flags;}, get idx(){return idx;}, intro:intro, _set:function(o){Object.assign(etat,o);} };

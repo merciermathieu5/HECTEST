@@ -12,8 +12,8 @@ Ouvre `apercu.png` pour voir une image de la scène.
 ## 1. Jouer
 
 Double-clique `index.html` — aucun serveur requis, fonctionne hors-ligne. Un mandat
-enchaîne sept décisions et se termine par un bilan. Plusieurs trajectoires, donc
-plusieurs fins.
+enchaîne **dix décisions réparties en quatre actes** (fondations → essor → épreuves →
+héritage) et se termine par un bilan. Plusieurs trajectoires, donc plusieurs fins.
 
 ---
 
@@ -66,9 +66,20 @@ de la province change, et certains choix se répercutent plus tard. Quelques mé
 - **Conséquence différée.** Réprimer par la force laisse un ressentiment qui refait surface
   — et coûte de la stabilité — lors de la visite de l'empereur.
 - **Effet persistant.** Une voie romaine rapporte des recettes à chaque rentrée d'impôts.
-- **Sept événements** : la langue, un chantier, les marchands, le culte impérial, la
-  révolte des Éduens, les frontières menacées, la visite impériale.
+- **Sept... dix événements, en quatre actes** : la langue, un chantier, le droit romain,
+  les marchands, le culte impérial, l'éducation des élites, la révolte des Éduens, les
+  frontières menacées, l'héritage (colonie ou municipe), la visite impériale.
 - **Fins multiples** selon les jauges finales, plus deux fins d'échec.
+
+### Peut-on atteindre 100 % ?
+
+Oui — la Romanisation peut grimper jusqu'à 100 %. Mais l'option qui romanise le plus coûte
+presque toujours de la stabilité, du trésor ou de la faveur de Rome. Pousser la
+romanisation à fond fragilise donc la province : une partie « tout pour la romanisation »
+atteint 100 % mais finit « fragile » (la stabilité s'effondre). La fin la plus haute,
+l'**Apogée**, exige une romanisation très élevée **tout en** gardant la province stable et
+Rome satisfaite : c'est l'équilibre, pas le score brut, qui récompense la maîtrise. La
+barre de progression (les actes) rend ce cheminement lisible à l'écran.
 
 ---
 

@@ -74,6 +74,14 @@ header.tete .sous{font-family:var(--display);letter-spacing:.28em;text-transform
 .doc-vignette img{display:block;width:100%;border-radius:2px}
 .doc-vignette .leg{font-size:10.5px;text-align:center;color:var(--encre-doux);padding:3px 0 1px;font-family:var(--display);letter-spacing:.04em}
 
+/* ===== progression du mandat ===== */
+.progression{margin-top:16px}
+.prog-acte{font-family:var(--display);font-weight:700;letter-spacing:.03em;font-size:14.5px;color:var(--pourpre)}
+.prog-seg{display:flex;gap:5px;margin-top:7px}
+.prog-seg .dot{flex:1;height:6px;border-radius:3px;background:var(--pierre-bord);transition:background .3s}
+.prog-seg .dot.passe{background:var(--bronze)}
+.prog-seg .dot.actuel{background:var(--pourpre)}
+
 /* ===== options de décision ===== */
 .titre-acte{font-family:var(--display);font-weight:700;letter-spacing:.04em;font-size:21px;margin:18px 2px 2px}
 .kicker{font-family:var(--display);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--bronze);margin:16px 2px 0}
