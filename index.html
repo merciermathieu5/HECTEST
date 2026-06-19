@@ -1,187 +1,33 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catalogue d'opérations intellectuelles et de compétences 1 et 2 en Histoire du Québec et du Canada</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%238B3A2E'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-weight='bold' font-size='17' fill='%23F3EFE6' text-anchor='middle'%3EHQ%3C/text%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier de l'historien — Romanisation</title>
+<meta name="description" content="Jeu sérieux d'histoire et éducation à la citoyenneté : entraîne les opérations intellectuelles à travers la réalité sociale de la romanisation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/atelier.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <h1 class="site-title">Catalogue d'opérations intellectuelles et de compétences 1 et 2 <span class="title-sub">en Histoire du Québec et du Canada</span></h1>
-      <a href="admin/index.html" class="admin-link" target="_blank" rel="noopener" title="Console d'administration — réservée à l'enseignant">⚙ Console admin</a>
-    </div>
+  <header class="atelier-tete">
+    <div class="fil"><a id="lien-accueil">Atelier de l'historien</a> · Premier cycle</div>
+    <h1>Atelier de l'historien</h1>
+    <div class="sous">Réalité sociale&nbsp;: la romanisation</div>
+    <div class="rule"></div>
   </header>
 
-  <!-- FRISE CHRONOLOGIQUE : navigation principale du catalogue (peuplée par app.js) -->
-  <nav id="periodes-rail" class="periodes-rail" aria-label="Frise chronologique — cliquer une période pour filtrer le catalogue"></nav>
-
-  <main class="layout">
-
-    <!-- ========================================== -->
-    <!-- COLONNE GAUCHE : CATALOGUE                  -->
-    <!-- ========================================== -->
-    <section class="panel panel-catalog" aria-label="Catalogue des questions">
-      <header class="panel-header">
-        <h2>Catalogue</h2>
-        <span id="catalog-count" class="muted">0 question</span>
-      </header>
-
-      <!-- RECHERCHE -->
-      <div class="catalog-search">
-        <span class="search-icon" aria-hidden="true">🔍</span>
-        <input type="search" id="search-input" class="search-input"
-               placeholder="Rechercher dans les énoncés et les documents…"
-               autocomplete="off" aria-label="Rechercher dans les énoncés et les documents">
-        <button type="button" id="search-clear" class="search-clear" aria-label="Effacer la recherche" hidden>×</button>
-      </div>
-
-      <!-- FILTRES : type en pilules, opération en liste, réinitialisation -->
-      <div class="filters">
-        <div class="filter filter-type" role="group" aria-label="Filtrer par type de question">
-          <button type="button" class="pill pill-comp active" data-comp="">Toutes</button>
-          <button type="button" class="pill pill-comp" data-comp="oi">Opérations</button>
-          <button type="button" class="pill pill-comp" data-comp="1">Compétence 1</button>
-          <button type="button" class="pill pill-comp" data-comp="2">Compétence 2</button>
-        </div>
-        <div class="filter filter-op">
-          <select id="filter-operation" aria-label="Filtrer par opération intellectuelle"><option value="">Toutes les opérations</option></select>
-        </div>
-        <button id="reset-filters" type="button" class="btn-link">↺ Réinitialiser</button>
-      </div>
-
-      <!-- Sélecteurs d'état conservés pour la logique de filtrage (pilotés par la frise et les pilules) -->
-      <select id="filter-niveau" hidden aria-hidden="true" tabindex="-1">
-        <option value="">Toutes</option>
-        <optgroup label="3e secondaire">
-          <option value="3-1">P1 · Des origines à 1608</option>
-          <option value="3-2">P2 · 1608-1760</option>
-          <option value="3-3">P3 · 1760-1791</option>
-          <option value="3-4">P4 · 1791-1840</option>
-        </optgroup>
-        <optgroup label="4e secondaire">
-          <option value="4-1">P5 · 1840-1896</option>
-          <option value="4-2">P6 · 1896-1945</option>
-          <option value="4-3">P7 · 1945-1980</option>
-          <option value="4-4">P8 · 1980 à nos jours</option>
-        </optgroup>
-      </select>
-      <select id="filter-realite" hidden aria-hidden="true" tabindex="-1"><option value=""></option></select>
-      <select id="filter-competence" hidden aria-hidden="true" tabindex="-1">
-        <option value=""></option><option value="oi"></option><option value="1"></option><option value="2"></option>
-      </select>
-
-      <!-- LISTE DES QUESTIONS -->
-      <div id="catalog-list" class="catalog-list"></div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- COLONNE DROITE : MON CAHIER                 -->
-    <!-- ========================================== -->
-    <section class="panel panel-cahier" aria-label="Cahier en construction">
-      <header class="panel-header">
-        <h2>Mon cahier</h2>
-      </header>
-
-      <!-- Tableau de bord du cahier (rempli par app.js) -->
-      <div id="cahier-count" class="cahier-dash" aria-live="polite"></div>
-
-      <div id="cahier-list" class="cahier-list"></div>
-
-      <div class="cahier-actions">
-
-        <!-- GÉNÉRATEUR UNIFIÉ : Document × Disposition → Aperçu / Télécharger -->
-        <div class="generator">
-          <div class="gen-row">
-            <span class="gen-label">Document</span>
-            <div class="seg" role="group" aria-label="Choix du document à produire">
-              <button type="button" class="seg-btn active" data-doc="cahier" aria-pressed="true">Cahier de l'élève</button>
-              <button type="button" class="seg-btn" data-doc="guide" aria-pressed="false">Guide de l'enseignant</button>
-            </div>
-          </div>
-          <div class="gen-row">
-            <span class="gen-label">Documents</span>
-            <div class="seg" role="group" aria-label="Disposition des documents dans le cahier">
-              <button type="button" class="seg-btn active" data-layout="std" aria-pressed="true">Avec chaque question</button>
-              <button type="button" class="seg-btn" data-layout="fin" aria-pressed="false">Regroupés à la fin</button>
-            </div>
-          </div>
-          <div class="gen-go">
-            <button id="btn-preview-go" type="button" class="btn btn-secondary" disabled>👁 Aperçu</button>
-            <button id="btn-download-go" type="button" class="btn btn-primary" disabled>⬇ Télécharger le cahier</button>
-          </div>
-        </div>
-
-        <div class="action-group-utility">
-          <button id="btn-shuffle-cahier" type="button" class="btn btn-ghost" disabled>🔀 Mélanger l'ordre</button>
-          <button id="btn-clear-cahier" type="button" class="btn btn-ghost btn-clear" disabled>↺ Vider le cahier</button>
-        </div>
-
-      </div>
-    </section>
-
+  <main class="wrap">
+    <section id="vue-accueil"></section>
+    <section id="vue-instrument" class="hidden"></section>
+    <section id="vue-synthese" class="hidden"></section>
   </main>
 
-  <!-- PREVIEW MODAL -->
-  <div id="preview-overlay" class="modal-overlay" hidden>
-    <div class="modal">
-      <header class="modal-header">
-        <h3 id="modal-title">Aperçu</h3>
-        <div class="modal-header-actions">
-          <button id="modal-download" class="btn btn-primary btn-sm" type="button">⬇ Télécharger</button>
-          <button id="modal-close" class="modal-close" type="button" aria-label="Fermer">×</button>
-        </div>
-      </header>
-      <div class="modal-body">
-        <div id="preview-container" class="preview-container"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- LOADING OVERLAY -->
-  <div id="loading-overlay" class="loading-overlay" hidden>
-    <div class="loading-content">
-      <div class="spinner"></div>
-      <p id="loading-message">Génération en cours…</p>
-    </div>
-  </div>
-
-  <footer class="site-footer">
-    <div class="footer-credit">
-      <img src="assets/img/logo-css-kamloup.png" alt="Centre de services scolaire de Kamouraska-Rivière-du-Loup" class="footer-logo">
-      <span class="footer-text">Mathieu Mercier <span class="title-sep">—</span> Centre de services scolaire de Kamouraska-Rivière-du-Loup</span>
-      <span class="footer-contact" tabindex="0">
-        <span class="footer-contact-label">✉ Pour me joindre</span>
-        <span class="footer-contact-tooltip" role="tooltip">mmercier@csskamloup.gouv.qc.ca</span>
-      </span>
-    </div>
-    <div class="footer-origin" style="margin-top: 0.5rem; opacity: 0.8;">
-      Idée originale de Sébastien Bergeron (CSSBF)
-    </div>
-  </footer>
-
-  <!-- Librairies externes -->
-  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
-  <script src="https://unpkg.com/docx@8.5.0/build/index.umd.js"></script>
+  <script src="assets/js/atelier-data.js"></script>
+  <script src="assets/js/atelier.js"></script>
   <script>
-    // docx-js et docx-preview exposent toutes deux `window.docx` — on isole docx-js sous _docxJs
-    window._docxJs = window.docx;
-    window.docx = undefined;
+    document.getElementById('lien-accueil').addEventListener('click', function(){ location.reload(); });
   </script>
-  <script src="https://unpkg.com/jszip@3.10.1/dist/jszip.min.js"></script>
-  <script src="https://unpkg.com/docx-preview@0.3.0/dist/docx-preview.js"></script>
-  <script>
-    // Maintenant `window.docx` = docx-preview. On l'expose sous `docxPreview` et on rétablit docx-js
-    window.docxPreview = window.docx;
-    window.docx = window._docxJs;
-  </script>
-  <script src="assets/js/data.js"></script>
-  <script src="assets/js/cms-adapter.js"></script>
-  <script src="assets/js/app.js"></script>
 </body>
 </html>
