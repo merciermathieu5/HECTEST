@@ -401,6 +401,21 @@ window.LEGATUS = {
 
   revenu:{ haut:18, bas:9, seuil:45, texte:"Récolte des impôts" },
 
+  /* Niveaux de difficulté. seuilRevolte = stabilité sous laquelle une province se
+     soulève ; seuilPaix = stabilité à retrouver pour la pacifier (bande d'hystérésis).
+     attenuation = facteur appliqué aux gains de Romanisation/Faveur pendant la révolte ;
+     bleed = stabilité perdue par tour tant que la révolte dure ; revenuMod = facteur sur
+     les impôts ; malusActeMod = facteur sur la pression des actes IV-V. À AJUSTER. */
+  difficultes:{
+    defaut:"legat", ordre:["apprenti","legat","imperator"],
+    apprenti:{ nom:"Apprenti", sous:"Pour découvrir, marge d'erreur large",
+      seuilRevolte:20, seuilPaix:30, attenuation:0.7, bleed:1, revenuMod:1.2, malusActeMod:0.5 },
+    legat:{ nom:"Légat", sous:"L'expérience équilibrée",
+      seuilRevolte:30, seuilPaix:42, attenuation:0.5, bleed:2, revenuMod:1, malusActeMod:1 },
+    imperator:{ nom:"Imperator", sous:"Pour les stratèges aguerris",
+      seuilRevolte:40, seuilPaix:50, attenuation:0.35, bleed:3, revenuMod:0.85, malusActeMod:1.4 }
+  },
+
   echecs:{
     stabilite:{ perso:"gaulois", expr:"severe", ambiance:"danger", titre:"L'Empire s'embrase",
       texte:"La stabilité s'est effondrée : révoltes et invasions emportent la province. Rome te rappelle en disgrâce. Tenir un empire, c'est d'abord ne pas le laisser se déchirer." },

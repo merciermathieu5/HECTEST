@@ -100,11 +100,11 @@ def coiffe(role):
                 f'<rect x="194" y="60" width="12" height="78" fill="{CRISTA}"/>'
                 f'<path d="M134 126 C134 110 150 100 200 100 C250 100 266 110 266 126" fill="none" stroke="{METAL_O}" stroke-width="3"/>')
     if role=="gaulois":
-        # cheveux mi-longs roux
-        return (f'<path d="M112 200 C100 100 158 60 200 60 C242 60 300 100 288 200 C292 150 280 130 270 128 '
-                f'L268 175 C268 150 264 138 256 136 C250 150 130 150 144 136 C136 138 132 150 132 175 L130 128 '
-                f'C120 130 108 150 112 200 Z" fill="{CHEV_GAUL}"/>'
-                f'<path d="M112 200 C104 130 130 90 170 66 C150 90 130 140 130 195 Z" fill="{CHEV_GAUL_O}" stroke="none"/>')
+        # cheveux roux nets (silhouette propre, frange ondulée, sans pic)
+        return (f'<path d="M120 178 C112 95 158 58 200 58 C242 58 288 95 280 178 '
+                f'C280 150 270 138 256 136 C250 150 240 150 232 140 C224 152 210 152 200 142 '
+                f'C190 152 176 152 168 140 C160 150 150 150 144 136 C130 138 120 150 120 178 Z" fill="{CHEV_GAUL}"/>'
+                f'<path d="M120 178 C112 108 140 78 176 62 C150 86 134 130 134 176 Z" fill="{CHEV_GAUL_O}" stroke="none"/>')
     # cheveux romains courts (conseiller / empereur)
     base=(f'<path d="M120 178 C112 95 158 66 200 66 C242 66 288 95 280 178 '
           f'C280 150 270 138 256 136 C250 150 240 150 232 140 C224 152 210 152 200 142 '
@@ -147,7 +147,14 @@ def perso(role="conseiller", expr="neutre", bg=None):
     # tête
     parts.append(f'<ellipse cx="200" cy="190" rx="80" ry="92" fill="{skin_l}"/>')
     parts.append(f'<path d="M200 100 C250 104 280 150 280 190 C280 245 245 280 200 282 C235 270 258 230 258 188 C258 145 235 108 200 100 Z" fill="{PEAU_OMBRE}" stroke="none" opacity="0.5"/>')
-    parts.append(f'<circle cx="122" cy="195" r="15" fill="{PEAU}"/><circle cx="278" cy="195" r="15" fill="{PEAU2}"/>')
+    # oreilles : forme d'oreille attachée à la tête (pas de trait côté visage)
+    parts.append(
+        f'<path d="M129 179 C107 180 103 207 122 213 C125 208 124 196 127 188 C127 184 128 181 129 179 Z" fill="{PEAU}" stroke="none"/>'
+        f'<path d="M271 179 C293 180 297 207 278 213 C275 208 276 196 273 188 C273 184 272 181 271 179 Z" fill="{PEAU2}" stroke="none"/>'
+        f'<path d="M129 180 C108 182 105 206 122 212" fill="none" stroke="{CERNE}" stroke-width="4.5"/>'
+        f'<path d="M271 180 C292 182 295 206 278 212" fill="none" stroke="{CERNE}" stroke-width="4.5"/>'
+        f'<path d="M121 189 C115 193 115 202 120 206" fill="none" stroke="{CERNE}" stroke-width="2.8"/>'
+        f'<path d="M279 189 C285 193 285 202 280 206" fill="none" stroke="{CERNE}" stroke-width="2.8"/>')
     parts.append(coiffe(role))
     parts.append(visage(expr))
     parts.append(moustache(role))

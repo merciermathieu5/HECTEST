@@ -39,11 +39,30 @@ faire vivre l'arc complet de l'Empire. À adapter selon ton intention pédagogiq
 ## Les quatre jauges
 
 - **Romanisation** — l'enracinement de la culture, du droit et des villes de Rome.
-- **Stabilité** — la paix sociale ; à 0, c'est la révolte et le rappel en disgrâce.
+- **Stabilité** — la paix sociale ; à 0, c'est la révolte totale et le rappel en disgrâce.
 - **Faveur de Rome** — la confiance de l'empereur ; à 0, c'est la destitution.
   Attention : ses exigences *changent* avec le temps (après l'Édit de Milan,
   soutenir les chrétiens rapporte de la faveur — l'inverse d'avant).
 - **Trésor** — finance les chantiers (actes I-II) puis les armées (acte IV).
+
+## Niveaux de difficulté et révolte des provinces
+
+Au lancement, on choisit un niveau : **Apprenti**, **Légat** ou **Imperator**. Le
+niveau fixe le **seuil de révolte** : si la Stabilité descend sous ce seuil
+(20 / 30 / 40), une province se soulève.
+
+Tant qu'une province est en révolte :
+- les gains de **Romanisation** et de **Faveur** sont **freinés** (on ne romanise
+  pas une province en feu) ;
+- les **impôts ne rentrent plus** (aucun revenu) ;
+- la Stabilité **s'érode** un peu chaque tour.
+
+Pour en sortir, il faut **rétablir l'ordre** : remonter la Stabilité au-dessus du
+seuil de pacification (la Stabilité, elle, n'est pas freinée — c'est ton levier pour
+t'en sortir, afin d'éviter une situation sans issue). Le niveau ajuste aussi la
+sévérité du freinage, les impôts et la pression des actes IV-V. Tous ces réglages
+vivent dans `difficultes` (dans `legatus-data.js`) et sont **à ajuster** selon tes
+classes.
 
 ## Peut-on atteindre 100 % ?
 

@@ -15,9 +15,13 @@
     piece:'<circle cx="12" cy="12" r="9" fill="#3A2E26"/><circle cx="12" cy="12" r="6.4" fill="none" stroke="#F2E7CF" stroke-width="1.1"/><path d="M13.5 8.5 C10 8 9.5 11 12 11.6 C14.5 12.2 14 15.4 10.6 15" fill="none" stroke="#F2E7CF" stroke-width="1.3" stroke-linecap="round"/>'
   };
 
-  var etat, flags, persistants, idx;
+  var etat, flags, persistants, idx, enRevolte, DIFF;
 
-  function init(){ etat=Object.assign({},G.etatInitial); flags={}; persistants=[]; idx=0; }
+  function diffDefaut(){
+    return (G.difficultes && G.difficultes[G.difficultes.defaut||"legat"]) ||
+           { nom:"Légat", seuilRevolte:30, seuilPaix:42, attenuation:0.5, bleed:2, revenuMod:1, malusActeMod:1 };
+  }
+  function init(){ etat=Object.assign({},G.etatInitial); flags={}; persistants=[]; idx=0; enRevolte=false; if(!DIFF)DIFF=diffDefaut(); }
 
   function el(s){ return document.querySelector(s); }
   function creer(t,c,h){ var n=document.createElement(t); if(c)n.className=c; if(h!=null)n.innerHTML=h; return n; }
@@ -31,6 +35,7 @@
   /* ---------- jauges ---------- */
   function rendreJauges(deltas){
     var b=el("#jauges"); b.innerHTML="";
+    if(enRevolte) b.appendChild(creer("div","revolte-banner","\u2694 Province en révolte — progrès entravés, impôts suspendus"));
     G.jauges.forEach(function(j){
       var v=etat[j.id];
       var carte=creer("div","jauge");
@@ -56,6 +61,32 @@
   function gameOver(){ if(etat.stabilite<=0)return "stabilite"; if(etat.faveur<=0)return "faveur"; return null; }
   function estPositif(d){ var s=0; Object.keys(d).forEach(function(k){ if(k!=="tresor")s+=d[k]; }); return s>=0; }
 
+  /* ---------- révolte (niveau de difficulté) ---------- */
+  // Une province en révolte freine les gains de Romanisation et de Faveur.
+  // La Stabilité reste pleinement réactive : c'est le levier pour sortir de la révolte.
+  function attenuer(eff){
+    var r=Object.assign({},eff);
+    ["romanisation","faveur"].forEach(function(k){ if(r[k]>0) r[k]=Math.round(r[k]*DIFF.attenuation); });
+    return r;
+  }
+  function scaleMalus(m){ var r={}; Object.keys(m||{}).forEach(function(k){ r[k]=Math.round(m[k]*(DIFF.malusActeMod||1)); }); return r; }
+  function ajoute(deltas,d){ Object.keys(d).forEach(function(k){ deltas[k]=(deltas[k]||0)+d[k]; }); }
+  // Met à jour l'état de révolte d'après la stabilité courante ; renvoie le message à afficher.
+  function majRevolte(deltas){
+    if(!enRevolte && etat.stabilite < DIFF.seuilRevolte){
+      enRevolte=true; ajoute(deltas, appliquer({faveur:-5}));
+      return "\u2694 Une province se soulève ! Tant qu'elle gronde, les progrès de la Romanisation et de la Faveur sont freinés et les impôts ne rentrent plus. Rétablis la stabilité (\u2265 "+DIFF.seuilPaix+") pour la pacifier.";
+    }
+    if(enRevolte && etat.stabilite >= DIFF.seuilPaix){
+      enRevolte=false; return "\u2714 La province est pacifiée : l'ordre revient et les progrès reprennent.";
+    }
+    if(enRevolte){
+      ajoute(deltas, appliquer({stabilite:-(DIFF.bleed||0)}));
+      return "\u2694 La révolte couve toujours… Rétablis l'ordre (stabilité \u2265 "+DIFF.seuilPaix+") pour y mettre fin.";
+    }
+    return "";
+  }
+
   /* ---------- scène (case BD) ---------- */
   function rendreScene(o){
     // o : {perso, expr, ambiance, nom, texte, alerte, document, html}  html = contenu sous la case
@@ -79,6 +110,30 @@
     window.scrollTo({top:0,behavior:"smooth"});
   }
 
+  /* ---------- choix de difficulté ---------- */
+  function choisirDifficulte(){
+    if(!G.difficultes){ return intro(); }
+    el("#jauges").innerHTML="";
+    var scene=el("#scene"); scene.innerHTML="";
+    var box=creer("div","difficulte");
+    box.appendChild(creer("div","diff-titre","Choisis ton niveau de difficulté"));
+    box.appendChild(creer("div","diff-intro","Plus le niveau est élevé, plus une province se soulève tôt. Une province en révolte freine la progression de la Romanisation et de la Faveur, et suspend les impôts : il faut alors rétablir l'ordre avant tout."));
+    var grille=creer("div","diff-grille");
+    var ordre=G.difficultes.ordre||["legat"];
+    ordre.forEach(function(key){
+      var dd=G.difficultes[key]; if(!dd)return;
+      var c=creer("button","diff-carte"); c.type="button";
+      c.innerHTML='<div class="diff-nom">'+esc(dd.nom)+'</div>'+
+                  '<div class="diff-sous">'+esc(dd.sous||"")+'</div>'+
+                  '<div class="diff-detail">Révolte sous '+dd.seuilRevolte+' de stabilité</div>';
+      c.addEventListener("click",function(){ DIFF=dd; intro(); });
+      grille.appendChild(c);
+    });
+    box.appendChild(grille);
+    scene.appendChild(box);
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
   /* ---------- intro ---------- */
   function intro(){
     init(); rendreJauges();
@@ -96,7 +151,7 @@
   /* ---------- intermède d'acte (saut de temps) ---------- */
   function interlude(i){
     var e=G.etapes[i];
-    var deltas = e.acteMalus ? appliquer(e.acteMalus) : null;
+    var deltas = e.acteMalus ? appliquer(scaleMalus(e.acteMalus)) : null;
     rendreJauges(deltas);
     var scene=el("#scene"); scene.innerHTML="";
     var box=creer("div","interlude "+(e.ambiance||"jour"));
@@ -146,6 +201,7 @@
   function choisir(e,opt){
     var eff=Object.assign({},opt.effets||{}); var note="";
     if(opt.effetsSi && flags[opt.effetsSi.flag]){ eff=Object.assign({},opt.effetsSi.effets); note=opt.effetsSi.note||""; }
+    if(enRevolte) eff=attenuer(eff);            // province en révolte : progrès freinés
     var deltas={};
     if(opt.cout) deltas=fusion(deltas,appliquer({tresor:-opt.cout}));
     deltas=fusion(deltas,appliquer(eff));
@@ -153,11 +209,14 @@
     if(opt.persistant) persistants.push(opt.persistant);
     var revenuTxt="";
     if(e.revenuApres){
-      var r=(etat.stabilite>=G.revenu.seuil)?G.revenu.haut:G.revenu.bas;
-      deltas=fusion(deltas,appliquer({tresor:r}));
-      revenuTxt=G.revenu.texte+" : +"+r+" d."+(etat.stabilite<G.revenu.seuil?" (réduits — province instable)":"")+".";
-      persistants.forEach(function(p){ deltas=fusion(deltas,appliquer(p)); });
+      var r = enRevolte ? 0 : Math.round(((etat.stabilite>=G.revenu.seuil)?G.revenu.haut:G.revenu.bas)*(DIFF.revenuMod||1));
+      if(r) deltas=fusion(deltas,appliquer({tresor:r}));
+      revenuTxt = enRevolte
+        ? (G.revenu.texte+" : 0 d. (province en révolte — les impôts ne rentrent plus).")
+        : (G.revenu.texte+" : +"+r+" d."+(etat.stabilite<G.revenu.seuil?" (réduits — province instable)":"")+".");
+      if(!enRevolte) persistants.forEach(function(p){ deltas=fusion(deltas,appliquer(p)); });
     }
+    var revolteTxt = majRevolte(deltas);
     var positif=estPositif(deltas);
     var expr=positif?"content":"inquiet";
 
@@ -167,6 +226,7 @@
     var d=creer("div","deltas "+(positif?"juste":"faux"));
     d.innerHTML=listeDeltas(deltas)+(revenuTxt?'<div class="corr">'+esc(revenuTxt)+'</div>':"");
     bas.appendChild(d);
+    if(revolteTxt) bas.appendChild(creer("div","note-revolte",esc(revolteTxt)));
     var pq=creer("div","pourquoi");
     pq.innerHTML='<span class="pq-tete">Pourquoi&nbsp;?</span> '+esc(opt.pourquoi);
     bas.appendChild(pq);
@@ -239,6 +299,10 @@
     return box;
   }
 
-  document.addEventListener("DOMContentLoaded",intro);
-  window.__LEGATUS_TEST={ get etat(){return etat;}, get flags(){return flags;}, get idx(){return idx;}, intro:intro, _set:function(o){Object.assign(etat,o);} };
+  document.addEventListener("DOMContentLoaded",choisirDifficulte);
+  window.__LEGATUS_TEST={ get etat(){return etat;}, get flags(){return flags;}, get idx(){return idx;},
+    get enRevolte(){return enRevolte;}, get diff(){return DIFF;},
+    intro:intro, choisirDifficulte:choisirDifficulte,
+    setDiff:function(k){ DIFF=(G.difficultes&&G.difficultes[k])||DIFF; },
+    _set:function(o){Object.assign(etat,o);} };
 })();

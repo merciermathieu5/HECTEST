@@ -20,10 +20,10 @@
       <rect x="548" y="164" width="20" height="120"/>
     </g>
   </g>
-  <!-- cyprès -->
+  <!-- cyprès (regroupés à droite, hors de la zone du personnage) -->
   <g>
-    <ellipse cx="170" cy="250" rx="22" ry="80" fill="#4F6F52"/>
-    <ellipse cx="720" cy="270" rx="20" ry="70" fill="#4F6F52"/>
+    <ellipse cx="648" cy="298" rx="18" ry="62" fill="#47654A"/>
+    <ellipse cx="726" cy="268" rx="20" ry="72" fill="#4F6F52"/>
   </g>
   <!-- sol dallé -->
   <rect x="0" y="360" width="880" height="160" fill="url(#sol)"/>
