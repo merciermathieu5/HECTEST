@@ -93,9 +93,28 @@
     rendreScene({ perso:I.perso, expr:I.expr, ambiance:I.ambiance, nom:I.nom, texte:I.texte, document:I.document, html:bas });
   }
 
+  /* ---------- intermède d'acte (saut de temps) ---------- */
+  function interlude(i){
+    var e=G.etapes[i];
+    var deltas = e.acteMalus ? appliquer(e.acteMalus) : null;
+    rendreJauges(deltas);
+    var scene=el("#scene"); scene.innerHTML="";
+    var box=creer("div","interlude "+(e.ambiance||"jour"));
+    box.appendChild(creer("div","int-acte",esc(e.acte)));
+    box.appendChild(creer("div","int-texte",esc(e.acteIntro)));
+    if(e.acteMalusNote) box.appendChild(creer("div","int-strain",esc(e.acteMalusNote)));
+    var act=creer("div","actions"); act.style.justifyContent="center";
+    var b=creer("button","btn btn-primaire","Poursuivre");
+    b.addEventListener("click",function(){ etape(i,true); });
+    act.appendChild(b); box.appendChild(act);
+    scene.appendChild(box);
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
   /* ---------- étape ---------- */
-  function etape(i){
+  function etape(i, fromIntro){
     idx=i; var e=G.etapes[i];
+    if(e.acteIntro && !fromIntro) return interlude(i);
     var malus=null, alerte="";
     if(e.contexteSi && flags[e.contexteSi.flag]){ alerte=e.contexteSi.ajout||""; if(e.contexteSi.malus) malus=appliquer(e.contexteSi.malus); }
     var contexte=e.contexte;
@@ -103,7 +122,7 @@
 
     var bas=creer("div");
     bas.appendChild(barreProgression(i));
-    bas.appendChild(creer("div","kicker",(e.type==="construction"?"Chantier":"Événement")+" · An "+e.an));
+    bas.appendChild(creer("div","kicker",(e.type==="construction"?"Chantier":"Événement")));
     bas.appendChild(creer("div","titre-acte",esc(e.titre)));
     var liste=creer("div","options");
     e.options.forEach(function(opt){

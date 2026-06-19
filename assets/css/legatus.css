@@ -74,6 +74,17 @@ header.tete .sous{font-family:var(--display);letter-spacing:.28em;text-transform
 .doc-vignette img{display:block;width:100%;border-radius:2px}
 .doc-vignette .leg{font-size:10.5px;text-align:center;color:var(--encre-doux);padding:3px 0 1px;font-family:var(--display);letter-spacing:.04em}
 
+/* ===== intermède d'acte ===== */
+.interlude{position:relative;border:4px solid var(--encre);border-radius:10px;overflow:hidden;
+  background:var(--pourpre-fonce);color:#F7F2E8;padding:48px 32px;text-align:center;
+  background-image:linear-gradient(135deg,rgba(115,38,64,.96),rgba(81,26,45,.96));box-shadow:0 6px 22px rgba(58,46,38,.22)}
+.interlude.danger{background-image:linear-gradient(135deg,rgba(120,30,20,.96),rgba(60,18,14,.96))}
+.interlude.solennel{background-image:linear-gradient(135deg,rgba(115,38,64,.96),rgba(80,60,20,.92))}
+.int-acte{font-family:var(--display);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:clamp(18px,3vw,26px);color:#F0D98C}
+.int-texte{max-width:560px;margin:16px auto 0;font-size:17px;line-height:1.6}
+.interlude .btn-primaire{background:#F0D98C;color:var(--pourpre-fonce)}
+.interlude .btn-primaire:hover{background:#fff}
+
 /* ===== progression du mandat ===== */
 .progression{margin-top:16px}
 .prog-acte{font-family:var(--display);font-weight:700;letter-spacing:.03em;font-size:14.5px;color:var(--pourpre)}
