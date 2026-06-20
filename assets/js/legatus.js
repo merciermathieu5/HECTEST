@@ -115,17 +115,17 @@
     if(o.nom) bulle.appendChild(creer("div","qui",esc(o.nom)));
     bulle.appendChild(creer("div","dit", esc(o.texte)+(o.alerte?'<span class="alerte"> '+esc(o.alerte)+'</span>':"")));
     sc.appendChild(bulle);
+    if(o.document){
+      sc.classList.add("avec-vignette");
+      var dv=creer("div","doc-vignette");
+      dv.innerHTML='<img src="'+docSrc(o.document)+'" alt=""><div class="leg">'+esc(DOCLEG[o.document]||"")+'</div>';
+      sc.appendChild(dv);
+    }
     row.appendChild(sc);
-    if(o.document || (o.docs && o.docs.length)){
+    if(o.docs && o.docs.length){
       var col=creer("div","docs");
-      if(o.docs && o.docs.length) col.appendChild(creer("div","docs-tete","\uD83D\uDCDC Documents \u00e0 consulter"));
-      if(o.document){
-        var di=creer("div","source source-img");
-        di.innerHTML='<div class="src-tete">'+esc(DOCLEG[o.document]||"Illustration")+'</div>'+
-          '<img class="doc-img" src="'+docSrc(o.document)+'" alt="">';
-        col.appendChild(di);
-      }
-      (o.docs||[]).forEach(function(d,k){
+      col.appendChild(creer("div","docs-tete","\uD83D\uDCDC Documents \u00e0 consulter"));
+      o.docs.forEach(function(d,k){
         var src=creer("div","source");
         src.appendChild(creer("div","src-tete",(d.tete||("Document "+(k+1)))));
         src.appendChild(creer("div","src-txt",esc(d.texte)));
