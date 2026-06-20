@@ -44,6 +44,9 @@ faire vivre l'arc complet de l'Empire. À adapter selon ton intention pédagogiq
   Attention : ses exigences *changent* avec le temps (après l'Édit de Milan,
   soutenir les chrétiens rapporte de la faveur — l'inverse d'avant).
 - **Trésor** — finance les chantiers (actes I-II) puis les armées (acte IV).
+  Le **revenu par tour** est affiché sous la jauge (« +X d. / tour ») : il dépend
+  de la Stabilité (impôts rentrant mieux quand la province est calme) et tombe à
+  **0 pendant une révolte**.
 
 ## Niveaux de difficulté et révolte des provinces
 
@@ -75,7 +78,47 @@ cultes) tout en tenant la province et Rome jusqu'au bout. L'équilibre, pas le s
 brut, récompense la maîtrise — et c'est exactement le message historique : la
 romanisation a duré là où elle a intégré, non là où elle s'est seulement imposée.
 
-## Modifier le contenu
+## Le document à consulter avant chaque décision
+
+Avant de choisir, l'élève lit un **document** présenté dans un panneau « 📜 Document
+à consulter ». Chaque décision s'appuie sur une **vraie source antique** : Tacite
+(*Agricola*, *Annales*, *Germanie*), Frontin sur les aqueducs, Juvénal (« du pain et
+des jeux »), Pline le Jeune et la réponse de Trajan sur les chrétiens, l'édit de
+Caracalla (212), l'Édit de Milan (313), l'édit de Thessalonique (380), etc. Les
+images réelles déjà dans le jeu (carte de l'Empire, curie, cirque) restent en
+vignette sur les décisions concernées.
+
+> **Important — sources :** les textes sont des **adaptations de classe rédigées
+> pour le jeu** (résumés en mots simples, attribués à l'auteur et à l'œuvre), et
+> **non des citations de traductions existantes**. Le champ `ref` donne l'œuvre et la
+> date. **À vérifier et à ajuster** avant usage en évaluation. Tout se modifie dans
+> le champ `source` de chaque étape (`legatus-data.js`).
+
+## Perdre en négligeant la romanisation
+
+Romaniser n'est pas optionnel : c'est la **mission**. Aux entrées des actes III, IV
+et V, **Rome contrôle tes progrès** (champ `controleRome`) :
+
+- si la Romanisation est **sous le seuil de rappel** (12 / 25 / 38), c'est la
+  **défaite immédiate** : « *Rappelé : la mission de Rome trahie* » ;
+- si elle est seulement **basse** (sous 25 / 42 / 55), la **Faveur chute** et un
+  avertissement s'affiche.
+
+De plus, **faire passer la province avant Rome coûte cher en Faveur** : respecter
+les langues, laisser les cultes locaux, baisser les impôts, verser un tribut,
+refuser de persécuter, s'opposer à la citoyenneté… toutes ces options pèsent
+lourdement sur la faveur de l'empereur (jusqu'à −13). À force, c'est la
+**destitution**. Bref, deux façons de perdre par mauvaise romanisation : le
+**rappel** (progrès insuffisants) et la **destitution** (Rome lâchée trop souvent).
+
+## Une économie plus serrée
+
+Les chantiers **coûtent plus cher** (un grand aqueduc 80 d., de grands thermes
+70 d., un forum monumental 75 d., etc.) et le **revenu par tour est visible** : il
+faut désormais **prioriser** les investissements plutôt que tout bâtir. Les coûts
+sont dans le champ `cout` des options et le revenu dans `revenu` (`legatus-data.js`).
+
+
 
 Tout le contenu vit dans `assets/js/legatus-data.js` : chaque décision, ses options,
 leurs effets sur les jauges, la conséquence affichée et le **« pourquoi »** historique.

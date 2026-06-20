@@ -32,6 +32,12 @@
   function docSrc(d){ return "assets/img/"+d+".png"; }
   var DOCLEG = { empire:"Carte de l'Empire", curie:"La curie", cirque:"Les jeux du cirque" };
 
+  function revenuActuel(){
+    if(!DIFF || enRevolte) return 0;
+    var base=(etat.stabilite>=G.revenu.seuil)?G.revenu.haut:G.revenu.bas;
+    return Math.round(base*(DIFF.revenuMod||1));
+  }
+
   /* ---------- jauges ---------- */
   function rendreJauges(deltas){
     var b=el("#jauges"); b.innerHTML="";
@@ -50,6 +56,10 @@
       fill.style.width=(j.type==="res"?clamp(v/200*100,0,100):v)+"%";
       fill.classList.add(j.couleur==="seuil"?classeSeuil(v):j.couleur);
       rail.appendChild(fill); corps.appendChild(rail);
+      if(j.id==="tresor"){
+        var r=revenuActuel();
+        corps.appendChild(creer("div","jauge-revenu"+(r?"":" nul"), r?("+"+r+" d. / tour"):"0 d. / tour (révolte)"));
+      }
       carte.appendChild(corps); b.appendChild(carte);
     });
   }
@@ -152,12 +162,23 @@
   function interlude(i){
     var e=G.etapes[i];
     var deltas = e.acteMalus ? appliquer(scaleMalus(e.acteMalus)) : null;
+    var avert="";
+    if(e.controleRome){
+      if(etat.romanisation < e.controleRome.rappel) return finEchec("romanisation");
+      if(etat.romanisation < e.controleRome.seuil){
+        var dm=appliquer({faveur:-(e.controleRome.malus||10)});
+        deltas = deltas?fusion(deltas,dm):dm;
+        avert="Rome juge tes progrès de romanisation insuffisants : la faveur de l'empereur chute. Romanise la province, ou tu seras rappelé.";
+      }
+    }
+    var go=gameOver(); if(go) return finEchec(go);
     rendreJauges(deltas);
     var scene=el("#scene"); scene.innerHTML="";
     var box=creer("div","interlude "+(e.ambiance||"jour"));
     box.appendChild(creer("div","int-acte",esc(e.acte)));
     box.appendChild(creer("div","int-texte",esc(e.acteIntro)));
     if(e.acteMalusNote) box.appendChild(creer("div","int-strain",esc(e.acteMalusNote)));
+    if(avert) box.appendChild(creer("div","int-avert",esc(avert)));
     var act=creer("div","actions"); act.style.justifyContent="center";
     var b=creer("button","btn btn-primaire","Poursuivre");
     b.addEventListener("click",function(){ etape(i,true); });
@@ -179,6 +200,13 @@
     bas.appendChild(barreProgression(i));
     bas.appendChild(creer("div","kicker",(e.type==="construction"?"Chantier":"Événement")));
     bas.appendChild(creer("div","titre-acte",esc(e.titre)));
+    if(e.source){
+      var src=creer("div","source");
+      src.appendChild(creer("div","src-tete","\uD83D\uDCDC Document \u00e0 consulter"));
+      src.appendChild(creer("div","src-txt",esc(e.source.texte)));
+      src.appendChild(creer("div","src-ref",esc(e.source.ref)));
+      bas.appendChild(src);
+    }
     var liste=creer("div","options");
     e.options.forEach(function(opt){
       var b=creer("button","option"); b.type="button";
