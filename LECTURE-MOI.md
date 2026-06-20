@@ -11,6 +11,14 @@ Double-clique `index.html` — aucun serveur requis, fonctionne hors-ligne. Une 
 enchaîne les 20 décisions et se termine par un bilan. Plusieurs trajectoires, donc
 plusieurs fins.
 
+## Page d'accueil
+
+Au lancement, une **page d'accueil** présente l'activité : une bannière (emblème de
+laurier + SPQR), l'accroche, une section **« Comment ça marche »** (les 4 jauges
+expliquées, les deux documents, l'impact durable des choix), un **contexte
+pédagogique** (réalités sociales, compétence « interpréter ») et le **choix du
+niveau**. Tout ce contenu est éditable dans l'objet `accueil` de `legatus-data.js`.
+
 ## Les cinq actes
 
 1. **Implanter Rome** — la langue, le droit, la voie romaine (les fondations).
@@ -114,7 +122,27 @@ lourdement sur la faveur de l'empereur (jusqu'à −13). À force, c'est la
 **destitution**. Bref, deux façons de perdre par mauvaise romanisation : le
 **rappel** (progrès insuffisants) et la **destitution** (Rome lâchée trop souvent).
 
-## Une partie exigeante
+## Impact financier durable des choix
+
+Les choix ne pèsent plus seulement sur le tour courant : beaucoup laissent une
+**rente récurrente** appliquée **à chaque tour** (champ `persistant:{ tresor:±N }`).
+
+- **Commerce et routes** font **croître le revenu** (grande voie +8 / tour, forum
+  monumental +5, « favoriser le commerce » +8, citoyenneté élargie +3…).
+- **Infrastructures** coûtent leur **entretien** (grands thermes −3, grand aqueduc
+  −3, grands jeux −4… *panem et circenses* coûte cher).
+- **Armée et garnisons** pèsent durablement (légions d'Italie −5, limes −5,
+  mobilisation −5, tribut −3…).
+
+Le **revenu net par tour** s'affiche sous le Trésor : `impôts + commerce −
+entretien`. Il **baisse quand la province est instable** (impôts réduits) et, en
+**révolte**, les impôts et le commerce tombent à zéro tandis que l'entretien continue
+de peser — le revenu peut alors devenir **négatif** (affiché en rouge). Il faut donc
+financer les chantiers et l'armée par un **commerce qui se développe**, pas seulement
+par le trésor de départ. Les valeurs sont dans le champ `persistant` des options
+(`legatus-data.js`).
+
+
 
 Les réglages sont **durcis** pour sanctionner les choix faibles :
 
