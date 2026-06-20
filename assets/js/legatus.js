@@ -138,20 +138,22 @@
     window.scrollTo({top:0,behavior:"smooth"});
   }
 
-  /* ---------- emblème (couronne de laurier + SPQR) ---------- */
-  function embleme(){
-    function branche(mir){
-      var leaves=[[24,34,-62],[28,48,-52],[34,62,-44],[42,76,-36],[52,89,-28],[63,99,-20]];
-      var g='<g'+(mir?' transform="translate(126,0) scale(-1,1)"':'')+'>';
-      g+='<path d="M64 104 C34 90 20 60 24 30" fill="none" stroke="#8a6d28" stroke-width="3" stroke-linecap="round"/>';
-      leaves.forEach(function(p){ g+='<ellipse cx="'+p[0]+'" cy="'+p[1]+'" rx="9.5" ry="4.3" fill="#5E8A5C" stroke="#3A5C3A" stroke-width="1" transform="rotate('+p[2]+' '+p[0]+' '+p[1]+')"/>'; });
-      return g+'</g>';
+  /* ---------- couronne de laurier (pleine) ---------- */
+  function couronne(){
+    var cx=75, cy=64, R=52, n=11, s='<svg viewBox="0 0 150 132" class="couronne" aria-hidden="true">';
+    for(var side=-1; side<=1; side+=2){
+      for(var i=0;i<n;i++){
+        var deg=205-i*(130/(n-1)), rad=deg*Math.PI/180;
+        var lx=cx+side*Math.cos(rad)*R, ly=cy-Math.sin(rad)*R;
+        var ang=(side===1)?(deg-90):(90-deg);
+        s+='<ellipse cx="'+lx.toFixed(1)+'" cy="'+ly.toFixed(1)+'" rx="11" ry="4.6" fill="#cdb24e" stroke="#9a7d2e" stroke-width="1" transform="rotate('+ang.toFixed(0)+' '+lx.toFixed(1)+' '+ly.toFixed(1)+')"/>';
+        if(i%3===1){ var bx=cx+side*Math.cos(rad)*(R-12), by=cy-Math.sin(rad)*(R-12); s+='<circle cx="'+bx.toFixed(1)+'" cy="'+by.toFixed(1)+'" r="2.4" fill="#E8C766"/>'; }
+      }
     }
-    return '<svg viewBox="0 0 126 120" class="embleme" aria-hidden="true">'+branche(false)+branche(true)
-      +'<circle cx="63" cy="60" r="30" fill="#F7EFDB" stroke="#C9B98F" stroke-width="2"/>'
-      +'<text x="63" y="67" text-anchor="middle" font-family="Cinzel,Georgia,serif" font-weight="700" font-size="17" letter-spacing="1.5" fill="#732640">SPQR</text>'
-      +'<path d="M40 104 C52 112 74 112 86 104" fill="none" stroke="#8a6d28" stroke-width="3" stroke-linecap="round"/></svg>';
+    s+='<path d="M'+(cx-20)+' '+(cy+R-6)+' C'+(cx-8)+' '+(cy+R+6)+' '+(cx+8)+' '+(cy+R+6)+' '+(cx+20)+' '+(cy+R-6)+'" fill="none" stroke="#cdb24e" stroke-width="3.5" stroke-linecap="round"/>';
+    return s+'</svg>';
   }
+  var COUL_JAUGE={ temple:"pourpre", bouclier:"olive", laurier:"bronze", piece:"tresor" };
 
   /* ---------- accueil : présentation + difficulté ---------- */
   function choisirDifficulte(){
@@ -160,45 +162,54 @@
     var A=G.accueil||{};
     var page=creer("div","accueil");
 
-    // hero
+    // hero illustré (bannière façon bande dessinée)
     var hero=creer("div","acc-hero");
-    hero.innerHTML='<div class="acc-embleme">'+embleme()+'</div>'+
-      '<h1 class="acc-titre">'+esc(A.titre||G.titre||"Legatus")+'</h1>'+
-      '<div class="acc-sous">'+esc(A.sousTitre||"")+'</div>'+
-      '<p class="acc-accroche">'+esc(A.accroche||"")+'</p>';
+    hero.innerHTML=
+      '<img class="acc-perso" src="assets/img/perso/conseiller-neutre.svg" alt="">'+
+      '<div class="acc-titrebloc">'+
+        '<div class="acc-couronne">'+couronne()+'</div>'+
+        '<h1 class="acc-titre">'+esc(A.titre||G.titre||"Legatus")+'</h1>'+
+        '<div class="acc-regle"></div>'+
+        '<div class="acc-plaque">'+
+          (A.sousTitre?'<div class="acc-sous">'+esc(A.sousTitre)+'</div>':'')+
+          (A.accroche?'<p class="acc-accroche">'+esc(A.accroche)+'</p>':'')+
+        '</div>'+
+      '</div>';
     page.appendChild(hero);
 
-    // comment ça marche
-    if(A.jaugesAide || A.etapesAide){
-      var sec=creer("div","acc-section");
-      sec.appendChild(creer("div","acc-sec-titre",esc(A.commentTitre||"Comment ça marche")));
-      if(A.jaugesAide){
-        var leg=creer("div","acc-jauges");
-        A.jaugesAide.forEach(function(j){
-          var chip=creer("div","acc-jauge");
-          chip.innerHTML='<span class="acc-ic"><svg viewBox="0 0 24 24">'+(ICONES[j.icone]||"")+'</svg></span>'+
-            '<span><strong>'+esc(j.nom)+'</strong>, '+esc(j.txt)+'</span>';
-          leg.appendChild(chip);
-        });
-        sec.appendChild(leg);
-      }
-      if(A.etapesAide){
-        var ul=creer("ul","acc-liste");
-        A.etapesAide.forEach(function(s){ var li=document.createElement("li"); li.textContent=s; ul.appendChild(li); });
-        sec.appendChild(ul);
-      }
-      page.appendChild(sec);
+    // bandeau des jauges (aperçu du tableau de bord)
+    if(A.jaugesAide){
+      var hud=creer("div","acc-hud");
+      A.jaugesAide.forEach(function(j){
+        var t=creer("div","acc-tuile "+(COUL_JAUGE[j.icone]||"bronze"));
+        t.innerHTML='<span class="acc-tic"><svg viewBox="0 0 24 24">'+(ICONES[j.icone]||"")+'</svg></span>'+
+          '<span class="acc-tt"><strong>'+esc(j.nom)+'</strong><span>'+esc(j.txt)+'</span></span>';
+        hud.appendChild(t);
+      });
+      page.appendChild(hud);
     }
 
-    // contexte pédagogique
+    // comment ça marche + contexte pédagogique (deux colonnes)
+    var cols=creer("div","acc-cols");
+    if(A.etapesAide){
+      var sec=creer("div","acc-section");
+      sec.appendChild(creer("div","acc-sec-titre",esc(A.commentTitre||"Comment ça marche")));
+      var corps=creer("div","acc-corps");
+      var ul=creer("ul","acc-liste");
+      A.etapesAide.forEach(function(s){ var li=document.createElement("li"); li.textContent=s; ul.appendChild(li); });
+      corps.appendChild(ul); sec.appendChild(corps);
+      cols.appendChild(sec);
+    }
     if(A.pedago){
       var sp=creer("div","acc-section acc-pedago");
       sp.appendChild(creer("div","acc-sec-titre",esc(A.pedagoTitre||"Contexte pédagogique")));
+      var corpsp=creer("div","acc-corps");
       var ulp=creer("ul","acc-liste");
       A.pedago.forEach(function(s){ var li=document.createElement("li"); li.textContent=s; ulp.appendChild(li); });
-      sp.appendChild(ulp);
-      page.appendChild(sp);
+      corpsp.appendChild(ulp); sp.appendChild(corpsp);
+      cols.appendChild(sp);
     }
+    if(cols.childNodes.length) page.appendChild(cols);
 
     // difficulté
     if(G.difficultes){
@@ -285,7 +296,7 @@
     bas.appendChild(creer("div","titre-acte",esc(e.titre)));
     var docs=[];
     if(e.source)  docs.push({tete:"Document 1",                texte:e.source.texte,  ref:e.source.ref});
-    if(e.source2) docs.push({tete:"Document 2 \u00b7 autre regard", texte:e.source2.texte, ref:e.source2.ref});
+    if(e.source2) docs.push({tete:"Document 2", texte:e.source2.texte, ref:e.source2.ref});
     var liste=creer("div","options");
     e.options.forEach(function(opt){
       var b=creer("button","option"); b.type="button";

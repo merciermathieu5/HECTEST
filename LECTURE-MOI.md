@@ -11,13 +11,12 @@ Double-clique `index.html` — aucun serveur requis, fonctionne hors-ligne. Une 
 enchaîne les 20 décisions et se termine par un bilan. Plusieurs trajectoires, donc
 plusieurs fins.
 
+> **Affichage** : l'interface est conçue pour tenir dans un écran d'ordinateur
+> (testée à 1366 × 768) sans avoir à faire défiler la page, écran après écran.
+
 ## Page d'accueil
 
-Au lancement, une **page d'accueil** présente l'activité : une bannière (emblème de
-laurier + SPQR), l'accroche, une section **« Comment ça marche »** (les 4 jauges
-expliquées, les deux documents, l'impact durable des choix), un **contexte
-pédagogique** (réalités sociales, compétence « interpréter ») et le **choix du
-niveau**. Tout ce contenu est éditable dans l'objet `accueil` de `legatus-data.js`.
+Au lancement, une **page d'accueil illustrée** présente l'activité : une **bannière façon bande dessinée** (le décor du forum en fond, un personnage romain en toge, le titre « Legatus » sous une couronne de laurier, et l'accroche sur un bandeau lisible), un **bandeau des 4 jauges** aux couleurs du tableau de bord, puis **deux colonnes** — « Comment ça marche » et « Contexte pédagogique » (Histoire et éducation à la citoyenneté, 1re secondaire ; réalités sociales : la romanisation et la christianisation de l'Occident) — et enfin le **choix du niveau**. L'ensemble tient dans un écran d'ordinateur sans défilement. Tout le contenu est éditable dans l'objet `accueil` de `legatus-data.js`.
 
 ## Les cinq actes
 
@@ -90,7 +89,7 @@ romanisation a duré là où elle a intégré, non là où elle s'est seulement 
 
 Avant de choisir, l'élève lit **deux documents affichés à droite du personnage** :
 **Document 1** appuie un point de vue (ex. Tacite : le latin fait la « civilisation »)
-et **Document 2 · autre regard** présente un **avis divergent**, dans un encadré
+et **Document 2** présente un **avis divergent**, dans un encadré
 distinct (bleuté), pour **croiser les sources** — Irénée de Lyon (les langues locales
 résistent), Sénèque sur la cruauté des jeux, Pline le Jeune sur un aqueduc qui ruine
 une cité, l'opposition du Sénat aux Gaulois (Tacite, *Annales* XI), le chef breton
