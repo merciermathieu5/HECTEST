@@ -20,8 +20,8 @@ window.LEGATUS = {
   ],
 
   accueil:{
-    titre:"Legatus", sousTitre:"Gouverner au nom de Rome",
-    accroche:"Tu es nommé légat : gouverneur d'une province tout juste conquise par Rome. Pendant près de quatre siècles, tes décisions vont romaniser (ou non) la région, des premières routes jusqu'au grand tournant chrétien. Sauras-tu servir Rome sans embraser la province ?",
+    titre:"Legatus", sousTitre:"Gouverner une province romaine",
+    accroche:"Tu gouvernes une province romaine pendant près de quatre siècles. Sauras-tu l'enraciner dans Rome sans embraser la province ?",
     commentTitre:"Comment ça marche",
     jaugesAide:[
       { icone:"temple",   nom:"Romanisation",   txt:"ta mission : enraciner Rome" },
@@ -100,7 +100,7 @@ window.LEGATUS = {
       source2:{ texte:"Mais la voie a un coût pour les habitants : entretien par corvée, obligation de loger et de transporter soldats et courriers impériaux. Des édits durent limiter ces réquisitions abusives.", ref:"D’après les édits sur les réquisitions (Ier-IIe s.), adaptation" },
       contexte:"Bâtissons une voie romaine, légat. Mais pour qui d'abord : les légions, ou le commerce ?",
       options:[
-        { label:"Un grand axe pour le commerce et les cités", cout:60, effets:{ romanisation:9 }, persistant:{ tresor:8 }, flag:"voie",
+        { label:"Un grand axe pour le commerce et les cités", cout:60, effets:{ romanisation:9 }, persistant:{ tresor:6 }, flag:"voie",
           consequence:"Marchands et marchandises affluent. Avec eux voyagent la monnaie, la langue et les usages de Rome, et tes recettes montent.",
           pourquoi:"Les voies diffusent Rome et stimulent durablement le commerce : une route civile romanise en profondeur." },
         { label:"Des voies stratégiques pour les légions", cout:50, effets:{ stabilite:5, faveur:3, romanisation:3 }, persistant:{ tresor:3 },
@@ -159,7 +159,7 @@ window.LEGATUS = {
       source2:{ texte:"Au Sénat, beaucoup s’opposèrent à l’entrée des Gaulois : ces anciens ennemis, disaient-ils, allaient envahir Rome et évincer ses vieilles familles.", ref:"D’après Tacite, Annales, XI, 23, adaptation" },
       contexte:"Donnons à la cité un vrai centre, légat : un forum, et une curie pour le conseil des notables.",
       options:[
-        { label:"Un forum monumental avec curie", cout:75, effets:{ romanisation:7, stabilite:2, faveur:2 }, persistant:{ tresor:5 }, flag:"curie",
+        { label:"Un forum monumental avec curie", cout:75, effets:{ romanisation:7, stabilite:2, faveur:2 }, persistant:{ tresor:4 }, flag:"curie",
           consequence:"Place publique, temples, basilique et siège du conseil : le cœur civique de la cité bat à la romaine, et des notables gaulois y siègent.",
           pourquoi:"Le forum était le centre politique et social ; la curie y associait les élites locales au pouvoir, clé d'une romanisation durable (et précieuse face à la révolte)." },
         { label:"Une simple place de marché", cout:30, effets:{ romanisation:3, stabilite:1 }, persistant:{ tresor:3 },
@@ -193,7 +193,7 @@ window.LEGATUS = {
     {
       type:"evenement", id:"commerce", acte:"Acte III : Vivre en Romain",
       acteIntro:"Une génération a passé. Les villes prospèrent, hérissées de monuments. Reste à gagner les cœurs et les esprits : la culture, la foi, le droit de cité.",
-      controleRome:{ seuil:32, rappel:16, malus:12 },
+      controleRome:{ seuil:32, rappel:16, malus:12, faveurRappel:22 },
       acteMalus:{ stabilite:-10 }, acteMalusNote:"Le temps passe : tenir les acquis devient plus dur (stabilité −10).",
       perso:"marchand", expr:"neutre", ambiance:"jour", nom:"Quintus, un marchand",
       titre:"Les marchands de la voie",
@@ -205,7 +205,7 @@ window.LEGATUS = {
         { label:"Taxer lourdement les échanges", effets:{ tresor:30, stabilite:-6, romanisation:1 }, persistant:{ tresor:-2 },
           consequence:"Tes caisses se remplissent vite, mais les marchands rechignent et les cités murmurent.",
           pourquoi:"Le commerce remplit le trésor ; trop taxé, il s'étiole et irrite la province." },
-        { label:"Favoriser le commerce, péages légers", effets:{ romanisation:7, stabilite:1, tresor:8 }, persistant:{ tresor:8 },
+        { label:"Favoriser le commerce, péages légers", effets:{ romanisation:7, stabilite:1, tresor:8 }, persistant:{ tresor:6 },
           consequence:"Les marchés se multiplient. Avec les marchandises voyagent la monnaie et les usages de Rome.",
           pourquoi:"Le commerce diffuse la culture de Rome : il romanise en douceur." },
         { label:"Réserver le grand commerce aux citoyens romains", effets:{ romanisation:4, faveur:5, stabilite:-5 }, persistant:{ tresor:2 },
@@ -262,7 +262,7 @@ window.LEGATUS = {
       contexte:"Legatus, je songe à faire de tous les hommes libres de l'Empire des citoyens romains. M'appuieras-tu ?",
       revenuApres:true,
       options:[
-        { label:"Soutenir la citoyenneté pour tous les hommes libres", effets:{ romanisation:14, stabilite:6, faveur:-3, tresor:10 }, persistant:{ tresor:3 },
+        { label:"Soutenir la citoyenneté pour tous les hommes libres", effets:{ romanisation:14, stabilite:6, faveur:-3, tresor:10 }, persistant:{ tresor:2 },
           consequence:"Des millions de provinciaux deviennent citoyens romains. La Gaule se sent pleinement de l'Empire, et paie l'impôt des citoyens.",
           pourquoi:"L'édit de Caracalla (212) fit de presque tous les habitants libres des citoyens romains : l'aboutissement de l'intégration (et une nouvelle assiette fiscale)." },
         { label:"L'élargir aux seules élites méritantes", effets:{ romanisation:7, stabilite:2, faveur:2 }, persistant:{ tresor:1 },
@@ -277,7 +277,7 @@ window.LEGATUS = {
     {
       type:"evenement", id:"revolte", acte:"Acte IV : Tenir l'Empire",
       acteIntro:"Les décennies filent. L'Empire est à son apogée, mais sa grandeur même devient un fardeau. Des fissures apparaissent, au-dedans comme aux frontières.",
-      controleRome:{ seuil:50, rappel:32, malus:15 },
+      controleRome:{ seuil:50, rappel:32, malus:15, faveurRappel:30 },
       acteMalus:{ stabilite:-18 }, acteMalusNote:"La pression des crises ébranle la province (stabilité −18).",
       perso:"gaulois", expr:"severe", ambiance:"danger", nom:"Diviciacos, chef éduen",
       titre:"La révolte des Éduens",
@@ -287,7 +287,7 @@ window.LEGATUS = {
       contexteGrave:"Romain ! Tes lois, tes dieux, tes impôts : tu veux nous effacer. La révolte gagne toute la Gaule !",
       seuilGrave:42, revenuApres:true,
       options:[
-        { label:"Réprimer par les légions", flag:"repression", effets:{ stabilite:15, romanisation:-8, faveur:6 }, persistant:{ tresor:-2 },
+        { label:"Réprimer par les légions", flag:"repression", effets:{ stabilite:15, romanisation:-8, faveur:6 }, persistant:{ tresor:-3 },
           consequence:"Les légions écrasent la révolte. L'ordre revient, mais la province se tait par crainte, non par adhésion.",
           pourquoi:"La force rétablit l'ordre, mais la soumission n'est pas l'adhésion : la rancœur couve et la romanisation recule." },
         { label:"Négocier et accorder la citoyenneté aux élites éduennes", effets:{ stabilite:10, romanisation:10, faveur:-5, tresor:-20 },
@@ -308,13 +308,13 @@ window.LEGATUS = {
       contexte:"Légat ! Des bandes germaniques ont franchi le Rhin et pillent nos confins. Tes ordres ?",
       revenuApres:true,
       options:[
-        { label:"Lever des auxiliaires gaulois pour défendre la frontière", effets:{ romanisation:8, stabilite:4, faveur:4, tresor:-20 }, persistant:{ tresor:-3 },
+        { label:"Lever des auxiliaires gaulois pour défendre la frontière", effets:{ romanisation:8, stabilite:4, faveur:4, tresor:-25 }, persistant:{ tresor:-5 },
           consequence:"Des Gaulois prennent les armes sous l'aigle romaine. En servant Rome, ils s'y attachent.",
           pourquoi:"Enrôler les Gaulois dans l'armée les intégrait à Rome : le service militaire, récompensé par la citoyenneté, romanisait." },
-        { label:"Faire venir des légions d'Italie", effets:{ stabilite:10, faveur:-4, tresor:-30 }, persistant:{ tresor:-5 },
+        { label:"Faire venir des légions d'Italie", effets:{ stabilite:10, faveur:-4, tresor:-45 }, persistant:{ tresor:-8 },
           consequence:"Les légions repoussent l'envahisseur, au prix fort, et sans rien changer aux cœurs gaulois.",
           pourquoi:"Les légions sécurisaient vite, mais coûtaient cher et n'intégraient pas la population." },
-        { label:"Négocier et verser un tribut aux chefs germains", effets:{ tresor:-30, stabilite:4, faveur:-10 }, persistant:{ tresor:-3 },
+        { label:"Négocier et verser un tribut aux chefs germains", effets:{ tresor:-35, stabilite:4, faveur:-10 }, persistant:{ tresor:-5 },
           consequence:"L'or achète la paix sur le Rhin. La frontière se calme, mais Rome juge le procédé indigne.",
           pourquoi:"Acheter la paix évitait la guerre, mais affaiblissait le prestige de Rome." }
       ]
@@ -328,7 +328,7 @@ window.LEGATUS = {
       contexte:"Légat, tout vacille à la fois : invasions sur tous les fronts, empereurs assassinés, monnaie sans valeur. L'Empire manque de sombrer.",
       revenuApres:true,
       options:[
-        { label:"Mobiliser toutes les forces pour sauver l'Empire", effets:{ stabilite:9, faveur:3, tresor:-40 }, persistant:{ tresor:-5 },
+        { label:"Mobiliser toutes les forces pour sauver l'Empire", effets:{ stabilite:9, faveur:3, tresor:-50 }, persistant:{ tresor:-8 },
           consequence:"À force d'efforts et de dépenses, tu tiens. L'Empire survit, exsangue mais debout.",
           pourquoi:"La crise du IIIᵉ siècle (invasions, anarchie militaire) faillit emporter Rome ; la sauver exigea des sacrifices énormes." },
         { label:"Te replier sur la défense des cités", effets:{ stabilite:3, romanisation:-4, faveur:-3, tresor:-15 }, persistant:{ tresor:-2 },
@@ -368,10 +368,10 @@ window.LEGATUS = {
       contexte:"Legatus, l'Empire est devenu trop grand pour un seul maître. Faut-il en partager le gouvernement pour mieux le défendre ?",
       revenuApres:true,
       options:[
-        { label:"Partager le pouvoir entre plusieurs chefs (la tétrarchie)", effets:{ stabilite:10, faveur:4, romanisation:-2 }, persistant:{ tresor:-4 },
+        { label:"Partager le pouvoir entre plusieurs chefs (la tétrarchie)", effets:{ stabilite:10, faveur:4, romanisation:-2, tresor:-15 }, persistant:{ tresor:-6 },
           consequence:"Plusieurs empereurs se partagent l'Empire : chacun défend sa part. Mieux gardé, mais l'unité se fissure.",
           pourquoi:"Face à l'immensité et aux invasions, Dioclétien partagea le pouvoir (la tétrarchie) pour mieux défendre l'Empire, au risque de la division." },
-        { label:"Hérisser la frontière de forts et de garnisons (le limes)", cout:30, effets:{ stabilite:8, romanisation:1 }, persistant:{ tresor:-5 },
+        { label:"Hérisser la frontière de forts et de garnisons (le limes)", cout:45, effets:{ stabilite:8, romanisation:1 }, persistant:{ tresor:-8 },
           consequence:"Tu fortifies le limes. Les incursions ralentissent, à grands frais.",
           pourquoi:"Fortifier la frontière (le limes) ralentissait les invasions, mais coûtait cher et figeait l'armée sur la défensive." },
         { label:"Tout gouverner seul depuis le centre", effets:{ stabilite:-8, faveur:2 }, persistant:{ tresor:-2 },
@@ -383,7 +383,7 @@ window.LEGATUS = {
     {
       type:"evenement", id:"religion", acte:"Acte V : Le tournant chrétien",
       acteIntro:"Près de deux siècles ont passé. L'Empire que tu sers a changé de visage : une foi venue d'Orient gagne les villes et bouleverse l'ordre romain. Rien ne sera plus comme avant.",
-      controleRome:{ seuil:65, rappel:48, malus:15 },
+      controleRome:{ seuil:65, rappel:48, malus:15, faveurRappel:38 },
       acteMalus:{ stabilite:-16, faveur:-8 }, acteMalusNote:"Le grand bouleversement religieux secoue l'Empire (stabilité −16, faveur −8).",
       perso:"conseiller", expr:"inquiet", ambiance:"jour", nom:"Marcus, ton conseiller",
       titre:"Une religion nouvelle",
@@ -466,7 +466,7 @@ window.LEGATUS = {
     }
   ],
 
-  revenu:{ haut:20, bas:9, seuil:45, texte:"Récolte des impôts" },
+  revenu:{ haut:12, bas:4, seuil:45, texte:"Récolte des impôts" },
 
   /* Niveaux de difficulté. seuilRevolte = stabilité sous laquelle une province se
      soulève ; seuilPaix = stabilité à retrouver pour la pacifier (bande d'hystérésis).

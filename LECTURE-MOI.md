@@ -119,19 +119,23 @@ les langues, laisser les cultes locaux, baisser les impôts, verser un tribut,
 refuser de persécuter, s'opposer à la citoyenneté… toutes ces options pèsent
 lourdement sur la faveur de l'empereur (jusqu'à −13). À force, c'est la
 **destitution**. Bref, deux façons de perdre par mauvaise romanisation : le
-**rappel** (progrès insuffisants) et la **destitution** (Rome lâchée trop souvent).
+**rappel** (progrès de romanisation insuffisants) et la **destitution** par l'empereur. À chaque **revue d'acte** (actes III, IV, V), si la **Faveur de Rome** est trop basse (sous **22**, puis **30**, puis **38** — les attentes de Rome montent), le gouverneur est **rappelé**. Un avertissement prévient quand la faveur approche du seuil. La faveur à 0 met fin au mandat immédiatement.
 
 ## Impact financier durable des choix
 
 Les choix ne pèsent plus seulement sur le tour courant : beaucoup laissent une
 **rente récurrente** appliquée **à chaque tour** (champ `persistant:{ tresor:±N }`).
 
-- **Commerce et routes** font **croître le revenu** (grande voie +8 / tour, forum
+- **Commerce et routes** font **croître le revenu** (grande voie +6 / tour, forum
   monumental +5, « favoriser le commerce » +8, citoyenneté élargie +3…).
 - **Infrastructures** coûtent leur **entretien** (grands thermes −3, grand aqueduc
   −3, grands jeux −4… *panem et circenses* coûte cher).
 - **Armée et garnisons** pèsent durablement (légions d'Italie −5, limes −5,
   mobilisation −5, tribut −3…).
+- **L'armée coûte cher**, en ponctuel **et** en entretien récurrent : lever des
+  auxiliaires (−25 d. puis −5 / tour), faire venir des légions (−45 puis −8),
+  verser un tribut (−35 puis −5), mobiliser tout l'Empire (−50 puis −8), tenir
+  le limes (−45 puis −8). Une province militarisée voit son **revenu fondre**.
 
 Le **revenu net par tour** s'affiche sous le Trésor : `impôts + commerce −
 entretien`. Il **baisse quand la province est instable** (impôts réduits) et, en
@@ -151,7 +155,7 @@ Les réglages sont **durcis** pour sanctionner les choix faibles :
 - **Pression d'acte accrue** — chaque nouvel acte (III, IV, V) entame la stabilité
   (jusqu'à −18) et la faveur.
 - **Économie serrée** — chantiers chers (grand aqueduc 80 d., thermes 70 d., forum
-  75 d.), **revenu réduit** (20 / 9 d. par tour, affiché sous le Trésor) et
+  75 d.), **revenu de base volontairement bas** (≈ 12 / 4 d. par tour) : sans commerce, on ne finance presque rien et
   **passivité pénalisée** : ne rien bâtir coûte un peu de stabilité ou de faveur.
 
 Tous ces réglages (`bilans`, `controleRome`, `acteMalus`, `cout`, `revenu`) vivent

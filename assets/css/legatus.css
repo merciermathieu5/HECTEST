@@ -318,3 +318,13 @@ header.tete{ display:none; }                 /* titre porté par l'accueil + l'o
   .acc-hud{ grid-template-columns:1fr 1fr; }
   .acc-cols{ flex-direction:column; }
 }
+
+/* ===== image-document dans la colonne (au lieu d'une vignette qui masque la bulle) ===== */
+.source-img{ display:flex; flex-direction:column; align-items:stretch; }
+.doc-img{ flex:1 1 auto; min-height:60px; max-height:100%; max-width:100%; object-fit:contain;
+  border:2px solid var(--encre); border-radius:6px; margin-top:5px; background:#fff; }
+/* ===== ajustements bannière d'accueil ===== */
+.acc-hero{ height:clamp(260px,40vh,306px); }
+.acc-titrebloc{ padding-top:10px; }
+.couronne{ width:clamp(86px,11vw,108px); margin-bottom:-2px; }
+.acc-plaque{ padding:8px 16px 10px; }
