@@ -17,6 +17,10 @@
 
   var etat, flags, persistants, idx, enRevolte, DIFF;
 
+  // pont vers la trame sonore (sans planter si l'audio est indisponible)
+  function son(m,a,b){ try{ var A=window.AudioLegatus; if(A&&A[m]) A[m](a,b); }catch(e){} }
+  function etatSonore(){ return { enRevolte:enRevolte, idx:idx, total:(G.etapes?G.etapes.length:1) }; }
+
   function diffDefaut(){
     return (G.difficultes && G.difficultes[G.difficultes.defaut||"legat"]) ||
            { nom:"Légat", seuilRevolte:30, seuilPaix:42, attenuation:0.5, bleed:2, revenuMod:1, malusActeMod:1 };
@@ -224,14 +228,14 @@
         c.innerHTML='<div class="diff-nom">'+esc(dd.nom)+'</div>'+
                     '<div class="diff-sous">'+esc(dd.sous||"")+'</div>'+
                     '<div class="diff-detail">Révolte sous '+dd.seuilRevolte+' de stabilité</div>';
-        c.addEventListener("click",function(){ DIFF=dd; intro(); });
+        c.addEventListener("click",function(){ DIFF=dd; son("demarrer"); intro(); });
         grille.appendChild(c);
       });
       box.appendChild(grille);
       page.appendChild(box);
     } else {
       var act=creer("div","actions"); act.style.justifyContent="center";
-      var b=creer("button","btn btn-primaire","Commencer"); b.addEventListener("click",function(){ intro(); });
+      var b=creer("button","btn btn-primaire","Commencer"); b.addEventListener("click",function(){ son("demarrer"); intro(); });
       act.appendChild(b); page.appendChild(act);
     }
 
@@ -251,6 +255,7 @@
     b.addEventListener("click",function(){ etape(0); });
     act.appendChild(b); bas.appendChild(act);
     rendreScene({ perso:I.perso, expr:I.expr, ambiance:I.ambiance, nom:I.nom, texte:I.texte, document:I.document, html:bas });
+    son("refleter", etat, etatSonore());
   }
 
   /* ---------- intermède d'acte (saut de temps) ---------- */
@@ -274,6 +279,7 @@
       }
     }
     var go=gameOver(); if(go) return finEchec(go);
+    son("evenement","acte"); son("refleter", etat, etatSonore());
     rendreJauges(deltas);
     var scene=el("#scene"); scene.innerHTML="";
     var box=creer("div","interlude "+(e.ambiance||"jour"));
@@ -321,6 +327,7 @@
     rendreJauges(malus);
     rendreScene({ perso:e.perso, expr:e.expr, ambiance:e.ambiance, nom:e.nom,
                   texte:contexte, alerte:alerte, document:e.document, docs:docs, html:bas });
+    son("refleter", etat, etatSonore());
   }
 
   /* ---------- décision → conséquence ---------- */
@@ -368,6 +375,7 @@
     rendreJauges(deltas);
     rendreScene({ perso:e.perso, expr:expr, ambiance:e.ambiance, nom:e.nom,
                   texte:opt.consequence+(note?" "+note:""), document:e.document, html:bas });
+    son("evenement","choix"); son("refleter", etat, etatSonore());
   }
 
   function listeDeltas(deltas){
@@ -386,6 +394,7 @@
   /* ---------- fins ---------- */
   function finEchec(type){
     var f=G.echecs[type]; rendreJauges();
+    son("evenement","echec");
     var bas=creer("div");
     bas.appendChild(creer("div","kicker","Fin du mandat"));
     bas.appendChild(creer("div","titre-acte",esc(f.titre)));
@@ -398,6 +407,7 @@
     for(var i=0;i<G.bilans.length;i++){ var cond=G.bilans[i].si, ok=true;
       Object.keys(cond).forEach(function(k){ if(etat[k]<cond[k]) ok=false; }); if(ok){ c=G.bilans[i]; break; } }
     rendreJauges();
+    son("evenement", (etat.romanisation>=70 && etat.faveur>=55 && etat.stabilite>=45) ? "triomphe" : "fin");
     var bas=creer("div");
     bas.appendChild(creer("div","kicker","Fin du mandat · Bilan"));
     bas.appendChild(creer("div","titre-acte",esc(c.titre)));

@@ -380,3 +380,15 @@ header.tete{ display:none; }                 /* titre porté par l'accueil + l'o
   .case.avec-vignette .bulle{ margin-bottom:14px; }
   .doc-vignette{ display:none; }
 }
+
+/* ============ Bouton de la trame sonore ============ */
+.son-toggle{ position:fixed; left:16px; bottom:16px; z-index:50; width:46px; height:46px;
+  border-radius:50%; cursor:pointer; padding:0; color:var(--encre);
+  background:var(--parchemin); border:2px solid var(--pierre-bord);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 3px 10px rgba(58,46,38,.18); transition:transform .12s ease, box-shadow .12s ease; }
+.son-toggle:hover{ transform:translateY(-2px); box-shadow:0 6px 16px rgba(58,46,38,.24); }
+.son-toggle:focus-visible{ outline:3px solid var(--pourpre); outline-offset:2px; }
+.son-toggle svg{ width:24px; height:24px; fill:currentColor; display:block; }
+.son-toggle.muet{ color:var(--encre-doux); opacity:.9; }
+@media (max-width:760px){ .son-toggle{ width:42px; height:42px; left:12px; bottom:12px; } }
