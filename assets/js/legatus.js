@@ -99,8 +99,9 @@
 
   /* ---------- scène (case BD) ---------- */
   function rendreScene(o){
-    // o : {perso, expr, ambiance, nom, texte, alerte, document, html}  html = contenu sous la case
+    // o : {perso, expr, ambiance, nom, texte, alerte, document, docs[], html}
     var scene=el("#scene"); scene.innerHTML="";
+    var row=creer("div","scene-doc");
     var sc=creer("div","case "+(o.ambiance||"jour"));
     sc.style.backgroundImage="url('assets/img/decor-forum.svg')";
     var img=document.createElement("img"); img.className="perso entre"; img.alt=o.nom||"";
@@ -115,7 +116,20 @@
       dv.innerHTML='<img src="'+docSrc(o.document)+'" alt=""><div class="leg">'+esc(DOCLEG[o.document]||"")+'</div>';
       sc.appendChild(dv);
     }
-    scene.appendChild(sc);
+    row.appendChild(sc);
+    if(o.docs && o.docs.length){
+      var col=creer("div","docs");
+      col.appendChild(creer("div","docs-tete","\uD83D\uDCDC Documents \u00e0 consulter"));
+      o.docs.forEach(function(d,k){
+        var src=creer("div","source");
+        src.appendChild(creer("div","src-tete",(d.tete||("Document "+(k+1)))));
+        src.appendChild(creer("div","src-txt",esc(d.texte)));
+        src.appendChild(creer("div","src-ref",esc(d.ref)));
+        col.appendChild(src);
+      });
+      row.appendChild(col);
+    }
+    scene.appendChild(row);
     if(o.html) scene.appendChild(o.html);
     window.scrollTo({top:0,behavior:"smooth"});
   }
@@ -200,13 +214,9 @@
     bas.appendChild(barreProgression(i));
     bas.appendChild(creer("div","kicker",(e.type==="construction"?"Chantier":"Événement")));
     bas.appendChild(creer("div","titre-acte",esc(e.titre)));
-    if(e.source){
-      var src=creer("div","source");
-      src.appendChild(creer("div","src-tete","\uD83D\uDCDC Document \u00e0 consulter"));
-      src.appendChild(creer("div","src-txt",esc(e.source.texte)));
-      src.appendChild(creer("div","src-ref",esc(e.source.ref)));
-      bas.appendChild(src);
-    }
+    var docs=[];
+    if(e.source)  docs.push({tete:"Document 1",                texte:e.source.texte,  ref:e.source.ref});
+    if(e.source2) docs.push({tete:"Document 2 \u00b7 autre regard", texte:e.source2.texte, ref:e.source2.ref});
     var liste=creer("div","options");
     e.options.forEach(function(opt){
       var b=creer("button","option"); b.type="button";
@@ -222,7 +232,7 @@
 
     rendreJauges(malus);
     rendreScene({ perso:e.perso, expr:e.expr, ambiance:e.ambiance, nom:e.nom,
-                  texte:contexte, alerte:alerte, document:e.document, html:bas });
+                  texte:contexte, alerte:alerte, document:e.document, docs:docs, html:bas });
   }
 
   /* ---------- décision → conséquence ---------- */

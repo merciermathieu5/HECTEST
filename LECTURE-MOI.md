@@ -78,30 +78,33 @@ cultes) tout en tenant la province et Rome jusqu'au bout. L'équilibre, pas le s
 brut, récompense la maîtrise — et c'est exactement le message historique : la
 romanisation a duré là où elle a intégré, non là où elle s'est seulement imposée.
 
-## Le document à consulter avant chaque décision
+## Deux documents à confronter avant chaque décision
 
-Avant de choisir, l'élève lit un **document** présenté dans un panneau « 📜 Document
-à consulter ». Chaque décision s'appuie sur une **vraie source antique** : Tacite
-(*Agricola*, *Annales*, *Germanie*), Frontin sur les aqueducs, Juvénal (« du pain et
-des jeux »), Pline le Jeune et la réponse de Trajan sur les chrétiens, l'édit de
-Caracalla (212), l'Édit de Milan (313), l'édit de Thessalonique (380), etc. Les
-images réelles déjà dans le jeu (carte de l'Empire, curie, cirque) restent en
-vignette sur les décisions concernées.
+Avant de choisir, l'élève lit **deux documents affichés à droite du personnage** :
+**Document 1** appuie un point de vue (ex. Tacite : le latin fait la « civilisation »)
+et **Document 2 · autre regard** présente un **avis divergent**, dans un encadré
+distinct (bleuté), pour **croiser les sources** — Irénée de Lyon (les langues locales
+résistent), Sénèque sur la cruauté des jeux, Pline le Jeune sur un aqueduc qui ruine
+une cité, l'opposition du Sénat aux Gaulois (Tacite, *Annales* XI), le chef breton
+Calgacus, Tertullien, Symmaque, Libanios, etc. Les images réelles (carte de l'Empire,
+curie, cirque) restent en vignette dans la case ; sur mobile, les documents passent
+**sous** la case.
 
 > **Important — sources :** les textes sont des **adaptations de classe rédigées
 > pour le jeu** (résumés en mots simples, attribués à l'auteur et à l'œuvre), et
 > **non des citations de traductions existantes**. Le champ `ref` donne l'œuvre et la
 > date. **À vérifier et à ajuster** avant usage en évaluation. Tout se modifie dans
-> le champ `source` de chaque étape (`legatus-data.js`).
+> les champs `source` (Document 1) et `source2` (Document 2) de chaque étape
+> (`legatus-data.js`).
 
 ## Perdre en négligeant la romanisation
 
 Romaniser n'est pas optionnel : c'est la **mission**. Aux entrées des actes III, IV
 et V, **Rome contrôle tes progrès** (champ `controleRome`) :
 
-- si la Romanisation est **sous le seuil de rappel** (12 / 25 / 38), c'est la
+- si la Romanisation est **sous le seuil de rappel** (16 / 32 / 48), c'est la
   **défaite immédiate** : « *Rappelé : la mission de Rome trahie* » ;
-- si elle est seulement **basse** (sous 25 / 42 / 55), la **Faveur chute** et un
+- si elle est seulement **basse** (sous 32 / 50 / 65), la **Faveur chute** et un
   avertissement s'affiche.
 
 De plus, **faire passer la province avant Rome coûte cher en Faveur** : respecter
@@ -111,12 +114,21 @@ lourdement sur la faveur de l'empereur (jusqu'à −13). À force, c'est la
 **destitution**. Bref, deux façons de perdre par mauvaise romanisation : le
 **rappel** (progrès insuffisants) et la **destitution** (Rome lâchée trop souvent).
 
-## Une économie plus serrée
+## Une partie exigeante
 
-Les chantiers **coûtent plus cher** (un grand aqueduc 80 d., de grands thermes
-70 d., un forum monumental 75 d., etc.) et le **revenu par tour est visible** : il
-faut désormais **prioriser** les investissements plutôt que tout bâtir. Les coûts
-sont dans le champ `cout` des options et le revenu dans `revenu` (`legatus-data.js`).
+Les réglages sont **durcis** pour sanctionner les choix faibles :
+
+- **Bilans plus stricts** — l'Apogée exige romanisation ≥ 85, stabilité ≥ 65 et
+  faveur ≥ 55 ; un héritage « durable » exige 62 / 48 / 40 ; en deçà, « inachevée »
+  puis « effacée ».
+- **Pression d'acte accrue** — chaque nouvel acte (III, IV, V) entame la stabilité
+  (jusqu'à −18) et la faveur.
+- **Économie serrée** — chantiers chers (grand aqueduc 80 d., thermes 70 d., forum
+  75 d.), **revenu réduit** (20 / 9 d. par tour, affiché sous le Trésor) et
+  **passivité pénalisée** : ne rien bâtir coûte un peu de stabilité ou de faveur.
+
+Tous ces réglages (`bilans`, `controleRome`, `acteMalus`, `cout`, `revenu`) vivent
+dans `legatus-data.js` et sont **à ajuster** selon tes groupes.
 
 
 

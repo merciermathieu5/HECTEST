@@ -34,6 +34,7 @@ window.LEGATUS = {
       perso:"conseiller", expr:"neutre", ambiance:"jour", nom:"Marcus, ton conseiller",
       titre:"La langue de l'administration",
       source:{ texte:"L’historien Tacite raconte comment le gouverneur Agricola, en Bretagne, poussa les notables à apprendre le latin et à adopter le mode de vie romain (toge, banquets). Ce que les vaincus prenaient pour un progrès, note-t-il, n’était qu’un aspect de leur soumission.", ref:"D’après Tacite, Vie d’Agricola, ch. 21 (Ier s.) — adaptation" },
+      source2:{ texte:"Pourtant, les langues locales résistèrent longtemps. Au IIe siècle, l’évêque Irénée, à Lyon, dit devoir souvent employer la langue celtique pour se faire comprendre du peuple.", ref:"Autre regard — d’après Irénée de Lyon, Contre les hérésies (IIe s.) — adaptation" },
       contexte:"Les cités gauloises nous écrivent dans dix langues, légat. Par quoi commencer ?",
       revenuApres:true,
       options:[
@@ -53,6 +54,7 @@ window.LEGATUS = {
       perso:"conseiller", expr:"neutre", ambiance:"jour", nom:"Marcus, ton conseiller",
       titre:"Le droit romain",
       source:{ texte:"Pour Cicéron, la véritable loi est une règle de raison, la même pour tous, qui fonde la communauté des citoyens. Étendre le droit romain, c’est faire entrer les peuples dans un ordre juridique commun.", ref:"D’après Cicéron, Des lois (Ier s. av. J.-C.) — adaptation" },
+      source2:{ texte:"En pratique, Rome laissait souvent les cités garder leurs propres lois et coutumes. Le droit romain pur ne s’appliquait d’abord qu’aux citoyens romains : un droit à plusieurs vitesses.", ref:"Autre regard — d’après les juristes romains (le Digeste) — adaptation" },
       contexte:"Faut-il imposer le droit de Rome dans les tribunaux, légat ?",
       revenuApres:true,
       options:[
@@ -72,6 +74,7 @@ window.LEGATUS = {
       perso:"conseiller", expr:"neutre", ambiance:"jour", nom:"Marcus, ton conseiller",
       titre:"La voie romaine",
       source:{ texte:"Le géographe Strabon décrit le grand réseau de routes tracé à travers la Gaule à partir de Lyon, reliant l’Océan, le Rhin et la Méditerranée. Ces voies servaient d’abord les armées et l’administration, puis le commerce.", ref:"D’après Strabon, Géographie, livre IV (Ier s.) — adaptation" },
+      source2:{ texte:"Mais la voie a un coût pour les habitants : entretien par corvée, obligation de loger et de transporter soldats et courriers impériaux. Des édits durent limiter ces réquisitions abusives.", ref:"Autre regard — d’après les édits sur les réquisitions (Ier-IIe s.) — adaptation" },
       contexte:"Bâtissons une voie romaine, légat. Mais pour qui d'abord : les légions, ou le commerce ?",
       options:[
         { label:"Un grand axe pour le commerce et les cités", cout:60, effets:{ romanisation:9 }, persistant:{ tresor:10 }, flag:"voie",
@@ -92,6 +95,7 @@ window.LEGATUS = {
       perso:"conseiller", expr:"neutre", ambiance:"jour", nom:"Marcus, ton conseiller",
       titre:"Les thermes",
       source:{ texte:"Sénèque, logé au-dessus de thermes, décrit le vacarme des baigneurs, des marchands et des joueurs : preuve que les bains étaient un lieu de vie sociale intense, bien plus qu’un simple lieu d’hygiène.", ref:"D’après Sénèque, Lettres à Lucilius, 56 (Ier s.) — adaptation" },
+      source2:{ texte:"Pour les moralistes, au contraire, les thermes étaient des lieux d’oisiveté et de dépenses, où le luxe amollissait les vieilles mœurs romaines.", ref:"Autre regard — d’après les moralistes romains (Sénèque, Pline) — adaptation" },
       contexte:"Bâtir des thermes, légat ? On y fait bien plus que se laver.",
       options:[
         { label:"De grands thermes publics, ouverts à tous", cout:70, effets:{ romanisation:11, stabilite:3, faveur:2 },
@@ -100,7 +104,7 @@ window.LEGATUS = {
         { label:"Des thermes modestes pour la cité", cout:35, effets:{ romanisation:5, stabilite:2 },
           consequence:"Des bains plus simples, mais déjà un lieu de sociabilité romaine.",
           pourquoi:"Même modestes, les thermes diffusent les usages romains." },
-        { label:"Pas de thermes pour l'instant", effets:{},
+        { label:"Pas de thermes pour l'instant", effets:{ stabilite:-3 },
           consequence:"Tu réserves le trésor à d'autres priorités.",
           pourquoi:"Sans lieux de la vie romaine, les habitudes locales perdurent." }
       ]
@@ -110,6 +114,7 @@ window.LEGATUS = {
       perso:"conseiller", expr:"neutre", ambiance:"jour", nom:"Marcus, ton conseiller",
       titre:"L'aqueduc",
       source:{ texte:"Frontin, responsable des eaux de Rome, vante l’utilité des aqueducs pour la salubrité de la ville. À côté de tant d’ouvrages utiles, lance-t-il, les pyramides d’Égypte « ne servent à rien ».", ref:"D’après Frontin, Les Aqueducs de Rome (vers 98) — adaptation" },
+      source2:{ texte:"Mais ces chantiers pouvaient ruiner les cités. Pline le Jeune écrit à Trajan que Nicomédie a englouti des sommes énormes dans un aqueduc jamais terminé.", ref:"Autre regard — d’après Pline le Jeune, Lettres, X, 37 (vers 111) — adaptation" },
       contexte:"La cité manque d'eau saine, légat. Un aqueduc changerait tout — mais c'est un chantier colossal.",
       options:[
         { label:"Un grand aqueduc de pierre", cout:80, effets:{ romanisation:8, stabilite:5, faveur:2 },
@@ -118,7 +123,7 @@ window.LEGATUS = {
         { label:"Des puits et des citernes", cout:30, effets:{ stabilite:3 },
           consequence:"Une solution modeste qui soulage la cité, sans la splendeur d'un aqueduc.",
           pourquoi:"Faute d'aqueduc, on se contente de l'eau de pluie et des nappes : moins de prestige, moins de salubrité." },
-        { label:"Rien pour l'instant", effets:{},
+        { label:"Rien pour l'instant", effets:{ stabilite:-3 },
           consequence:"La cité continue de puiser l'eau comme avant.",
           pourquoi:"Sans grands travaux hydrauliques, la vie urbaine reste limitée." }
       ]
@@ -128,6 +133,7 @@ window.LEGATUS = {
       perso:"conseiller", expr:"neutre", ambiance:"jour", nom:"Marcus, ton conseiller",
       titre:"Le forum et la curie",
       source:{ texte:"Dans un discours gravé sur bronze à Lyon, l’empereur Claude défend l’admission de notables gaulois au Sénat, rappelant que Rome s’est toujours renforcée en intégrant les peuples vaincus.", ref:"D’après la Table claudienne de Lyon (48) — adaptation" },
+      source2:{ texte:"Au Sénat, beaucoup s’opposèrent à l’entrée des Gaulois : ces anciens ennemis, disaient-ils, allaient envahir Rome et évincer ses vieilles familles.", ref:"Autre regard — d’après Tacite, Annales, XI, 23 — adaptation" },
       contexte:"Donnons à la cité un vrai centre, légat : un forum, et une curie pour le conseil des notables.",
       options:[
         { label:"Un forum monumental avec curie", cout:75, effets:{ romanisation:7, stabilite:2, faveur:2 }, flag:"curie",
@@ -136,7 +142,7 @@ window.LEGATUS = {
         { label:"Une simple place de marché", cout:30, effets:{ romanisation:3, stabilite:1 },
           consequence:"Un lieu d'échange, sans la dimension politique d'un vrai forum.",
           pourquoi:"Sans curie, les notables gaulois restent à l'écart du pouvoir romain." },
-        { label:"Rien de monumental", effets:{},
+        { label:"Rien de monumental", effets:{ faveur:-3 },
           consequence:"La cité s'organise sans centre romain affirmé.",
           pourquoi:"Sans forum, l'identité civique romaine s'enracine mal." }
       ]
@@ -146,6 +152,7 @@ window.LEGATUS = {
       perso:"marchand", expr:"neutre", ambiance:"jour", nom:"Quintus, organisateur de jeux",
       titre:"L'amphithéâtre et les jeux",
       source:{ texte:"Le poète Juvénal raille un peuple romain qui, ayant renoncé à la politique, ne réclame plus que deux choses : « du pain et des jeux ». Distraire la foule était devenu un instrument de pouvoir.", ref:"D’après Juvénal, Satires, X (début IIe s.) — adaptation" },
+      source2:{ texte:"Sénèque, lui, sort écœuré de l’arène : ce ne sont plus des combats mais des meurtres, et la foule réclame du sang. Distraire le peuple, oui, mais à quel prix moral ?", ref:"Autre regard — d’après Sénèque, Lettres à Lucilius, 7 — adaptation" },
       contexte:"Offrons des jeux au peuple, légat ! Courses, combats, spectacles : rien ne tient mieux une foule.",
       options:[
         { label:"De grands jeux réguliers dans un amphithéâtre", cout:65, effets:{ stabilite:6, faveur:5, romanisation:3 },
@@ -154,7 +161,7 @@ window.LEGATUS = {
         { label:"Des jeux modestes et occasionnels", cout:30, effets:{ stabilite:4, romanisation:1 },
           consequence:"Quelques fêtes contentent la cité sans ruiner le trésor.",
           pourquoi:"Même modestes, les jeux entretiennent le lien entre le peuple et le pouvoir romain." },
-        { label:"Pas de jeux, économiser", effets:{ stabilite:-3 },
+        { label:"Pas de jeux, économiser", effets:{ stabilite:-5, faveur:-2 },
           consequence:"Tu gardes l'argent, mais le peuple te trouve avare et lointain.",
           pourquoi:"Priver le peuple de jeux, c'était risquer son mécontentement : les jeux étaient une attente politique." }
       ]
@@ -163,10 +170,12 @@ window.LEGATUS = {
     {
       type:"evenement", id:"commerce", acte:"Acte III — Vivre en Romain",
       acteIntro:"Une génération a passé. Les villes prospèrent, hérissées de monuments. Reste à gagner les cœurs et les esprits : la culture, la foi, le droit de cité.",
-      controleRome:{ seuil:25, rappel:12, malus:10 },
+      controleRome:{ seuil:32, rappel:16, malus:12 },
+      acteMalus:{ stabilite:-10 }, acteMalusNote:"Le temps passe : tenir les acquis devient plus dur (stabilité −10).",
       perso:"marchand", expr:"neutre", ambiance:"jour", nom:"Quintus, un marchand",
       titre:"Les marchands de la voie",
       source:{ texte:"L’orateur grec Aelius Aristide s’émerveille que les marchandises du monde entier affluent à Rome par mer et par route : le commerce tisse l’unité de l’Empire et diffuse partout ses usages.", ref:"D’après Aelius Aristide, Éloge de Rome (vers 143) — adaptation" },
+      source2:{ texte:"Pour le chef breton Calgacus, les Romains sont des pillards : ils dépouillent le monde et, là où ils font un désert, disent avoir apporté la paix. L’impôt enrichit surtout Rome.", ref:"Autre regard — d’après le discours de Calgacus dans Tacite, Agricola, 30 — adaptation" },
       contexte:"Légat ! Quelle politique pour le commerce le long de tes routes ?",
       revenuApres:true,
       options:[
@@ -186,6 +195,7 @@ window.LEGATUS = {
       perso:"conseiller", expr:"neutre", ambiance:"jour", nom:"Marcus, ton conseiller",
       titre:"Le culte impérial",
       source:{ texte:"Chaque année, les délégués des cités gauloises se réunissaient à l’autel de Rome et d’Auguste, à Lyon, pour honorer l’empereur. Ce culte commun soudait la province à l’Empire.", ref:"D’après la dédicace de l’autel de Lugdunum (Lyon, 12 av. J.-C.) — adaptation" },
+      source2:{ texte:"Mais Juifs et chrétiens refusaient de sacrifier à l’empereur, y voyant une idolâtrie. Pour eux, ce culte commun n’unissait pas : il opprimait les consciences.", ref:"Autre regard — d’après Flavius Josèphe et les Actes des martyrs — adaptation" },
       contexte:"Rome veut qu'on honore l'empereur comme un dieu, légat. L'imposer aux Gaulois ?",
       revenuApres:true,
       options:[
@@ -205,6 +215,7 @@ window.LEGATUS = {
       perso:"conseiller", expr:"neutre", ambiance:"jour", nom:"Marcus, ton conseiller",
       titre:"L'éducation des fils de notables",
       source:{ texte:"Le rhéteur gaulois Eumène plaide pour rebâtir les écoles d’Autun, où les fils des notables gaulois apprenaient le latin et la culture romaine — formant les futurs cadres de l’Empire.", ref:"D’après Eumène, Pour la restauration des écoles d’Autun (vers 298) — adaptation" },
+      source2:{ texte:"Cette école ne touchait que les fils de notables. Le petit peuple des campagnes en restait exclu, ce qui creusait l’écart entre une élite romanisée et une Gaule restée celtique.", ref:"Autre regard — d’après les historiens de l’éducation romaine" },
       contexte:"Et si nous formions à la romaine les fils de l'aristocratie gauloise, légat ?",
       revenuApres:true,
       options:[
@@ -214,7 +225,7 @@ window.LEGATUS = {
         { label:"Des précepteurs ouverts à tous les notables", effets:{ romanisation:8, stabilite:2 }, cout:18,
           consequence:"Plus de familles accèdent à la culture latine. Diffusion plus large, plus lente, plus paisible.",
           pourquoi:"Élargir l'accès à la culture latine romanise en profondeur et sans heurt, mais demande du temps." },
-        { label:"Ne rien financer pour l'instant", effets:{ stabilite:1 },
+        { label:"Ne rien financer pour l'instant", effets:{ faveur:-3, romanisation:-1 },
           consequence:"Tu réserves le trésor à d'autres priorités.",
           pourquoi:"L'éducation est un levier puissant de romanisation ; y renoncer, c'est manquer une occasion." }
       ]
@@ -224,6 +235,7 @@ window.LEGATUS = {
       perso:"empereur", expr:"neutre", ambiance:"solennel", nom:"Édit de l'empereur",
       titre:"La citoyenneté pour tous ?",
       source:{ texte:"En 212, l’empereur Caracalla accorde la citoyenneté romaine à presque tous les habitants libres de l’Empire — aboutissement de siècles d’intégration. L’historien Dion Cassius y voit aussi un moyen d’élargir l’impôt.", ref:"D’après la Constitution antoninienne (212) et Dion Cassius — adaptation" },
+      source2:{ texte:"Une fois tous citoyens, une autre inégalité apparut : les honestiores (les riches) et les humiliores (les pauvres) ne furent plus jugés ni punis de la même façon.", ref:"Autre regard — d’après les juristes du IIIe siècle — adaptation" },
       contexte:"Legatus, je songe à faire de tous les hommes libres de l'Empire des citoyens romains. M'appuieras-tu ?",
       revenuApres:true,
       options:[
@@ -242,11 +254,12 @@ window.LEGATUS = {
     {
       type:"evenement", id:"revolte", acte:"Acte IV — Tenir l'Empire",
       acteIntro:"Les décennies filent. L'Empire est à son apogée — mais sa grandeur même devient un fardeau. Des fissures apparaissent, au-dedans comme aux frontières.",
-      controleRome:{ seuil:42, rappel:25, malus:12 },
-      acteMalus:{ stabilite:-15 }, acteMalusNote:"La pression des crises ébranle la province (stabilité −15).",
+      controleRome:{ seuil:50, rappel:32, malus:15 },
+      acteMalus:{ stabilite:-18 }, acteMalusNote:"La pression des crises ébranle la province (stabilité −18).",
       perso:"gaulois", expr:"severe", ambiance:"danger", nom:"Diviciacos, chef éduen",
       titre:"La révolte des Éduens",
       source:{ texte:"En l’an 21, deux notables gaulois pourtant romanisés et citoyens romains, l’Éduen Julius Sacrovir et le Trévire Julius Florus, soulèvent leurs cités écrasées de dettes et d’impôts. Les légions de Germanie matent la révolte.", ref:"D’après Tacite, Annales, livre III (révolte de 21) — adaptation" },
+      source2:{ texte:"Pour Velleius Paterculus, favorable à Rome, la révolte fut vite écrasée et sans gravité : la fermeté des légions suffit. Injustice fiscale ou simple agitation matée ? Les sources divergent.", ref:"Autre regard — d’après Velleius Paterculus, Histoire romaine, II — adaptation" },
       contexte:"Romain ! Tes impôts nous étranglent et ton autorité nous humilie. Les Éduens ont pris les armes !",
       contexteGrave:"Romain ! Tes lois, tes dieux, tes impôts : tu veux nous effacer. La révolte gagne toute la Gaule !",
       seuilGrave:42, revenuApres:true,
@@ -268,6 +281,7 @@ window.LEGATUS = {
       perso:"centurion", expr:"severe", ambiance:"danger", nom:"Aulus, centurion",
       titre:"Les frontières menacées",
       source:{ texte:"Tacite décrit les peuples germains au-delà du Rhin : guerriers redoutables, jamais vraiment soumis, que Rome doit sans cesse contenir le long d’une frontière difficile à défendre.", ref:"D’après Tacite, La Germanie (98) — adaptation" },
+      source2:{ texte:"La frontière n’était pas qu’un mur. Rome y commerçait avec les Germains et en recrutait beaucoup dans ses armées. Pour certains, mieux valait intégrer les barbares que les combattre sans fin.", ref:"Autre regard — d’après les historiens du limes" },
       contexte:"Légat ! Des bandes germaniques ont franchi le Rhin et pillent nos confins. Tes ordres ?",
       revenuApres:true,
       options:[
@@ -287,6 +301,7 @@ window.LEGATUS = {
       perso:"centurion", expr:"severe", ambiance:"danger", nom:"Aulus, centurion",
       titre:"La crise du IIIᵉ siècle",
       source:{ texte:"L’historien Hérodien, témoin de l’époque, décrit des empereurs renversés et assassinés les uns après les autres, tandis que les invasions se multiplient : l’Empire vacille.", ref:"D’après Hérodien, Histoire des empereurs romains (IIIe s.) — adaptation" },
+      source2:{ texte:"Tout ne fut pas que déclin. Des empereurs-soldats comme Aurélien réunifièrent l’Empire et furent salués comme ses restaurateurs. La crise força aussi de profondes réformes.", ref:"Autre regard — d’après les éloges de l’empereur Aurélien — adaptation" },
       contexte:"Légat, tout vacille à la fois : invasions sur tous les fronts, empereurs assassinés, monnaie sans valeur. L'Empire manque de sombrer.",
       revenuApres:true,
       options:[
@@ -306,6 +321,7 @@ window.LEGATUS = {
       perso:"conseiller", expr:"inquiet", ambiance:"jour", nom:"Marcus, ton conseiller",
       titre:"Le fardeau de l'armée",
       source:{ texte:"Pour enrayer la flambée des prix qui ruine soldats et sujets, l’empereur Dioclétien fixe par édit des prix maximums — preuve d’une inflation galopante née du coût de l’armée et de la monnaie dévaluée.", ref:"D’après l’Édit du Maximum de Dioclétien (301) — adaptation" },
+      source2:{ texte:"L’édit échoua. Lactance rapporte qu’en fixant les prix, on provoqua pénuries et marché noir : les marchandises disparurent, et il fallut l’abandonner.", ref:"Autre regard — d’après Lactance, De la mort des persécuteurs, 7 — adaptation" },
       contexte:"L'armée dévore le trésor, légat. Défendre un empire aussi vaste coûte plus que tout le reste. Comment payer ?",
       revenuApres:true,
       options:[
@@ -325,6 +341,7 @@ window.LEGATUS = {
       perso:"empereur", expr:"neutre", ambiance:"solennel", nom:"L'empereur Dioclétien",
       titre:"Un empire trop vaste",
       source:{ texte:"Lactance rapporte que Dioclétien, jugeant l’Empire trop vaste pour un seul homme, en partagea le gouvernement entre plusieurs chefs (la Tétrarchie) — au prix, déplore-t-il, d’une administration et d’impôts alourdis.", ref:"D’après Lactance, De la mort des persécuteurs (vers 315) — adaptation" },
+      source2:{ texte:"Au début, la Tétrarchie parut réussir. Les orateurs officiels célébraient quatre chefs unis défendant mieux un immense empire et ramenant la paix aux frontières.", ref:"Autre regard — d’après les Panégyriques latins (vers 289-307) — adaptation" },
       contexte:"Legatus, l'Empire est devenu trop grand pour un seul maître. Faut-il en partager le gouvernement pour mieux le défendre ?",
       revenuApres:true,
       options:[
@@ -343,11 +360,12 @@ window.LEGATUS = {
     {
       type:"evenement", id:"religion", acte:"Acte V — Le tournant chrétien",
       acteIntro:"Près de deux siècles ont passé. L'Empire que tu sers a changé de visage : une foi venue d'Orient gagne les villes et bouleverse l'ordre romain. Rien ne sera plus comme avant.",
-      controleRome:{ seuil:55, rappel:38, malus:12 },
-      acteMalus:{ stabilite:-12, faveur:-5 }, acteMalusNote:"Le grand bouleversement religieux secoue l'Empire (stabilité −12, faveur −5).",
+      controleRome:{ seuil:65, rappel:48, malus:15 },
+      acteMalus:{ stabilite:-16, faveur:-8 }, acteMalusNote:"Le grand bouleversement religieux secoue l'Empire (stabilité −16, faveur −8).",
       perso:"conseiller", expr:"inquiet", ambiance:"jour", nom:"Marcus, ton conseiller",
       titre:"Une religion nouvelle",
       source:{ texte:"Gouverneur en Asie, Pline le Jeune écrit à l’empereur Trajan pour savoir comment juger les chrétiens : ils refusent de sacrifier à l’empereur, mais se réunissent paisiblement avant l’aube pour chanter leur dieu.", ref:"D’après Pline le Jeune, Lettres, X, 96 (vers 112) — adaptation" },
+      source2:{ texte:"Pour d’autres Romains, le christianisme était une superstition funeste. Tacite rapporte que Néron fit accuser les chrétiens de l’incendie de Rome : une secte à réprimer, jugeaient-ils.", ref:"Autre regard — d’après Tacite, Annales, XV, 44 — adaptation" },
       contexte:"Légat, les chrétiens se multiplient. Ils refusent d'honorer l'empereur et nos dieux — un défi ouvert à l'ordre de Rome.",
       revenuApres:true,
       options:[
@@ -367,6 +385,7 @@ window.LEGATUS = {
       perso:"empereur", expr:"severe", ambiance:"danger", nom:"Édit de l'empereur",
       titre:"Persécuter ou tolérer ?",
       source:{ texte:"Trajan répond à Pline qu’il ne faut pas rechercher les chrétiens, mais punir ceux qui sont dénoncés et refusent de se rétracter — une politique ambiguë, entre tolérance et répression.", ref:"D’après la réponse de Trajan à Pline, Lettres, X, 97 (vers 112) — adaptation" },
+      source2:{ texte:"Le chrétien Tertullien dénonce des persécutions absurdes : on punit un simple nom, sans crime. Et il prévient : le sang des martyrs est une semence : réprimer fait grandir l’Église.", ref:"Autre regard — d’après Tertullien, Apologétique (vers 197) — adaptation" },
       contexte:"L'empereur ordonne de réprimer les chrétiens dans tout l'Empire, legatus. Appliques-tu l'édit de persécution ?",
       revenuApres:true,
       options:[
@@ -386,6 +405,7 @@ window.LEGATUS = {
       perso:"empereur", expr:"neutre", ambiance:"solennel", nom:"L'empereur Constantin",
       titre:"L'Édit de Milan (313)",
       source:{ texte:"En 313, Constantin et Licinius accordent à chacun la liberté de suivre la religion de son choix, chrétiens compris, et ordonnent de restituer aux Églises les biens confisqués.", ref:"D’après l’Édit de Milan (313), rapporté par Lactance — adaptation" },
+      source2:{ texte:"La tolérance fit débat. Plus tard, le sénateur païen Symmaque suppliait qu’on laisse vivre aussi l’ancienne religion : on n’atteint pas un si grand mystère par une seule voie.", ref:"Autre regard — d’après Symmaque, Sur l’autel de la Victoire (384) — adaptation" },
       contexte:"Moi, Constantin, j'ai vaincu sous un signe nouveau. Je proclame la liberté de culte pour tous, chrétiens compris. Appliqueras-tu mon édit, legatus ?",
       revenuApres:true,
       options:[
@@ -405,6 +425,7 @@ window.LEGATUS = {
       perso:"empereur", expr:"neutre", ambiance:"solennel", nom:"L'empereur Théodose",
       titre:"Le christianisme, religion de l'Empire",
       source:{ texte:"En 380, l’empereur Théodose ordonne à tous ses sujets de suivre le christianisme de Nicée, faisant de cette foi la religion officielle de l’Empire et interdisant peu à peu les anciens cultes.", ref:"D’après l’Édit de Thessalonique (380, Code Théodosien) — adaptation" },
+      source2:{ texte:"Faire d’une seule foi la loi de tous ne se fit pas sans violence. Le rhéteur païen Libanius supplie l’empereur d’épargner les temples : les détruire, c’est ruiner des chefs-d’œuvre.", ref:"Autre regard — d’après Libanius, Pour les temples (vers 386) — adaptation" },
       contexte:"Le christianisme triomphe, legatus. Dois-je en faire la seule religion de l'Empire et fermer les temples des dieux anciens ?",
       contexteSi:{ flag:"repression", ajout:" Des inscriptions hostiles à Rome maculent encore les murs depuis ta vieille répression.", malus:{ stabilite:-6 } },
       revenuApres:true,
@@ -422,7 +443,7 @@ window.LEGATUS = {
     }
   ],
 
-  revenu:{ haut:22, bas:11, seuil:45, texte:"Récolte des impôts" },
+  revenu:{ haut:20, bas:9, seuil:45, texte:"Récolte des impôts" },
 
   /* Niveaux de difficulté. seuilRevolte = stabilité sous laquelle une province se
      soulève ; seuilPaix = stabilité à retrouver pour la pacifier (bande d'hystérésis).
@@ -449,13 +470,13 @@ window.LEGATUS = {
   },
 
   bilans:[
-    { si:{ romanisation:80, stabilite:60, faveur:50 }, perso:"empereur", expr:"content", ambiance:"solennel",
+    { si:{ romanisation:85, stabilite:65, faveur:55 }, perso:"empereur", expr:"content", ambiance:"solennel",
       titre:"Apogée : une œuvre pour les siècles",
       texte:"Tu as romanisé la province en profondeur, traversé les pires crises sans la laisser sombrer, et accompagné le grand basculement chrétien sans déchirer l'Empire. Peu de gouverneurs auront tenu pareil équilibre sur une si longue durée. Ton nom restera." },
-    { si:{ romanisation:50, stabilite:38 }, perso:"empereur", expr:"content", ambiance:"solennel",
+    { si:{ romanisation:62, stabilite:48, faveur:40 }, perso:"empereur", expr:"content", ambiance:"solennel",
       titre:"Un héritage romain durable",
       texte:"La Gaule est devenue romaine — langue, droit, villes, citoyens — et chrétienne avec l'Empire. Quelques secousses, mais l'essentiel tient. La romanisation a réussi, par l'intégration plus que par la conquête." },
-    { si:{ romanisation:30 }, perso:"conseiller", expr:"neutre", ambiance:"jour",
+    { si:{ romanisation:42, stabilite:28 }, perso:"conseiller", expr:"neutre", ambiance:"jour",
       titre:"Une romanisation inachevée",
       texte:"Rome a laissé son empreinte, mais l'enracinement reste fragile — ou bien tu as poussé si fort qu'à force de crises l'édifice a vacillé. L'équilibre, sur la durée, t'a manqué." },
     { si:{}, perso:"gaulois", expr:"neutre", ambiance:"jour",
