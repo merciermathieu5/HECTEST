@@ -104,6 +104,29 @@ curie, cirque) restent en vignette dans la case ; sur mobile, les documents pass
 > les champs `source` (Document 1) et `source2` (Document 2) de chaque étape
 > (`legatus-data.js`).
 
+### Délai de lecture avant les choix
+
+Pour forcer la **lecture des documents**, les options de réponse sont **désactivées
+pendant 10 secondes** : un bandeau affiche un compte à rebours et une barre qui se
+remplit, puis les choix s'ouvrent. Les options déjà bloquées faute de trésor le
+restent.
+
+Le délai est **paramétrable** sans toucher au moteur :
+
+- **Pour tout le jeu** — ajoute `delaiLecture: 10` (en secondes) à l'objet
+  `window.LEGATUS` de `legatus-data.js`. Mets `0` pour désactiver le verrou.
+- **Pour une étape précise** — ajoute `delaiLecture: 15` (par exemple) dans cette
+  étape ; cette valeur a priorité sur la valeur globale.
+
+### Conséquences en fenêtre surgissante
+
+Après chaque décision, les **conséquences s'affichent dans un pop-up** par-dessus la
+scène : la **réaction du personnage** (portrait + description textuelle), l'**impact
+sur les jauges** (pastilles colorées : +/− Romanisation, Stabilité, Faveur, Trésor,
+avec le bilan financier du tour), un encadré **« Pourquoi ? »**, et le bouton
+**Continuer**. Pendant ce temps, le tableau de bord en haut se met à jour. La touche
+*Échap* équivaut à *Continuer*.
+
 ## Perdre en négligeant la romanisation
 
 Romaniser n'est pas optionnel : c'est la **mission**. Aux entrées des actes III, IV

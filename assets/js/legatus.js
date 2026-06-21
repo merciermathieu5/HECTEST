@@ -16,6 +16,7 @@
   };
 
   var etat, flags, persistants, idx, enRevolte, DIFF;
+  var GEN_VERROU=0;   // jeton de génération : invalide un compte à rebours quand la scène change
 
   // pont vers la trame sonore (sans planter si l'audio est indisponible)
   function son(m,a,b){ try{ var A=window.AudioLegatus; if(A&&A[m]) A[m](a,b); }catch(e){} }
@@ -312,6 +313,7 @@
     if(e.source)  docs.push({tete:"Document 1",                texte:e.source.texte,  ref:e.source.ref});
     if(e.source2) docs.push({tete:"Document 2", texte:e.source2.texte, ref:e.source2.ref});
     var liste=creer("div","options");
+    var boutonsChoix=[];
     e.options.forEach(function(opt){
       var b=creer("button","option"); b.type="button";
       var t=creer("div","option-titre",esc(opt.label));
@@ -320,14 +322,87 @@
       var dispo=!(opt.cout>0 && etat.tresor<opt.cout);
       if(!dispo){ b.classList.add("indispo"); b.disabled=true; b.appendChild(creer("div","option-sous","Trésor insuffisant")); }
       b.addEventListener("click",function(){ if(dispo) choisir(e,opt); });
+      boutonsChoix.push({ btn:b, dispo:dispo });
       liste.appendChild(b);
     });
+
+    // verrou de lecture : laisse le temps de lire les documents avant d'ouvrir les choix
+    var ms=delaiLecture(e);
+    var verrou=ms>0 ? noteDeLecture(ms) : null;
+    if(verrou) bas.appendChild(verrou);
     bas.appendChild(liste);
 
     rendreJauges(malus);
     rendreScene({ perso:e.perso, expr:e.expr, ambiance:e.ambiance, nom:e.nom,
                   texte:contexte, alerte:alerte, document:e.document, docs:docs, html:bas });
+    if(verrou) verrouillerChoix(boutonsChoix, verrou, ms);
     son("refleter", etat, etatSonore());
+  }
+
+  /* ---------- verrou de lecture : on ouvre les choix après un délai ---------- */
+  // Durée paramétrable : e.delaiLecture (par étape) ou G.delaiLecture (global), sinon 10 s.
+  function delaiLecture(e){
+    if(e && typeof e.delaiLecture==="number") return e.delaiLecture*1000;
+    var d=(typeof G.delaiLecture==="number")?G.delaiLecture:10;
+    return d*1000;
+  }
+  function noteDeLecture(ms){
+    var sec=Math.round(ms/1000);
+    var n=creer("div","lecture-verrou");
+    n.innerHTML=
+      '<div class="lv-tete"><span class="lv-ic">\uD83D\uDCDC</span>'+
+      '<span class="lv-txt">Prends le temps de lire les documents. Les choix s\u2019ouvrent dans '+
+      '<b class="lv-sec">'+sec+'</b>\u2009s.</span></div>'+
+      '<div class="lv-jauge"><i></i></div>';
+    return n;
+  }
+  function verrouillerChoix(boutons, notice, ms){
+    GEN_VERROU++; var moi=GEN_VERROU;
+    boutons.forEach(function(o){ if(o.dispo){ o.btn.disabled=true; o.btn.classList.add("verrou"); } });
+    var bar=notice.querySelector(".lv-jauge > i");
+    var sec=notice.querySelector(".lv-sec");
+    var fin=Date.now()+ms;
+    function tick(){
+      if(moi!==GEN_VERROU) return;                 // la scène a changé : on abandonne
+      var reste=Math.max(0, fin-Date.now());
+      if(sec) sec.textContent=Math.ceil(reste/1000);
+      if(bar) bar.style.width=(100*(1-reste/ms)).toFixed(1)+"%";
+      if(reste<=0){
+        boutons.forEach(function(o){ if(o.dispo){ o.btn.disabled=false; o.btn.classList.remove("verrou"); o.btn.classList.add("ouvre"); } });
+        notice.classList.add("ouvert");
+        var txt=notice.querySelector(".lv-txt"); if(txt) txt.innerHTML="\u00C0 toi de jouer : choisis ton action.";
+        return;
+      }
+      requestAnimationFrame(tick);
+    }
+    tick();
+  }
+
+  /* ---------- pop-up des conséquences ---------- */
+  function _modalEsc(ev){ if(ev.key==="Escape"){ var b=document.querySelector(".modal-fond .btn-primaire"); if(b) b.click(); } }
+  function fermerModale(){
+    var f=document.querySelector(".modal-fond");
+    if(f && f.parentNode) f.parentNode.removeChild(f);
+    document.removeEventListener("keydown", _modalEsc, true);
+  }
+  function ouvrirModale(carte){
+    fermerModale();
+    var fond=creer("div","modal-fond");
+    fond.appendChild(carte);
+    document.body.appendChild(fond);
+    document.addEventListener("keydown", _modalEsc, true);
+    var b=carte.querySelector(".btn-primaire");
+    if(b) setTimeout(function(){ try{ b.focus(); }catch(e){} }, 30);
+  }
+  function chipsDeltas(deltas){
+    var noms={romanisation:"Romanisation",stabilite:"Stabilité",faveur:"Faveur de Rome",tresor:"Trésor"};
+    var wrap=creer("div","modal-deltas"); var any=false;
+    ["romanisation","stabilite","faveur","tresor"].forEach(function(k){
+      if(deltas[k]){ any=true;
+        wrap.appendChild(creer("span","chip "+(deltas[k]>0?"d-plus":"d-moins"),(deltas[k]>0?"+":"")+deltas[k]+" "+noms[k])); }
+    });
+    if(!any) wrap.appendChild(creer("span","chip neutre","Aucun changement"));
+    return wrap;
   }
 
   /* ---------- décision → conséquence ---------- */
@@ -357,24 +432,48 @@
     var positif=estPositif(deltas);
     var expr=positif?"content":"inquiet";
 
-    var bas=creer("div");
-    bas.appendChild(barreProgression(idx));
-    bas.appendChild(creer("div","kicker","Conséquences"));
-    var d=creer("div","deltas "+(positif?"juste":"faux"));
-    d.innerHTML=listeDeltas(deltas)+(revenuTxt?'<div class="corr">'+esc(revenuTxt)+'</div>':"");
-    bas.appendChild(d);
-    if(revolteTxt) bas.appendChild(creer("div","note-revolte",esc(revolteTxt)));
+    // tableau de bord mis à jour (jauges animées en haut)
+    rendreJauges(deltas);
+
+    // pop-up des conséquences : réaction + description + impact sur les jauges + explication
+    var carte=creer("div","modal-carte");
+    carte.setAttribute("role","dialog");
+    carte.setAttribute("aria-modal","true");
+    carte.setAttribute("aria-label","Conséquences de ta décision");
+
+    var tete=creer("div","modal-tete");
+    var av=document.createElement("img"); av.className="modal-perso"; av.alt="";
+    av.src=persoSrc(e.perso||"conseiller", expr);
+    tete.appendChild(av);
+    var tt=creer("div","modal-tete-txt");
+    tt.appendChild(creer("div","modal-kicker","Conséquences"));
+    if(e.nom) tt.appendChild(creer("div","modal-qui",esc(e.nom)));
+    tete.appendChild(tt);
+    carte.appendChild(tete);
+
+    // description textuelle de la réaction
+    carte.appendChild(creer("div","modal-dit", esc(opt.consequence+(note?" "+note:""))));
+
+    // impact sur les jauges
+    var imp=creer("div","modal-impact "+(positif?"juste":"faux"));
+    imp.appendChild(creer("div","modal-impact-tete","Impact sur les jauges"));
+    imp.appendChild(chipsDeltas(deltas));
+    if(revenuTxt) imp.appendChild(creer("div","corr",esc(revenuTxt)));
+    carte.appendChild(imp);
+    if(revolteTxt) carte.appendChild(creer("div","note-revolte",esc(revolteTxt)));
+
+    // explication pédagogique
     var pq=creer("div","pourquoi");
     pq.innerHTML='<span class="pq-tete">Pourquoi&nbsp;?</span> '+esc(opt.pourquoi);
-    bas.appendChild(pq);
-    var act=creer("div","actions");
-    var b=creer("button","btn btn-primaire",(idx<G.etapes.length-1)?"Continuer":"Fin du mandat");
-    b.addEventListener("click",continuer);
-    act.appendChild(b); bas.appendChild(act);
+    carte.appendChild(pq);
 
-    rendreJauges(deltas);
-    rendreScene({ perso:e.perso, expr:expr, ambiance:e.ambiance, nom:e.nom,
-                  texte:opt.consequence+(note?" "+note:""), document:e.document, html:bas });
+    // action : poursuivre
+    var act=creer("div","actions modal-actions");
+    var b=creer("button","btn btn-primaire",(idx<G.etapes.length-1)?"Continuer":"Fin du mandat");
+    b.addEventListener("click",function(){ fermerModale(); continuer(); });
+    act.appendChild(b); carte.appendChild(act);
+
+    ouvrirModale(carte);
     son("evenement","choix"); son("refleter", etat, etatSonore());
   }
 
