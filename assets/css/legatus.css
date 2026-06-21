@@ -469,3 +469,8 @@ header.tete{ display:none; }                 /* titre porté par l'accueil + l'o
 .src-tete{ font-size:12px; }
 .src-txt{ font-size:12.5px; line-height:1.35; margin-top:3px; }
 .src-ref{ font-size:10.5px; margin-top:4px; }
+
+/* ===== Vignette : dégager le coin arrondi de la case + écart avec la bulle ===== */
+.doc-vignette{ right:18px; bottom:16px; width:84px; }
+.case.avec-vignette .bulle{ margin-bottom:100px; }
+.doc-vignette{ right:20px; bottom:18px; }
