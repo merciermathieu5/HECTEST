@@ -455,3 +455,17 @@ header.tete{ display:none; }                 /* titre porté par l'accueil + l'o
 .diff-carte{ padding:12px 14px 13px; }
 .diff-nom{ font-size:18px; }
 .diff-sous{ margin:2px 0 8px; }
+
+/* ===================================================================
+   ÉQUILIBRE case / documents : même hauteur, plus de vide à gauche
+   =================================================================== */
+.scene-doc{ align-items:stretch; }
+.scene-doc .case{ align-self:stretch; }      /* la case épouse la hauteur de la colonne de documents */
+.perso{ max-height:300px; }                  /* le personnage ne gonfle pas démesurément */
+.docs{ height:auto; min-height:var(--case-h); max-height:42vh; overflow:auto; }
+/* documents un cran plus compacts pour rester dans l'écran */
+.docs .source{ padding:7px 11px; }
+.docs-tete{ margin-bottom:2px; }
+.src-tete{ font-size:12px; }
+.src-txt{ font-size:12.5px; line-height:1.35; margin-top:3px; }
+.src-ref{ font-size:10.5px; margin-top:4px; }
