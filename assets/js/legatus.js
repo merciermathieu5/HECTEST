@@ -247,8 +247,8 @@
   function intro(){
     init(); rendreJauges();
     var I=G.intro;
-    var bas=creer("div");
-    bas.appendChild(creer("div","kicker","An de Rome · Mandat I"));
+    var bas=creer("div","intro-bas");
+    bas.appendChild(creer("div","kicker","An de Rome \u00b7 Mandat I"));
     bas.appendChild(creer("div","titre-acte",esc(I.titre)));
     var act=creer("div","actions");
     var b=creer("button","btn btn-primaire",esc(I.bouton));

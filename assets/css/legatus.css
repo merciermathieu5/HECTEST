@@ -474,3 +474,15 @@ header.tete{ display:none; }                 /* titre porté par l'accueil + l'o
 .doc-vignette{ right:18px; bottom:16px; width:84px; }
 .case.avec-vignette .bulle{ margin-bottom:100px; }
 .doc-vignette{ right:20px; bottom:18px; }
+
+/* ===== Intro : vignette droite bien dégagée + bloc bas centré ===== */
+.doc-vignette{ transform:none; right:16px; bottom:14px; box-shadow:0 3px 8px rgba(58,46,38,.22); }
+.intro-bas{ text-align:center; }
+.intro-bas .kicker, .intro-bas .titre-acte{ margin-left:0; margin-right:0; }
+.intro-bas .actions{ justify-content:center; }
+
+/* ===== Vignette : au premier plan, inclinée, non rognée par le coin ===== */
+.case.avec-vignette{ overflow:visible; }
+.doc-vignette{ transform:rotate(2.5deg); z-index:6; right:12px; bottom:12px;
+  box-shadow:0 4px 10px rgba(58,46,38,.3); }
+.doc-vignette{ bottom:-2px; }
