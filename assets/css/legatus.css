@@ -392,3 +392,66 @@ header.tete{ display:none; }                 /* titre porté par l'accueil + l'o
 .son-toggle svg{ width:24px; height:24px; fill:currentColor; display:block; }
 .son-toggle.muet{ color:var(--encre-doux); opacity:.9; }
 @media (max-width:760px){ .son-toggle{ width:42px; height:42px; left:12px; bottom:12px; } }
+
+/* ===================================================================
+   COMPACTION VERTICALE — tout l'écran de décision tient sans défiler
+   =================================================================== */
+:root{ --case-h: clamp(146px, 24vh, 208px); }
+.wrap{ padding:8px 22px 14px; }
+
+/* jauges plus fines */
+#jauges{ padding:5px 14px; gap:10px; margin:0 auto 7px; }
+.jauge{ gap:8px; }
+.jauge .ic{ width:25px; height:25px; }
+.jauge .ic svg{ width:16px; height:16px; }
+.jauge-nom{ font-size:11px; }
+.jauge-val{ font-size:12.5px; }
+.rail{ height:6px; margin-top:3px; }
+.jauge-revenu{ font-size:10.5px; margin-top:2px; }
+.revolte-banner{ padding:5px 10px; font-size:12.5px; }
+
+/* scène : case courte ; documents à la hauteur de leur contenu (fin du scroll interne) */
+.scene-doc{ align-items:stretch; margin-bottom:6px; }
+.scene-doc .case{ min-height:var(--case-h); }
+.docs{ min-height:var(--case-h); max-height:50vh; height:auto; padding:9px 11px; gap:6px; overflow:auto; }
+.docs-tete{ font-size:12px; margin-bottom:1px; }
+.docs .source{ flex:0 0 auto; }
+.src-tete{ font-size:12.5px; }
+.src-txt{ font-size:13px; line-height:1.4; margin-top:4px; }
+.src-ref{ font-size:11px; margin-top:5px; }
+
+/* bulle + vignette adaptées à la case courte */
+.perso{ max-height:none; }
+.bulle{ margin:10px 12px 10px 38%; padding:8px 13px; }
+.bulle .qui{ font-size:12px; margin-bottom:3px; }
+.bulle .dit{ font-size:13.5px; line-height:1.36; }
+.case.avec-vignette .bulle{ margin-bottom:84px; }
+.doc-vignette{ width:86px; max-width:30%; right:9px; bottom:9px; }
+.doc-vignette .leg{ font-size:9px; }
+
+/* blocs sous la scène, resserrés */
+.progression{ margin-top:6px; }
+.prog-acte{ font-size:13px; }
+.prog-seg{ margin-top:4px; }
+.prog-seg .dot{ height:5px; }
+.kicker{ margin:5px 2px 0; font-size:11px; }
+.titre-acte{ margin:2px 2px 0; font-size:18px; }
+.options{ gap:6px; margin-top:7px; }
+.option{ padding:7px 14px; font-size:14.5px; }
+.option-sous{ font-size:11.5px; margin-top:2px; }
+.deltas{ margin-top:7px; padding:8px 14px; font-size:13.5px; }
+.deltas .corr{ font-size:12px; margin-top:2px; }
+.note-revolte{ margin:7px 0 2px; padding:7px 12px; font-size:12.5px; }
+.pourquoi{ margin-top:6px; padding:7px 14px; font-size:13.5px; }
+.actions{ margin-top:9px; }
+.btn{ padding:9px 18px; font-size:14px; }
+
+/* intermède + accueil un cran plus compacts */
+.interlude{ padding:18px 22px; }
+.int-acte{ font-size:clamp(17px,2.6vw,23px); }
+.int-texte{ margin-top:11px; font-size:15px; line-height:1.5; }
+.int-avert{ margin-top:10px; padding:9px 13px; }
+.difficulte{ padding:22px 22px; }
+.diff-carte{ padding:12px 14px 13px; }
+.diff-nom{ font-size:18px; }
+.diff-sous{ margin:2px 0 8px; }

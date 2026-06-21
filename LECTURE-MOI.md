@@ -174,26 +174,22 @@ Le dossier `outils/` contient le générateur des personnages (`gen.py`).
 différée d'une répression jusqu'à l'acte chrétien, fins multiples et fins d'échec :
 le tout vérifié automatiquement (17 contrôles).
 
-## Trame sonore (générative, sans fichier audio)
+## Trame sonore (en boucle)
 
-Une **musique d'ambiance synthétisée en direct** (Web Audio API) accompagne la
-partie — aucun fichier audio, aucune dépendance, rien à charger ni à licencier.
-Elle est dans `assets/js/legatus-audio.js`.
+Une **musique de fond en boucle** accompagne la partie : une pièce de cuivres
+romaine d'environ 38 s, montée à partir de tes deux extraits
+(`190029` cuivres, puis `190028` cuivres + tambours), avec des fondus aux
+jonctions et un **fondu de boucle** pour que la fin se raccorde au début sans
+couture. Le fichier est `assets/audio/legatus-trame.mp3` ; le lecteur est dans
+`assets/js/legatus-audio.js`.
 
-- **Fond modal « antique »** : un accord (Ré) qui respire grâce à un filtre lent.
-  Le timbre passe en **majeur** quand la province est sereine et bien vue
-  (stabilité ≥ 62 et faveur ≥ 64), en **mineur** sinon.
-- **Évolution dramatique** : un **cœur/tambour** et une **dissonance grave**
-  apparaissent et s'intensifient à mesure que la **stabilité** et la **faveur**
-  chutent. La pulsation passe d'environ 48 à 114 battements par minute du calme
-  à la crise ; le fond s'assombrit, un sub se charge.
-- **Accents ponctuels** : roulement de tambour + stab dissonante à l'**entrée en
-  révolte** ; courte montée à chaque **changement d'acte** (avec un souffle aigu
-  qui croît vers la christianisation) ; **arpège majeur lumineux** sur un bilan
-  triomphal ; **figure descendante sombre** sur une destitution ou un embrasement ;
-  petit accord de confirmation à chaque **décision**.
-- **Contrôle** : un bouton haut-parleur en bas à gauche coupe/active la musique ;
-  le choix est mémorisé. La musique démarre au premier clic (choix du niveau),
-  conformément aux règles des navigateurs (pas de son avant interaction).
+- **Constante, sans variation d'intensité** : un fond stable, qui tourne en boucle.
+- **Démarrage** au premier clic (choix du niveau), comme l'exigent les navigateurs.
+- **Bouton haut-parleur** en bas à gauche pour couper/activer ; choix mémorisé.
 
-La trame se désactive proprement si la Web Audio n'est pas disponible.
+## Mise en page compacte
+
+L'écran de décision (jauges + scène + documents + boutons) est calibré pour
+**tenir dans une fenêtre d'ordinateur sans défiler** : la case BD est plafonnée
+à ~24 vh, les jauges et les blocs sont resserrés, et la colonne de documents
+prend la hauteur de son contenu (plus de barre de défilement interne).
