@@ -3,25 +3,42 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Legatus : Gouverner une province romaine</title>
-<meta name="description" content="Jeu sérieux d'histoire en bande dessinée : gouverne une province romaine et romanise-la durablement par tes décisions.">
+<title>Demokratia : gouverner Athènes au nom du peuple</title>
+<meta name="description" content="Jeu sérieux d'histoire en bande dessinée : dirige Athènes au 5e siècle av. J.-C. et fais naître la démocratie par tes décisions.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/legatus.css">
+<link rel="stylesheet" href="assets/css/stratege.css">
 </head>
 <body>
   <header class="tete">
-    <h1>Legatus</h1>
-    <div class="sous">Gouverner une province romaine</div>
+    <h1>Demokratia</h1>
+    <div class="sous">Gouverner Athènes au nom du peuple</div>
   </header>
   <main class="wrap">
     <div id="jauges"></div>
     <div id="scene"></div>
   </main>
+  <footer class="signature" aria-label="Conception de l'interface">
+    <div class="meandre" aria-hidden="true"></div>
+    <div class="sig-inner">
+      <img class="sig-logo"
+           src="assets/img/logo-css.png"
+           alt="Centre de services scolaire de Kamouraska–Rivière-du-Loup"
+           onerror="this.onerror=null;this.src='https://esrdl.csskamloup.gouv.qc.ca/wp-content/uploads/sites/37/2020/09/CSSKamouraska-Riviere-du-Loup_w3_couleur.png';">
+      <div class="sig-txt">
+        <span class="sig-nom">Mathieu Mercier</span>
+        <span class="sig-role">Conception et interface · Centre de services scolaire de Kamouraska–Rivière-du-Loup</span>
+      </div>
+      <a class="sig-contact" href="mailto:mmercier@csskamloup.gouv.qc.ca">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        Pour me joindre
+      </a>
+    </div>
+  </footer>
   <button id="son-toggle" class="son-toggle" type="button" aria-pressed="false" title="Couper la musique" aria-label="Activer ou couper la musique"></button>
-  <script src="assets/js/legatus-data.js"></script>
-  <script src="assets/js/legatus-audio.js"></script>
-  <script src="assets/js/legatus.js"></script>
+  <script src="assets/js/stratege-data.js"></script>
+  <script src="assets/js/stratege-audio.js"></script>
+  <script src="assets/js/stratege.js"></script>
 </body>
 </html>

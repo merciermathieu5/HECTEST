@@ -1,218 +1,122 @@
-# Legatus — Gouverner au nom de Rome
+# Demokratia — Gouverner Athènes au nom du peuple
 
 Jeu sérieux pour le premier cycle du secondaire (Histoire et éducation à la
-citoyenneté). Le joueur incarne le pouvoir de Rome dans une province de Gaule et
-prend **20 décisions**, réparties en **cinq actes**, qui traversent tout l'arc de
-l'Empire d'Occident — de l'implantation de Rome jusqu'au tournant chrétien.
+citoyenneté, 1ʳᵉ secondaire). Réalité sociale : **« Une première expérience de
+démocratie »** (Athènes, 5ᵉ siècle av. J.-C.).
+
+Le joueur dirige Athènes et prend des décisions qui font (ou défont) la
+démocratie. Même mécanique que *Legatus* — mais le sens politique est **inversé** :
+dans Legatus, le pouvoir vient d'en haut (l'empereur peut te rappeler) ; ici, il
+vient **d'en bas** (le peuple peut te chasser du pouvoir).
+
+> **Jeu complet : 24 décisions en 5 actes**, de la naissance de la démocratie
+> (Clisthène) à la fin de l'hégémonie athénienne (404-403 av. J.-C.), en passant
+> par les guerres médiques, l'âge d'or de Périclès et la guerre du Péloponnèse.
 
 ## Lancer le jeu
 
-Double-clique `index.html` — aucun serveur requis, fonctionne hors-ligne. Une partie
-enchaîne les 20 décisions et se termine par un bilan. Plusieurs trajectoires, donc
-plusieurs fins.
-
-> **Affichage** : l'interface est conçue pour tenir dans un écran d'ordinateur
-> (testée à 1366 × 768) sans avoir à faire défiler la page, écran après écran.
-
-## Page d'accueil
-
-Au lancement, une **page d'accueil illustrée** présente l'activité : une **bannière façon bande dessinée** (le décor du forum en fond, un personnage romain en toge, le titre « Legatus » sous une couronne de laurier, et l'accroche sur un bandeau lisible), un **bandeau des 4 jauges** aux couleurs du tableau de bord, puis **deux colonnes** — « Comment ça marche » et « Contexte pédagogique » (Histoire et éducation à la citoyenneté, 1re secondaire ; réalités sociales : la romanisation et la christianisation de l'Occident) — et enfin le **choix du niveau**. L'ensemble tient dans un écran d'ordinateur sans défilement. Tout le contenu est éditable dans l'objet `accueil` de `legatus-data.js`.
-
-## Les cinq actes
-
-1. **Implanter Rome** — la langue, le droit, la voie romaine (les fondations).
-2. **Bâtir la cité romaine** — les thermes, l'aqueduc, le forum et la curie,
-   l'amphithéâtre et les jeux (chaque infrastructure et sa fonction).
-3. **Vivre en Romain** — le commerce, le culte impérial, l'éducation des élites,
-   la citoyenneté (l'édit de Caracalla).
-4. **Tenir l'Empire** — la révolte, les frontières, la crise du IIIᵉ siècle, le
-   fardeau de l'armée et de l'inflation, un empire trop vaste (la tétrarchie) :
-   la difficulté de protéger l'Empire.
-5. **Le tournant chrétien** — une religion nouvelle, les persécutions, l'Édit de
-   Milan (313), le christianisme religion d'État (Théodose, 380).
-
-Entre les actes, un **intermède** marque le saut dans le temps. En entrant dans les
-actes IV et V, l'Empire encaisse une **tension** (perte de stabilité) : la difficulté
-n'est plus de romaniser, mais de *tenir* la province à travers les crises et les
-bouleversements.
-
-## Deux réalités sociales en un seul jeu
-
-Le jeu relie volontairement deux réalités sociales du programme : **la romanisation
-de l'Occident** (actes I à III) et **la christianisation de l'Occident** (acte V).
-Les actes télescopent près de quatre siècles : c'est une abstraction assumée pour
-faire vivre l'arc complet de l'Empire. À adapter selon ton intention pédagogique.
+Double-clique `index.html` — aucun serveur requis, fonctionne hors-ligne.
 
 ## Les quatre jauges
 
-- **Romanisation** — l'enracinement de la culture, du droit et des villes de Rome.
-- **Stabilité** — la paix sociale ; à 0, c'est la révolte totale et le rappel en disgrâce.
-- **Faveur de Rome** — la confiance de l'empereur ; à 0, c'est la destitution.
-  Attention : ses exigences *changent* avec le temps (après l'Édit de Milan,
-  soutenir les chrétiens rapporte de la faveur — l'inverse d'avant).
-- **Trésor** — finance les chantiers (actes I-II) puis les armées (acte IV).
-  Le **revenu par tour** est affiché sous la jauge (« +X d. / tour ») : il dépend
-  de la Stabilité (impôts rentrant mieux quand la province est calme) et tombe à
-  **0 pendant une révolte**.
+- **Démocratie** — *ta mission* : donner le pouvoir au peuple (le contraire de
+  l'oligarchie). À surveiller : si elle reste trop basse, les familles riches
+  reprennent le contrôle (fin « retour de l'oligarchie »).
+- **Paix sociale** — l'entente entre les habitants de la cité. À 0, la cité se
+  déchire (révolte, guerre civile).
+- **Soutien du peuple** — la confiance des citoyens en toi. À 0, le peuple te
+  chasse du pouvoir.
+- **Trésor de la cité** — l'argent (la flotte, la guerre, les chantiers). Le
+  revenu par tour s'affiche en drachmes (« dr. »).
 
-## Niveaux de difficulté et révolte des provinces
+Comme dans Legatus, **l'option qui fait le plus avancer une jauge coûte presque
+toujours ailleurs**. On ne maximise pas tout : la maîtrise, c'est l'équilibre.
 
-Au lancement, on choisit un niveau : **Apprenti**, **Légat** ou **Imperator**. Le
-niveau fixe le **seuil de révolte** : si la Stabilité descend sous ce seuil
-(20 / 30 / 40), une province se soulève.
+## Les cinq actes (24 décisions)
 
-Tant qu'une province est en révolte :
-- les gains de **Romanisation** et de **Faveur** sont **freinés** (on ne romanise
-  pas une province en feu) ;
-- les **impôts ne rentrent plus** (aucun revenu) ;
-- la Stabilité **s'érode** un peu chaque tour.
+**Acte I — Donner le pouvoir au peuple** : les dettes des paysans (Solon) · qui
+peut voter · la réforme de Clisthène · l'assemblée du peuple (l'ecclésia).
 
-Pour en sortir, il faut **rétablir l'ordre** : remonter la Stabilité au-dessus du
-seuil de pacification (la Stabilité, elle, n'est pas freinée — c'est ton levier pour
-t'en sortir, afin d'éviter une situation sans issue). Le niveau ajuste aussi la
-sévérité du freinage, les impôts et la pression des actes IV-V. Tous ces réglages
-vivent dans `difficultes` (dans `legatus-data.js`) et sont **à ajuster** selon tes
-classes.
+**Acte II — Affronter les Perses** : Marathon (Darius) · construire une flotte de
+trières (Thémistocle, financée par les mines du Laurion) · Salamine (Xerxès) ·
+fonder la Ligue de Délos.
 
-## Peut-on atteindre 100 % ?
+**Acte III — L'âge d'or de Périclès** : payer les citoyens pour qu'ils participent
+(le misthos) · bâtir le Parthénon · embellir l'Acropole (les Propylées) · le
+quartier des sculpteurs · améliorer l'Agora · les Longs Murs jusqu'au Pirée · le
+port du Pirée et les métèques · l'ostracisme. *(C'est l'acte des grands travaux :
+la plupart de ces décisions coûtent de l'argent — le trésor se gagne par l'empire
+et le commerce, et se dépense ici en culture et en infrastructures.)*
 
-Oui — la Romanisation peut atteindre 100 %. Mais c'est **comment** on romanise qui
-compte. Pousser Rome par la force (imposer la langue, le droit, le culte) fragilise
-la stabilité ; arrivé aux crises des actes IV-V, l'édifice vacille et la partie se
-termine « inachevée », même à 100 % de romanisation. La fin la plus haute, l'**Apogée**,
-exige de romaniser **par l'intégration** (la curie, la citoyenneté, le mélange des
-cultes) tout en tenant la province et Rome jusqu'au bout. L'équilibre, pas le score
-brut, récompense la maîtrise — et c'est exactement le message historique : la
-romanisation a duré là où elle a intégré, non là où elle s'est seulement imposée.
+**Acte IV — Tenir l'empire** : une cité alliée se révolte (Samos) · les tensions
+avec Sparte (Mégare) · la guerre du Péloponnèse éclate (431) · la peste et les
+meneurs démagogues (mort de Périclès).
 
-## Deux documents à confronter avant chaque décision
+**Acte V — La fin de l'hégémonie** : la grande expédition de Sicile (415) · le coup
+oligarchique des Quatre-Cents (411) · la défaite face à Sparte (404) · le
+rétablissement de la démocratie (403).
 
-Avant de choisir, l'élève lit **deux documents affichés à droite du personnage** :
-**Document 1** appuie un point de vue (ex. Tacite : le latin fait la « civilisation »)
-et **Document 2** présente un **avis divergent**, dans un encadré
-distinct (bleuté), pour **croiser les sources** — Irénée de Lyon (les langues locales
-résistent), Sénèque sur la cruauté des jeux, Pline le Jeune sur un aqueduc qui ruine
-une cité, l'opposition du Sénat aux Gaulois (Tacite, *Annales* XI), le chef breton
-Calgacus, Tertullien, Symmaque, Libanios, etc. Les images réelles (carte de l'Empire,
-curie, cirque) restent en vignette dans la case ; sur mobile, les documents passent
-**sous** la case.
+Au début de chaque acte (II à V), un **intermède** marque le passage du temps, un
+**malus** traduit la pression de l'époque (guerre, tensions impériales), et le
+peuple **juge tes progrès démocratiques** : si la démocratie est trop faible, il te
+chasse.
 
-> **Important — sources :** les textes sont des **adaptations de classe rédigées
-> pour le jeu** (résumés en mots simples, attribués à l'auteur et à l'œuvre), et
-> **non des citations de traductions existantes**. Le champ `ref` donne l'œuvre et la
-> date. **À vérifier et à ajuster** avant usage en évaluation. Tout se modifie dans
-> les champs `source` (Document 1) et `source2` (Document 2) de chaque étape
-> (`legatus-data.js`).
+### Note d'équilibre
 
-### Délai de lecture avant les choix
+Les grandes avancées démocratiques (libérer les pauvres, le vote pour tous, les
+tribus de Clisthène, l'assemblée souveraine) **mécontentent les familles riches** et
+coûtent de la *Paix sociale* : pousser la démocratie **et** l'empire sans ménager
+alliés et citoyens mène à la crise oligarchique (411, 404). Le niveau **Périclès**
+est exigeant : seul un jeu équilibré y atteint l'apogée.
 
-Pour forcer la **lecture des documents**, les options de réponse sont **désactivées
-pendant 10 secondes** : un bandeau affiche un compte à rebours et une barre qui se
-remplit, puis les choix s'ouvrent. Les options déjà bloquées faute de trésor le
-restent.
+## Deux documents à confronter
 
-Le délai est **paramétrable** sans toucher au moteur :
+Avant chaque décision, l'élève lit **deux documents** : un point de vue, puis un
+autre. Ils sont inspirés du **corpus HEC** de la réalité sociale et du site
+muniverssocial.ca.
 
-- **Pour tout le jeu** — ajoute `delaiLecture: 10` (en secondes) à l'objet
-  `window.LEGATUS` de `legatus-data.js`. Mets `0` pour désactiver le verrou.
-- **Pour une étape précise** — ajoute `delaiLecture: 15` (par exemple) dans cette
-  étape ; cette valeur a priorité sur la valeur globale.
+> **Sources :** les textes sont des **adaptations** rédigées en mots
+> simples pour des élèves de 12-13 ans — **et non des citations exactes**. Pour
+> cette raison, **aucune source n'est affichée** dans le jeu : il vaut mieux pas
+> de référence qu'une fausse. Si tu en as besoin pour une évaluation, ajoute les
+> **vraies sources** de ton corpus en remettant un champ `ref:"…"` dans `source`
+> (Document 1) et `source2` (Document 2) de chaque étape, dans
+> `assets/js/stratege-data.js` (le jeu l'affichera automatiquement).
 
-### Conséquences en fenêtre surgissante
+Un **délai de lecture** (6 s par défaut, réglable via `delaiLecture`) force la
+lecture des documents avant d'ouvrir les choix.
 
-Après chaque décision, les **conséquences s'affichent dans un pop-up** par-dessus la
-scène : la **réaction du personnage** (portrait + description textuelle), l'**impact
-sur les jauges** (pastilles colorées : +/− Romanisation, Stabilité, Faveur, Trésor,
-avec le bilan financier du tour), un encadré **« Pourquoi ? »**, et le bouton
-**Continuer**. Pendant ce temps, le tableau de bord en haut se met à jour. La touche
-*Échap* équivaut à *Continuer*.
+## Niveaux et fins
 
-## Perdre en négligeant la romanisation
+Trois niveaux (**Apprenti / Stratège / Périclès**) règlent le seuil à partir
+duquel la cité se déchire. La partie se termine par un **bilan** (trajectoire des
+jauges, journal des décisions, points forts, documents négligés) ou par une **fin
+d'échec** (la cité se déchire · le retour de l'oligarchie · chassé par le peuple).
 
-Romaniser n'est pas optionnel : c'est la **mission**. Aux entrées des actes III, IV
-et V, **Rome contrôle tes progrès** (champ `controleRome`) :
+## Où ajuster (tout est dans `assets/js/stratege-data.js`)
 
-- si la Romanisation est **sous le seuil de rappel** (16 / 32 / 48), c'est la
-  **défaite immédiate** : « *Rappelé : la mission de Rome trahie* » ;
-- si elle est seulement **basse** (sous 32 / 50 / 65), la **Faveur chute** et un
-  avertissement s'affiche.
+- `etapes[]` : chaque décision, ses options, leurs `effets` sur les jauges, la
+  `consequence` affichée et le **« pourquoi »** historique.
+- `bilans`, `echecs`, `difficultes`, `revenu`, `docAlerts` : réglages du jeu.
+- Les **effets sur les jauges sont des hypothèses pédagogiques — à valider et
+  ajuster selon ton jugement.**
 
-De plus, **faire passer la province avant Rome coûte cher en Faveur** : respecter
-les langues, laisser les cultes locaux, baisser les impôts, verser un tribut,
-refuser de persécuter, s'opposer à la citoyenneté… toutes ces options pèsent
-lourdement sur la faveur de l'empereur (jusqu'à −13). À force, c'est la
-**destitution**. Bref, deux façons de perdre par mauvaise romanisation : le
-**rappel** (progrès de romanisation insuffisants) et la **destitution** par l'empereur. À chaque **revue d'acte** (actes III, IV, V), si la **Faveur de Rome** est trop basse (sous **22**, puis **30**, puis **38** — les attentes de Rome montent), le gouverneur est **rappelé**. Un avertissement prévient quand la faveur approche du seuil. La faveur à 0 met fin au mandat immédiatement.
+## Personnages et images
 
-## Impact financier durable des choix
+Le dossier `outils/gen-grec.py` génère les personnages SVG (6 rôles × 4
+expressions) : `python3 gen-grec.py export ../assets/img/perso`. Les vignettes
+(carte de la Grèce, l'assemblée, la trière, Marathon, l'alliance) et le décor de
+l'agora sont dans `assets/img/`.
 
-Les choix ne pèsent plus seulement sur le tour courant : beaucoup laissent une
-**rente récurrente** appliquée **à chaque tour** (champ `persistant:{ tresor:±N }`).
+## Trame sonore
 
-- **Commerce et routes** font **croître le revenu** (grande voie +6 / tour, forum
-  monumental +5, « favoriser le commerce » +8, citoyenneté élargie +3…).
-- **Infrastructures** coûtent leur **entretien** (grands thermes −3, grand aqueduc
-  −3, grands jeux −4… *panem et circenses* coûte cher).
-- **Armée et garnisons** pèsent durablement (légions d'Italie −5, limes −5,
-  mobilisation −5, tribut −3…).
-- **L'armée coûte cher**, en ponctuel **et** en entretien récurrent : lever des
-  auxiliaires (−25 d. puis −5 / tour), faire venir des légions (−45 puis −8),
-  verser un tribut (−35 puis −5), mobiliser tout l'Empire (−50 puis −8), tenir
-  le limes (−45 puis −8). Une province militarisée voit son **revenu fondre**.
-
-Le **revenu net par tour** s'affiche sous le Trésor : `impôts + commerce −
-entretien`. Il **baisse quand la province est instable** (impôts réduits) et, en
-**révolte**, les impôts et le commerce tombent à zéro tandis que l'entretien continue
-de peser — le revenu peut alors devenir **négatif** (affiché en rouge). Il faut donc
-financer les chantiers et l'armée par un **commerce qui se développe**, pas seulement
-par le trésor de départ. Les valeurs sont dans le champ `persistant` des options
-(`legatus-data.js`).
-
-
-
-Les réglages sont **durcis** pour sanctionner les choix faibles :
-
-- **Bilans plus stricts** — l'Apogée exige romanisation ≥ 85, stabilité ≥ 65 et
-  faveur ≥ 55 ; un héritage « durable » exige 62 / 48 / 40 ; en deçà, « inachevée »
-  puis « effacée ».
-- **Pression d'acte accrue** — chaque nouvel acte (III, IV, V) entame la stabilité
-  (jusqu'à −18) et la faveur.
-- **Économie serrée** — chantiers chers (grand aqueduc 80 d., thermes 70 d., forum
-  75 d.), **revenu de base volontairement bas** (≈ 12 / 4 d. par tour) : sans commerce, on ne finance presque rien et
-  **passivité pénalisée** : ne rien bâtir coûte un peu de stabilité ou de faveur.
-
-Tous ces réglages (`bilans`, `controleRome`, `acteMalus`, `cout`, `revenu`) vivent
-dans `legatus-data.js` et sont **à ajuster** selon tes groupes.
-
-
-
-Tout le contenu vit dans `assets/js/legatus-data.js` : chaque décision, ses options,
-leurs effets sur les jauges, la conséquence affichée et le **« pourquoi »** historique.
-Les effets sont des hypothèses pédagogiques — **à valider et ajuster selon ton jugement**.
-Le dossier `outils/` contient le générateur des personnages (`gen.py`).
+Le fichier `assets/audio/stratege-trame.mp3` est, **pour l'instant, la trame de
+cuivres de Legatus** (placeholder). À remplacer par une pièce grecque (lyre/aulos)
+si tu veux ; le lecteur est dans `assets/js/stratege-audio.js`.
 
 ## Validation
 
-20 décisions, 5 actes, intermèdes, effet conditionnel de la curie, conséquence
-différée d'une répression jusqu'à l'acte chrétien, fins multiples et fins d'échec :
-le tout vérifié automatiquement (17 contrôles).
-
-## Trame sonore (en boucle)
-
-Une **musique de fond en boucle** accompagne la partie : une pièce de cuivres
-romaine d'environ 38 s, montée à partir de tes deux extraits
-(`190029` cuivres, puis `190028` cuivres + tambours), avec des fondus aux
-jonctions et un **fondu de boucle** pour que la fin se raccorde au début sans
-couture. Le fichier est `assets/audio/legatus-trame.mp3` ; le lecteur est dans
-`assets/js/legatus-audio.js`.
-
-- **Constante, sans variation d'intensité** : un fond stable, qui tourne en boucle.
-- **Démarrage** au premier clic (choix du niveau), comme l'exigent les navigateurs.
-- **Bouton haut-parleur** en bas à gauche pour couper/activer ; choix mémorisé.
-
-## Mise en page compacte
-
-L'écran de décision (jauges + scène + documents + boutons) est calibré pour
-**tenir dans une fenêtre d'ordinateur sans défiler** : la case BD est plafonnée
-à ~24 vh, les jauges et les blocs sont resserrés, et la colonne de documents
-prend la hauteur de son contenu (plus de barre de défilement interne).
+Le jeu complet a été vérifié par un harnais jsdom qui joue des parties entières
+(jeu sage, imprudent, timide, mauvais) sur les **trois niveaux** : amorçage, 20
+décisions, intermèdes et malus d'acte, conséquences, bilans et fins d'échec, sans
+erreur d'exécution.

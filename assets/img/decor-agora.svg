@@ -1,0 +1,21 @@
+<svg width="1200" height="750" viewBox="0 0 1200 750" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="ciel" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#BFD9E2"/><stop offset="1" stop-color="#E8F0EE"/></linearGradient></defs>
+<rect width="1200" height="750" fill="url(#ciel)"/>
+<!-- collines lointaines -->
+<path d="M0 470 Q300 410 620 460 T1200 450 V750 H0 Z" fill="#C9D3BE"/>
+<path d="M0 520 Q360 470 760 510 T1200 500 V750 H0 Z" fill="#BAC6AB" opacity="0.8"/>
+<!-- rocher de l'Acropole -->
+<path d="M360 470 L520 360 L760 360 L900 470 Z" fill="#D8CBAE"/>
+<path d="M360 470 L520 360 L600 360 L470 470 Z" fill="#C9BB9A" opacity="0.6"/>
+<!-- le Parthénon (temple) -->
+<g fill="#EDE6D4" stroke="#CBBF9E" stroke-width="2">
+<path d="M520 360 L640 318 L760 360 Z"/>
+<rect x="520" y="360" width="240" height="14"/>
+<rect x="532" y="374" width="16" height="86"/><rect x="564" y="374" width="16" height="86"/><rect x="596" y="374" width="16" height="86"/><rect x="628" y="374" width="16" height="86"/><rect x="660" y="374" width="16" height="86"/><rect x="692" y="374" width="16" height="86"/><rect x="724" y="374" width="16" height="86"/><rect x="516" y="458" width="248" height="14"/>
+</g>
+<!-- sol de l'agora -->
+<rect x="0" y="600" width="1200" height="150" fill="#E7DBC2"/>
+<path d="M0 600 H1200" stroke="#D3C5A6" stroke-width="3"/>
+<!-- dalles -->
+<path d="M0 600 L-30 750" stroke="#D6C9AA" stroke-width="2" fill="none"/><path d="M120 600 L90 750" stroke="#D6C9AA" stroke-width="2" fill="none"/><path d="M240 600 L210 750" stroke="#D6C9AA" stroke-width="2" fill="none"/><path d="M360 600 L330 750" stroke="#D6C9AA" stroke-width="2" fill="none"/><path d="M480 600 L450 750" stroke="#D6C9AA" stroke-width="2" fill="none"/><path d="M600 600 L570 750" stroke="#D6C9AA" stroke-width="2" fill="none"/><path d="M720 600 L690 750" stroke="#D6C9AA" stroke-width="2" fill="none"/><path d="M840 600 L810 750" stroke="#D6C9AA" stroke-width="2" fill="none"/><path d="M960 600 L930 750" stroke="#D6C9AA" stroke-width="2" fill="none"/><path d="M1080 600 L1050 750" stroke="#D6C9AA" stroke-width="2" fill="none"/><rect x="34" y="430" width="82" height="16" fill="#F3EEE0" stroke="#D3C5A6" stroke-width="2"/><rect x="40" y="446" width="70" height="300" fill="#EFE7D2"/><rect x="48" y="446" width="4" height="300" fill="#E2D7BD"/><rect x="60" y="446" width="4" height="300" fill="#E2D7BD"/><rect x="72" y="446" width="4" height="300" fill="#E2D7BD"/><rect x="84" y="446" width="4" height="300" fill="#E2D7BD"/><rect x="96" y="446" width="4" height="300" fill="#E2D7BD"/><rect x="32" y="746" width="86" height="14" fill="#E2D7BD"/><rect x="1084" y="430" width="82" height="16" fill="#F3EEE0" stroke="#D3C5A6" stroke-width="2"/><rect x="1090" y="446" width="70" height="300" fill="#EFE7D2"/><rect x="1098" y="446" width="4" height="300" fill="#E2D7BD"/><rect x="1110" y="446" width="4" height="300" fill="#E2D7BD"/><rect x="1122" y="446" width="4" height="300" fill="#E2D7BD"/><rect x="1134" y="446" width="4" height="300" fill="#E2D7BD"/><rect x="1146" y="446" width="4" height="300" fill="#E2D7BD"/><rect x="1082" y="746" width="86" height="14" fill="#E2D7BD"/></svg>
